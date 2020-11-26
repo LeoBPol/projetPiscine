@@ -1,0 +1,49 @@
+#aside {
+
+  top: 0px;
+
+  width: 30%;
+  height: 1080px;
+  float: left;
+  background: #015FFF 0% 0% ;
+
+
+}
+h1{
+  text-align: center;
+  color: #FFFFFF;
+  font: normal normal bold 60px/80px Segoe UI;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity : 1;
+}
+h2{
+
+  text-align: left;
+  font: normal normal 600 60px/80px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+
+}
+h3{
+  text-align: left;
+  font: normal normal normal 30px/40px Segoe UI;
+  letter-spacing: 0px;
+  color: #2D2D2D;
+  opacity: 1;
+}
+
+#main{
+  top: 0px;
+
+  width: 70%;
+  height: 1080px;
+  float: right;
+
+
+
+
+}
+
+
