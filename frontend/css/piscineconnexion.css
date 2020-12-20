@@ -9,32 +9,58 @@
 
 
 }
+body {
+  font-family: "Segoe UI", sans-serif;
+}
 h1{
   text-align: center;
-  color: #FFFFFF;
-  font: normal normal bold 60px/80px Segoe UI;
+  color: white;
+  margin-top: 200px;
+
+  font-family:  "Bold Segoe UI", sans-serif;
   letter-spacing: 0px;
-  color: #FFFFFF;
   opacity : 1;
 }
-h2{
+p{
 
+  margin-left: 70px;
   text-align: left;
-  font: normal normal 600 60px/80px Segoe UI;
+
+  font-family: "Segoe", sans-serif;
   letter-spacing: 0px;
-  color: #000000;
+  color: #2D2D2D;
   opacity: 1;
 
 }
-h3{
+strong{
+  color : blue;
+}
+.mb-3{
   text-align: left;
-  font: normal normal normal 30px/40px Segoe UI;
+  margin-left: 70px;
+
+  font-family: "Segoe UI Normal", sans-serif;
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
 }
+.form-group{
+  ext-align: left;
+  margin-left: 70px;
+
+  font-family: "Segoe UI Normal", sans-serif;
+  letter-spacing: 0px;
+  color: #2D2D2D;
+  opacity: 1;
+
+}
+.btn-primary{
+  margin-left: 70px;
+  color : blue;
+}
 
 #main{
+  font-size: 20px;
   top: 0px;
 
   width: 70%;
@@ -42,8 +68,21 @@ h3{
   float: right;
 
 
+}
 
+#logo{
+  margin-top: 420px;
+  top: 788px;
+  left: 360px;
+  width: 204px;
+  height: 292px;
+
+  float: right;
 
 }
+
+
+
+
 
 

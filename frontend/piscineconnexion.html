@@ -12,26 +12,25 @@
 
     <aside id ="aside">
       <h1>Description de l'application</h1>
-      <img src="img/component.png" alt="" />
+      <img src="img/component.png" alt="" id="logo"/>
 
     </aside>
 
     <main id="main">
-      <h2>Connectez-vous</h2>
-      <h3>Entrez votre adresse mail universitaire et votre mot de passe</h3>
+      <p>Connectez-vous</p>
+      <p>Entrez votre adresse mail universitaire et votre mot de passe</p>
       <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">E-mail universitaire</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted"></small>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Email address</label><br>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Mot de passe</label>
+          <label for="exampleInputPassword1">Mot de passe</label> <br>
           <input type="password" class="form-control" id="exampleInputPassword1">
         </div>
 
         <button type="submit" class="btn btn-primary">SE CONNECTER</button>
-        <h4>si vous n'avez pas de compte Inscrivez-vous</h4>
+        <p>si vous n'avez pas de compte <strong>Inscrivez-vous </strong></p>
       </form>
     </main>
   </body>
