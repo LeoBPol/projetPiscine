@@ -17,22 +17,52 @@
 </aside>
 
 <main id="main">
-    <p>Inscrivez-vous </p>
-    <p>Entrez votre adresse mail universitaire, votre formation et votre promotion</p>
+    <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
+    <p class="p3">Inscrivez-vous </p>
+    <p class="p4">Entrez votre adresse mail universitaire, votre formation et votre promotion</p>
     <form>
         <form class="needs-validation" novalidate>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Prénom</label>
+                    <label for="validationCustom01">Prénom</label><br>
                     <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
                     <div class="valid-feedback">
 
                     </div>
                 </div>
+                <div class="col-md-4 mb-3">
+                    <label for="validationCustom02">Last name</label><br>
+                    <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+                    <div class="valid-feedback">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Sélectionnez votre promotion</label><br>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>IG2023</option>
+                        <option>IG2022</option>
+                        <option>IG2021</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">E-mail universitaire</label><br>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Créer votre mot de passe</label> <br>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Confirmer votre mot de passe</label> <br>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
 
                 <button type="submit" class="btn btn-primary">S'INSCRIRE</button>
 
         </form>
+        <p class="p2">Si vous avez déjà un compte <strong>Connectez-vous </strong></p>
+
 </main>
 </body>
 </html>
