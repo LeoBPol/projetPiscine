@@ -1,32 +1,53 @@
 #aside {
-
-  top: 0px;
-
+  position: absolute;
   width: 30%;
-  height: 1080px;
+  height: 100%;
   float: left;
   background: #015FFF 0% 0% ;
 
 
+
 }
 body {
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI Normal", sans-serif;
+  margin: 0;
+
 }
 h1{
+  font-size: 3em;
   text-align: center;
   color: white;
-  margin-top: 200px;
+  margin-top: 70%;
 
-  font-family:  "Bold Segoe UI", sans-serif;
+  font-family:  "Segoe UI Normal", sans-serif;
   letter-spacing: 0px;
   opacity : 1;
 }
 p{
 
-  margin-left: 70px;
-  text-align: left;
+  margin-left: 0.5em;
+  text-align: right;
+  font-family: "Segoe UI Semibold", sans-serif;
+  letter-spacing: 0px;
+  color: #2D2D2D;
+  opacity: 1;
+  font-size: 50%;
 
-  font-family: "Segoe", sans-serif;
+}
+h5{
+  font-size: 3em;
+  margin-left: 5%;
+  text-align: left;
+  font-family: "Segoe UI Normal", sans-serif;
+  letter-spacing: 0px;
+  color: #2D2D2D;
+  opacity: 1;
+}
+h6{
+  font-size: 1.5em;
+  margin-left: 5%;
+  text-align: left;
+  font-family: "Segoe UI Semibold", sans-serif;
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
@@ -37,16 +58,17 @@ strong{
 }
 .mb-3{
   text-align: left;
-  margin-left: 70px;
-
+  margin-left: 5%;
+  font-size: 2em;
   font-family: "Segoe UI Normal", sans-serif;
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
 }
 .form-group{
-  ext-align: left;
-  margin-left: 70px;
+  text-align: left;
+  margin-left: 5%;
+  font-size: 2em;
 
   font-family: "Segoe UI Normal", sans-serif;
   letter-spacing: 0px;
@@ -55,30 +77,35 @@ strong{
 
 }
 .btn-primary{
-  margin-left: 70px;
-  color : blue;
+  background-color:#015FFF ;
+  margin-left: 5%;
+  color : white;
 }
 
 #main{
-  font-size: 20px;
-  top: 0px;
 
   width: 70%;
-  height: 1080px;
+  height: 100%;
   float: right;
+
 
 
 }
 
 #logo{
-  margin-top: 420px;
-  top: 788px;
-  left: 360px;
-  width: 204px;
-  height: 292px;
+  margin-top: 10%;
+  top: 15%;
+  left: 60%;
+  width: 50%;
+  height: 30%;
+
 
   float: right;
 
+}
+input{
+  height: 15%;
+  width: 60%;
 }
 
 
