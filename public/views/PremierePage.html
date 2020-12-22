@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="http://localhost:8080/public">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Première page</title>
-    <link rel="stylesheet" type="text/css" title="design2"href="css/piscineconnexion.css"/>
+    <link rel="stylesheet" type="text/css" title="design2"href="css/connexion.css"/>
     <link rel="stylesheeet" type="text/css" title="design1"href="css/premierepage.css"/>
-
-
-
-
 </head>
 <body>
 
@@ -27,8 +24,8 @@
     <p class="p4">Indiquez-nous le type de compte auquel vous avez accès</p>
     <form>
 
-        <button type="button" class="btn btn-secondary btn-lg btn-block"><span>ETUDIANT</span><img src="img/student.png" alt="" id="role"/></button><br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block"><span>ADMINISTRATEUR</span><img src="img/admin.png" alt="" id="role"/></button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/signin'"><span>ETUDIANT</span><img src="img/student.png" alt="" id="role"/></button><br>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/signin'"><span>ADMINISTRATEUR</span><img src="img/admin.png" alt="" id="role"/></button>
 
     </form>
 </main>
