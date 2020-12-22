@@ -51,8 +51,6 @@ h1{
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
-  font-size: 50%;
-
 }
 .p3{
   font-size: 3em;
@@ -122,15 +120,9 @@ p{
 }
 
 #logo{
-  margin-top: 10%;
-  top: 15%;
-  left: 60%;
-  width: 50%;
-  height: 30%;
-
-
-  float: right;
-
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 input{
   height: 15%;
