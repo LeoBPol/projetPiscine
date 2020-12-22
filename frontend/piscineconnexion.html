@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Page de connexion</title>
 
     <link rel="stylesheet" href="css/piscineconnexion.css"
+
   </head>
   <body>
 
 
+
     <aside id ="aside">
       <h1>Description de l'application</h1>
-      <img src="img/component.png" alt="" />
+      <img src="img/component.png" alt="" id="logo"/>
 
     </aside>
 
     <main id="main">
-      <h2>Connectez-vous</h2>
-      <h3>Entrez votre adresse mail universitaire et votre mot de passe</h3>
+      <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
+      <p class="p3">Connectez-vous</p>
+      <p class="p4">Entrez votre adresse mail universitaire et votre mot de passe</p>
       <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">E-mail universitaire</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-text text-muted"></small>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">E-mail universitaire</label><br>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Mot de passe</label>
+          <label for="exampleInputPassword1">Mot de passe</label> <br>
           <input type="password" class="form-control" id="exampleInputPassword1">
         </div>
 
-        <button type="submit" class="btn btn-primary">SE CONNECTER</button>
-        <h4>si vous n'avez pas de compte Inscrivez-vous</h4>
+        <button type="button" class="btn btn-primary"><span>SE CONNECTER</span><img src="img/flechee.png" alt="" id="flech"/></button>
+
+        <p class="p2">Si vous n'avez pas de compte <strong>Inscrivez-vous </strong></p>
       </form>
     </main>
   </body>
