@@ -1,29 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="http://localhost:8080/public">
     <meta charset="UTF-8">
     <title>Page de Planning</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/connexion.css"
 
 </head>
 <body>
     <aside id ="aside">
+
         <span class="border"></span>
 
+
         <span class="border border-white"></span>
+        <div id="cadre">
+            <p class="p7">Informations de l'événement  </p>
+            <p><i class="fa fa-refresh" aria-hidden="true"></i> Durée d'une soutenance  <span class="encadrer-un-contenu"><strong>1h30</strong></span></p>
+            <p><i class="fa fa-clock-o" aria-hidden="true"></i> Nombre de jury par soutenance  <span class="encadrer-un-contenu"><strong>2</strong></span></p></p>
+            <p> Date limite de réservation  <span class="encadrer-un-contenu"><strong>15 Novembre</strong></span></p></p>
+            <p> Nombre d'élèves par soutenance  <span class="encadrer-un-contenu"><strong>2</strong></span></p></p>
+            <button type="submit" class="btn btn-light">Modifier ces informations</button>
+
+
+        </div>
         <p class="p5">Autres événements</p>
+        <button type="submit" class="btn btn-primary" id="ombré">Soutenance de stage - IG5<img src="img/flechee.png" alt="" id="flech"/></button>
+        <button type="submit" class="btn btn-primary" id="ombré">Soutenance de stage - IG3<img src="img/flechee.png" alt="" id="flech"/></button>
+
+
+
 
         <img src="../img/component.png" alt="" />
 
     </aside>
     <main id="main">
-        <button type="button" class="btn btn-info btn-circle"><i class="fa fa-link"></i>
+
+        <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-question" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-info btn-circle"><i class="fa fa-link"></i>
+        <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-home" aria-hidden="false"></i>
         </button>
 
-        <p class="p3">Soutenance de -IG </p>
+        <p class="p3">Soutenance de stage - IG4 </p>
         <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa date ou son horaire</p>
+        <div class="form-group col-md-4 mb-3">
+
+            <select class="form-control" id="exampleFormControlSelect1" name="class">
+                <option>Semaine 51</option>
+                <option>Semaine 50</option>
+                <option>Semaine 49</option>
+            </select>
+        </div>
+
+        <table class="calendar table table-bordered" >
+            <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th width="5%">21<br></br>Lundi</th>
+
+                <th width="5%">22<br></br>Mardi</th>
+                <th width="5%">23<br></br>Mercredi</th>
+                <th width="5%">24<br></br>Jeudi</th>
+                <th width="5%">25<br></br>Vendredi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="m" width="5%">08:00</td>
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">09:00</td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">10:00</td>
+
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+
+                <td class=" no-events" rowspan="1"></td>
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">11:00</td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">12:00</td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+
+
+
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+
+
+                <td class=" no-events" rowspan="1"></td>
+
+
+
+                <td class=" no-events" rowspan="1"></td>
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">13:00</td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">14:00</td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+
+
+                <td class=" no-events" rowspan="1"></td>
+
+
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">15:00</td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">16:00</td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+
+
+                <td class=" no-events" rowspan="1"></td>
+
+
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">17:00</td>
+
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" rowspan="1"></td>
+
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">18:00</td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+            </tr>
+
+            <tr>
+                <td class="m" width="5%">19:00</td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+                <td class=" no-events" rowspan="1"></td>
+
+            </tr>
+
+            </tbody>
+        </table>
+        <p><i class="fa fa-check" aria-hidden="true"></i>15 groupes ont réservé leur créneau</p>
+        <p><i class="fa fa-times" aria-hidden="true"></i>10 groupes n'ont toujours pas réservé</p>
+        <button type="submit" class="btn btn-primary" id="droite">Proposer un nouveau créneau</button>
+        <button type="submit" class="btn btn-primary" id="droite">Partager le planning</button>
 
 
     </main>
