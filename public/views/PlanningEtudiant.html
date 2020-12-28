@@ -1,32 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="http://localhost:8080/public">
     <meta charset="UTF-8">
-    <title>Page Planning étudiant</title>
+    <title>Page de Planning</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../css/connexion.css"
 
 </head>
 <body>
 <aside id ="aside">
-    <span class="border"></span>
 
-    <span class="border border-white"></span>
-    <p class="p5">Vous n'avez pas encore de créneau réservé</p>
+
+
+
 
     <img src="../img/component.png" alt="" />
 
 </aside>
 <main id="main">
-    <button type="button" class="btn btn-info btn-circle"><i class="fa fa-link"></i>
+
+    <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-link"></i>
     </button>
-    <button type="button" class="btn btn-info btn-circle"><i class="fa fa-link"></i>
+    <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-link"></i>
     </button>
 
     <p class="p3">Soutenance de -IG </p>
     <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa date ou son horaire</p>
+    <div class="form-group col-md-4 mb-3">
+
+        <select class="form-control" id="exampleFormControlSelect1" name="class">
+            <option>Semaine 51</option>
+            <option>Semaine 50</option>
+            <option>Semaine 49</option>
+        </select>
+    </div>
+    <table class="calendar table table-bordered" >
+        <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th width="5%">Lundi</th>
+            <th width="5%">Mardi</th>
+            <th width="5%">Mercredi</th>
+            <th width="5%">Jeudi</th>
+            <th width="5%">Vendredi</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="m" width="5%">08:00</td>
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">09:00</td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">10:00</td>
+
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+
+            <td class=" no-events" rowspan="1"></td>
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">11:00</td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">12:00</td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+
+
+
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+
+
+            <td class=" no-events" rowspan="1"></td>
+
+
+
+            <td class=" no-events" rowspan="1"></td>
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">13:00</td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">14:00</td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+
+
+            <td class=" no-events" rowspan="1"></td>
+
+
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">15:00</td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">16:00</td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+
+
+            <td class=" no-events" rowspan="1"></td>
+
+
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">17:00</td>
+
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+            <td class=" no-events" rowspan="1"></td>
+
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">18:00</td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">19:00</td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Valider</button>
 
 
 </main>
-
 </body>
 </html>

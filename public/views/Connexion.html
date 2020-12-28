@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <base href="http://localhost:8080/public">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Page de connexion</title>
-    <link rel="stylesheet" href="css/connexion.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
+<head>  <base href="http://localhost:8080/public">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Page de connexion</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
+  <link rel="stylesheet" href="css/connexion.css">
+</head>
+</head>
 
-  <body>
+<body>
+<aside id ="aside">
+    <h1>Description de l'application</h1>
+    <img src="img/component.png" alt="" id="logo"/>
 
-    <aside id ="aside">
-      <h1>Description de l'application</h1>
-      <img src="img/component.png" alt="" id="logo"/>
-    </aside>
+</aside>
+
+
 
     <main id="main">
       <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
@@ -32,9 +35,11 @@
           <label for="exampleInputPassword1">Mot de passe</label> <br>
           <input type="password" class="form-control" id="exampleInputPassword1" name="password">
         </div>
+        <br>
 
-        <button type="submit" class="btn btn-primary">SE CONNECTER<img src="img/flechee.png" alt="" id="flech"/></button>
+        <button type="submit" class="btn btn-primary" id="gauche">SE CONNECTER<img src="img/flechee.png" alt="" id="flech"/></button>
       </form>
+      <br>
 
       <p class="p2">Si vous n'avez pas de compte <strong><a href="/signup">Inscrivez-vous</a></strong></p>
     </main>

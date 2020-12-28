@@ -1,17 +1,16 @@
 #aside {
-  position: absolute;
+  position: fixed;
   width: 30%;
   height: 100%;
   float: left;
-
-  background: #015FFF 0% 0% ;
-
-
-
+  background: #015FFF;
+  bottom: 0;
 }
+
 #footer{
 
   position: absolute;
+  margin-left: 30%;
   float: right;
   bottom: 0;
   width:70%;
@@ -27,25 +26,27 @@ h1{
   font-size: 3em;
   text-align: center;
   color: white;
-  margin-top: 70%;
+  margin-top: 50%;
+  float: center;
 
-  font-family:  "Segoe UI Normal", sans-serif;
+  font-family:  "Bold Segoe UI ", sans-serif;
   letter-spacing: 0px;
   opacity : 1;
 }
 .p1{
-
+  margin-top:3%;
   margin-left: 0.5em;
   text-align: right;
   font-family: "Segoe UI Semibold", sans-serif;
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
-  font-size: 50%;
+  font-size: 80%;
 
 }
 .p2{
   margin-left: 10%;
+  float: left;
   text-align: left;
   font-family: "Segoe UI Semibold", sans-serif;
   letter-spacing: 0px;
@@ -62,7 +63,7 @@ h1{
   opacity: 1;
 }
 .p4{
-  font-size: 1.5em;
+  font-size: 1em;
   margin-left: 10%;
   text-align: left;
   font-family: "Segoe UI Semibold", sans-serif;
@@ -77,45 +78,82 @@ strong{
 p{
   margin-left: 10%;
 }
-.mb-3{
-  text-align: left;
-  margin-left: 10%;
-  font-size: 2em;
-  font-family: "Segoe UI Normal", sans-serif;
-  letter-spacing: 0px;
-  color: #2D2D2D;
-  opacity: 1;
+.p5{
+  color: white;
+
+  text-align: right;
+  margin-right: 5%;
+}
+.p6{
+  color: white;
+
+  display : inline-block;
+
+}
+.p7{
+  color: white;
+  font-size: 1.5em;
+}
+h2{
+  margin-left: 15%;
+}
+.form-group col-md-4 mb-3{
+  font-family: "Bold Segoe UI ", sans-serif;
 }
 .form-group{
-  text-align: left;
+  float: left;
+}
+form{
   margin-left: 10%;
-  font-size: 2em;
 
+}
+.col-md-4 mb-3{
+  text-align: left;
+  font-size: 2em;
+  font-family: "Bold Segoe UI ", sans-serif;
+  letter-spacing: 0px;
+  color: #2D2D2D;
+  opacity: 1;
+
+}
+.col-md-4  form-group{
+  text-align: left;
+  font-size: 2em;
   font-family: "Segoe UI Normal", sans-serif;
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
 
 }
+
 .btn-primary{
   background-color:#015FFF ;
-  margin-left: 10%;
   font-size: 1em;
   color : white;
   height: 20%;
-  width: 58%;
+}
+#gauche{
+  width: 55%;
+  float: left;
   text-align: left;
+  margin-left: 1%;
+  margin-top: 10%;
+}
+#droite{
+  width: 30%;
+  float: right;
+  text-align: center;
+  display : inline-block;
+
 }
 .btn-secondary{
   margin-left: 10%;
+
 }
 #main{
-
   width: 70%;
   height: 100%;
   float: right;
-
-
 
 }
 
@@ -124,16 +162,14 @@ p{
   right: 0;
   bottom: 0;
 }
-input{
-  height: 15%;
-  width: 60%;
-}
+
 #flech{
   top: 5%;
   left: 6%;
   width: 5%;
   height: 6%;
   float: right;
+  background-color: #015FFF;
 
 }
 .btn-circle {
@@ -147,34 +183,114 @@ input{
   font-size: 12px;
   line-height: 1.42857;
 }
-.p5{
-  color: white;
 
-  text-align: right;
-  margin-right: 5%;
-}
-label {
-  display: block;
-  font: 1rem 'Fira Sans', sans-serif;
-}
+
 .fallbackDatePicker, .col-md-6{
   margin-left: 10%;
 }
 #log{
   margin-top: 10%;
-
-
   width: 3%;
   height: 15%;
-
-
   float: right;
+}
+table.calendar{
+  float: center;
+  width:80%;
+  margin-left: 10%;
+
+  border-top-radi us: 20%;
+  border-left: 0;
+}
+table.calendar > thead > tr > th {
+  text-align: center;
+  color: #8E8E8E;
+  background-color : #ECECEC;
+  border-top-radius: 20%;
+  border : 0;
 
 }
 
+table.calendar > tbody > tr > td.m {
+  text-align: center;
+  color: #8E8E8E;
+  background-color : #F6F6F6;
+  border : 0;
 
 
+}
+.form-control{
+  width: 180%;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+}
+.input-group{
+  width: 186%;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+}
+#exampleFormControlInput1{
+  width: 180%;
+
+}
+#exampleInputPassword1{
+  width: 180%;
+
+}
+/*#exampleFormControlSelect1{
+  color: white:
+  float: right;
+  text-align: left;
+}*/
+#cadre{
+  border-width:2px 2px 2px 2px;
+  border-style:solid dotted;
+  border-color: white;
+  color: white;
+  padding:2 10px;
+}
+#ombré{
+  float: right;
+  background-color: #017FFF;
+  border-radius: 20%;
+  height: 5%;
+  margin-top: 5%;
+}
+.btn-secondary {
+  border : 0;
+  margin-left: 5%;
+  float: center;
+  width: 80%;
+  color: black;
+  text-align: center;
+  border-radius: 6%;
+  background-color: white;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+
+}
+#role{
+  float: left;
+  border-image: linear-gradient(#015FFF, #015FFF) 27;
 
 
+}
+@media all and (max-width: 480px){
+  #logo(float: none;)
 
+}
+@media (min-width: 480px) and (max-width: 780px){
+  #logo(float: none;)
+}
+@media (min-width: 781px) and (max-width: 979px){
+  #logo(float: none;)
+}
+#exampleFormControlSelect1{
+  float: right;
+  margin-bottom: 5%;
+  width: 50%;
+}
+.encadrer-un-contenu{
+  border: 1px solid white; padding: 5px;
+
+  border-radius: 20%;
+  background-color: white;
+}
 
