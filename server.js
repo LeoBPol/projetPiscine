@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser= require('body-parser')
 const cors = require("cors");
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieParser())
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine','html');
@@ -43,12 +46,6 @@ db.mongoose
         process.exit();
     });
 
-
-// simple route
-app.get("/api/auth/role", (req, res) => {
-    res.render('PremierePage.html')
-});
-
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 
@@ -56,7 +53,7 @@ require('./app/routes/user.routes')(app);
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
-    console.log(`http://localhost:8080/api/auth/signin`);
+    console.log(`http://localhost:8080/signin`);
 });
 
 //const MongoClient = require('mongodb').MongoClient
@@ -123,119 +120,3 @@ function initial() {
         }
     });
 }
-/*MongoClient.connect(connectionString, { useUnifiedTopology: true })
-    .then(client => {
-        console.log('Connected to Database')
-        const db = client.db('test-quotes')
-        const quotesCollection = db.collection('quotes')
-
-        app.listen(3000, () => {
-            console.log('listening on 3000')
-        })
-
-        app.set('view engine', 'ejs')
-
-        //Middlewares
-        app.use(bodyParser.urlencoded({ extended: true }))
-        app.use(express.static('public'))
-        app.use(bodyParser.json())
-
-        // All your handlers here...
-        app.get('/', (req, res) => {
-            //res.sendFile(__dirname + '/index.html')
-            //console.log(__dirname)
-            // Note: __dirname is the current directory you're in.
-
-            db.collection('quotes').find().toArray()
-                .then(results => {
-                    res.render('index.ejs', { quotes: results })
-                })
-                .catch(error => console.error(error))
-        })
-
-        app.post('/quotes', (req, res) => {
-            console.log(req.body)
-            quotesCollection.insertOne(req.body)
-                .then(result => {
-                    console.log('post')
-                    res.redirect('/')
-                })
-                .catch(error => console.error(error))
-        })
-
-        app.put('/quotes', (req, res) => {
-            quotesCollection.findOneAndUpdate(
-                { name: 'leo' },
-                {
-                    $set: {
-                        name: req.body.name,
-                        quote: req.body.quote
-                    }
-                },
-                {
-                    upsert: false
-                }
-            )
-                .then(result => res.json('Success'))
-                .catch(error => console.error(error))
-        })
-
-        app.delete('/quotes', (req, res) => {
-            quotesCollection.deleteOne(
-                { name: req.body.name }
-            )
-                .then(result => {
-                    if (result.deletedCount === 0) {
-                        return res.json('No quote to delete')
-                    }
-                    res.json('Deleted Theo\'s quote')
-                })
-                .catch(error => console.error(error))
-        })
-
-    })
-    .catch(error => console.error(error))*/
-
-/*MongoClient.connect(connectionString, { useUnifiedTopology: true })
-    .then(client => {
-        console.log('Connected to Database')
-        const db = client.db('test-quotes')
-        const quotesCollection = db.collection('quotes')
-
-        app.listen(3000, () => {
-            console.log('listening on 3000')
-        })
-
-        app.set('view engine', 'ejs')
-
-        //Middlewares
-        app.use(bodyParser.urlencoded({extended: true}))
-        app.use(express.static('public'))
-        app.use(bodyParser.json())
-
-        // All your handlers here...
-        app.get('/', (req, res) => {
-            //res.sendFile(__dirname + '/index.html')
-            //console.log(__dirname)
-            // Note: __dirname is the current directory you're in.
-
-            db.collection('quotes').find().toArray()
-                .then(results => {
-                    res.render('piscineconnexion.html', {quotes: results})
-                })
-                .catch(error => console.error(error))
-        })
-
-        app.post('/connexion', (req, res) => {
-            console.log(req.body)
-            res.redirect('/')
-            quotesCollection.insertOne(req.body)
-                .then(result => {
-                    console.log('post')
-                    res.redirect('/')
-                })
-                .catch(error => console.error(error))
-        })
-
-    })
-    .catch(error => console.error(error))*/

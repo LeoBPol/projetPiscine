@@ -4,8 +4,10 @@ const User = db.user;
 const Role = db.role;
 const Class = db.class;
 
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
+const { authJwt } = require("../middlewares");
+
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
     console.log(req.body)
@@ -69,7 +71,6 @@ exports.signin = (req, res) => {
     User.findOne({
         email: req.body.email
     })
-        .populate("roles", "-__v")
         .exec((err, user) => {
             if (err) {
                 res.status(500).send({ message: err });
@@ -96,33 +97,18 @@ exports.signin = (req, res) => {
                 expiresIn: 86400 // 24 hours
             });
 
-            let roleUser = "null";
-            let classUser = "null";
+            let options = {
+                path:"/",
+                sameSite:true,
+                maxAge: 1000 * 60 * 60 * 24, // would expire after 24 hours
+                httpOnly: true, // The cookie only accessible by the web server
+            }
 
-            Role.findById(user.role, (err, role) => {
-                if (err){
-                    console.log(err);
-                }
-                else{
-                    roleUser = role
-                }
-            }).then(Class.findById(user.class, (err, classUser) => {
-                if (err){
-                    console.log(err);
-                }
-                else{
-                    classUser = classUser
-                }
-            })).then(res.status(200).send({
-                id: user._id,
-                firstName : user.firstName,
-                lastName : user.lastName,
-                email: user.email,
-                role: roleUser,
-                class: classUser,
-                accessToken: token,
-                message: "User was connected successfully!"
-            })
-            )
+            res.cookie('x-access-token',token, options)
+            if (authJwt.isAdmin(req, res)){
+                res.redirect('/admin/accueil')
+            } else {
+                res.redirect('/planning')
+            }
         });
 };
