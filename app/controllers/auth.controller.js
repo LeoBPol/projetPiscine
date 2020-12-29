@@ -4,8 +4,6 @@ const User = db.user;
 const Role = db.role;
 const Class = db.class;
 
-const { authJwt } = require("../middlewares");
-
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
