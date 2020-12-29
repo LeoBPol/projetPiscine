@@ -105,10 +105,14 @@ exports.signin = (req, res) => {
             }
 
             res.cookie('x-access-token',token, options)
-            if (authJwt.isAdmin(req, res)){
-                res.redirect('/admin/accueil')
-            } else {
-                res.redirect('/planning')
-            }
+            Role.findById({_id: user.role})
+                .exec((err, role) => {
+                    if(role.name === "admin"){
+                        res.redirect('/admin/accueil')
+                    }
+                    else {
+                         res.redirect('/planning')
+                    }
+            })
         });
 };

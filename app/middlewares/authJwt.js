@@ -29,13 +29,14 @@ verifyToken = async (req, res, next) => {
     }
 };
 
-isAdmin = async (req, res) => {
+isAdmin = async (req, res, next) => {
     Role.findById(req.user.role).exec(
         (err, role) => {
             if (err) {
                 res.status(500).send({ message: err });
                 return;
             }
+            next()
             return role.name === "admin"
         }
     )

@@ -23,9 +23,7 @@ module.exports = function(app) {
         }
     })*/
     app.get("/signin", (req, res) => {
-
         res.render('Connexion.html')
-
     })
 
     app.post(
@@ -38,12 +36,8 @@ module.exports = function(app) {
 
     app.post("/signin", controller.signin);
 
-    app.get("/planning",
-        authJwt.verifyToken,
-        (req, res) => {res.render('PlanningEtudiant')})
-
-    app.get("/", authJwt.verifyToken, (req, res) => {
-        if (authJwt.isAdmin(req, res)) {
+    app.get("/", authJwt.verifyToken, (req, res, next) => {
+        if (authJwt.isAdmin(req, res, next)) {
             res.redirect('/admin/accueil')
         } else {
             res.redirect('/planning')
@@ -52,11 +46,4 @@ module.exports = function(app) {
 
     app.get("/home", (req, res) => {res.render('PremierePage.html')})
 
-    app.get("/admin/accueil", authJwt.verifyToken, (req, res) => {
-        if (authJwt.isAdmin(req, res)) {
-            res.render('AccueilAdmin.html')
-        } else {
-            res.redirect('/home')
-        }
-    })
 };

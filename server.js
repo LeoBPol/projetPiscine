@@ -53,7 +53,7 @@ require('./app/routes/user.routes')(app);
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
-    console.log(`http://localhost:8080/signin`);
+    console.log(`http://localhost:8080/`);
 });
 
 //const MongoClient = require('mongodb').MongoClient

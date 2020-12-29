@@ -15,8 +15,15 @@ module.exports = function(app) {
     app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
 
     app.get(
-        "/api/test/admin",
+        "/admin/accueil",
         [authJwt.verifyToken, authJwt.isAdmin],
         controller.adminBoard
     );
+
+    app.get("/planning",
+        authJwt.verifyToken,
+        (req, res) => {
+        res.render('PlanningEtudiant.html')
+    });
+
 };
