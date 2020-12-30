@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuesax@4.0.1-alpha.16/dist/vuesax.min.js"></script>
+</head>
+<body>
+    <div id="bloc-droit">
+      <h1 id="titre">Description de l'application</h1>
+      <p id="paragraphe">Et quoniam apud eos ut in capite mundi morborum<br/>
+        acerbitates celsius dominantur, ad quos vel sedandos<br/>
+        omnis professio medendi torpescit, excogitatum est<br/>
+        adminiculum sospitale nequi amicum perferentem<br/>
+        similia videat, additumque est cautionibus paucis<br/>
+         remedium aliud satis validum.
+      </p>
+      <img src="../img/panneau.png" alt="logo : panneau.png">
+    </div>
+
+    <div id="bloc-central">
+      <div id="responsive-670">
+        <p id="texte-aide">Vous avez des problèmes ? <a id="lien-aide" href="Url vers page d'aide">Aide</a></p>
+        <h1 id="titre-bloc-central">Connectez-vous</h1>
+        <p id="para-central">Entrez votre adresse mail universitaire et votre mot de passe.</p>
+        <h2 class="titre-2">E-mail universitaire</h2>
+      </div>
+      <div id="responsive-form-670">
+      <form action="Url où doit être envoyé les données" method="post">
+        <div>
+          <input class="form-mail-MP" type="email" placeholder="prenom.nom@etu.umontpellier.fr">
+        </div>
+      </form>
+      <h2 class="titre-2">Mot de passe</h2>
+      <form action="Url où doit être envoyé les données" method="post">
+        <div>
+          <input class="form-mail-MP" type="password" placeholder="****************">
+        </div>
+      </form>
+      <div class="center">
+        <vs-button block id="vsBouton">SE CONNECTER</vs-button>
+      </div>
+      <script>
+        new Vue({
+          el: '.center'
+        })
+      </script>
+      </div>
+    </div>
+    
+
+
+</body>
