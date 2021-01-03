@@ -6,7 +6,13 @@
   background: #015FFF;
   bottom: 0;
 }
+#main{
+  width: 70%;
+  height: 100%;
+  float: right;
 
+
+}
 #footer{
 
   position: absolute;
@@ -36,12 +42,13 @@ h1{
 .p1{
   margin-top:3%;
   margin-left: 0.5em;
+  margin-right: 0.4em;
   text-align: right;
   font-family: "Segoe UI Semibold", sans-serif;
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
-  font-size: 80%;
+  font-size: 90%;
 
 }
 .p2{
@@ -86,36 +93,60 @@ p{
 }
 .p6{
   color: white;
-
   display : inline-block;
-
 }
 .p7{
   color: white;
   font-size: 1.5em;
+  font-family: "Segoe UI Semibold", sans-serif;
+}
+.p8{
+  margin-top: 30%;
+  font-size: 1.6em;
+  color: white;
+}
+.p9{
+  color: white;
+  font-size: 1.5em;
+  margin-top: 25%;
+  text-align: right;
+  margin-right: 5%;
+  margin-bottom: 5%;
 }
 h2{
   margin-left: 15%;
 }
-.form-group col-md-4 mb-3{
-  font-family: "Bold Segoe UI ", sans-serif;
+
+#confirm{
+  float: left;
+  margin-right: 80%;
 }
 .form-group{
   float: left;
+  border-radius: 0;
+  margin-left: 0;
+
 }
 form{
-  margin-left: 10%;
+  margin-left: 9%;
+  border-radius: 0;
 
 }
 .col-md-4 mb-3{
+  border-radius: 0;
   text-align: left;
   font-size: 2em;
   font-family: "Bold Segoe UI ", sans-serif;
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
+  margin-left: 0;
+  font-family: "Bold Segoe UI ", sans-serif;
+  border-radius: 0;
+
 
 }
+
 .col-md-4  form-group{
   text-align: left;
   font-size: 2em;
@@ -123,6 +154,7 @@ form{
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
+  margin-left: 0;
 
 }
 
@@ -131,36 +163,46 @@ form{
   font-size: 1em;
   color : white;
   height: 20%;
+  border-radius: 0;
+
+
 }
+
 #gauche{
-  width: 55%;
-  float: left;
+  width: 50%;
+  float: left!;
   text-align: left;
-  margin-left: 1%;
-  margin-top: 10%;
+  margin-left: 10%;
+  margin-right: 30%;
+
 }
 #droite{
   width: 30%;
   float: right;
+  font-size: 1em;
   text-align: center;
   display : inline-block;
+  border-radius: 0.25em;
+  margin-right: 1%;
+  margin-bottom: 5%;
 
 }
 .btn-secondary{
   margin-left: 10%;
 
 }
-#main{
-  width: 70%;
-  height: 100%;
-  float: right;
 
-}
 
 #logo{
   position: absolute;
   right: 0;
   bottom: 0;
+}
+#logodroite{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 37%;
 }
 
 #flech{
@@ -199,8 +241,13 @@ table.calendar{
   width:80%;
   margin-left: 10%;
 
-  border-top-radi us: 20%;
+  border-top-radius: 20%;
   border-left: 0;
+}
+#modifier{
+  float: center;
+  margin-left: 20%;
+  margin-bottom: 5%;
 }
 table.calendar > thead > tr > th {
   text-align: center;
@@ -220,15 +267,25 @@ table.calendar > tbody > tr > td.m {
 
 }
 .form-control{
+
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 0;
+
+
+}
+#validationCustom01{
   width: 180%;
-  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+}
+#validationCustom02{
+  width: 180%;
 }
 .input-group{
   width: 186%;
-  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
 }
 #exampleFormControlInput1{
   width: 180%;
+
 
 }
 #exampleInputPassword1{
@@ -241,8 +298,11 @@ table.calendar > tbody > tr > td.m {
   text-align: left;
 }*/
 #cadre{
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10%;
   border-width:2px 2px 2px 2px;
-  border-style:solid dotted;
+  border-style:solid solid;
   border-color: white;
   color: white;
   padding:2 10px;
@@ -250,7 +310,7 @@ table.calendar > tbody > tr > td.m {
 #ombré{
   float: right;
   background-color: #017FFF;
-  border-radius: 20%;
+  border-radius: 0.45em;
   height: 5%;
   margin-top: 5%;
 }
@@ -261,14 +321,15 @@ table.calendar > tbody > tr > td.m {
   width: 80%;
   color: black;
   text-align: center;
-  border-radius: 6%;
+  border-radius: 0.25em;
   background-color: white;
-  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
 
 }
 #role{
   float: left;
   border-image: linear-gradient(#015FFF, #015FFF) 27;
+
 
 
 }
@@ -283,14 +344,79 @@ table.calendar > tbody > tr > td.m {
   #logo(float: none;)
 }
 #exampleFormControlSelect1{
-  float: right;
+  float: left;
   margin-bottom: 5%;
   width: 50%;
 }
 .encadrer-un-contenu{
   border: 1px solid white; padding: 5px;
 
-  border-radius: 20%;
+  border-radius: 0.5em;
   background-color: white;
 }
+#semaine{
+  float:left;
+  margin-left: 0;
+  margin-right: 30%;
+  margin-top: 5%;
 
+}
+#promotion{
+  float:left;
+  margin-left: 0;
+
+  margin-right: 50%;
+
+}
+#confirm_password{
+  float: left;
+  margin-top: 10%;
+  margin-left: 0;
+  margin-right: 10%;
+}
+.fa-long-arrow-right{
+  margin-top: 1%;
+  float: right;
+  margin-bottom: 1%;
+}
+#valid{  margin-right: 10%;
+  float: right;
+  width: 20%;
+  font-size: 1.2em;
+  border-radius: 0.25em;
+}
+.fa-check{
+  color: green;
+}
+.fa-times{
+  color: red;
+}
+#libre{
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  background-color:#82BA93 ;
+  text-align: center;
+}
+#complet{
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  background-color:#BA8282 ;
+  text-align: center;
+
+}
+
+.col-md-6{
+  float:left;
+  margin-left: 0;
+  margin-right: 10%;
+}
+.form-check-input{
+  margin-left: 5%;
+}
+.form-check-label{
+  margin-left: 10%;
+}
+#semaineplan{
+  float: right;
+  width: 25%;
+}

@@ -22,18 +22,18 @@
             <p><i class="fa fa-clock-o" aria-hidden="true"></i> Nombre de jury par soutenance  <span class="encadrer-un-contenu"><strong>2</strong></span></p></p>
             <p> Date limite de réservation  <span class="encadrer-un-contenu"><strong>15 Novembre</strong></span></p></p>
             <p> Nombre d'élèves par soutenance  <span class="encadrer-un-contenu"><strong>2</strong></span></p></p>
-            <button type="submit" class="btn btn-light">Modifier ces informations</button>
+            <button type="submit" class="btn btn-light" id="modifier">Modifier ces informations</button>
 
 
         </div>
-        <p class="p5">Autres événements</p>
+        <p class="p9">Autres événements</p>
         <button type="submit" class="btn btn-primary" id="ombré">Soutenance de stage - IG5<img src="img/flechee.png" alt="" id="flech"/></button>
         <button type="submit" class="btn btn-primary" id="ombré">Soutenance de stage - IG3<img src="img/flechee.png" alt="" id="flech"/></button>
 
 
 
 
-        <img src="../img/component.png" alt="" />
+        <img src="../img/component.png" alt="" id="logodroite"/>
 
     </aside>
     <main id="main">
@@ -45,16 +45,16 @@
 
         <p class="p3">Soutenance de stage - IG4 </p>
         <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa date ou son horaire</p>
-        <div class="form-group col-md-4 mb-3">
+        <div class="form-group col-md-4 mb-3" id="semaineplan" >
 
-            <select class="form-control" id="exampleFormControlSelect1" name="class">
+            <select class="form-control" name="class">
                 <option>Semaine 51</option>
                 <option>Semaine 50</option>
                 <option>Semaine 49</option>
             </select>
         </div>
 
-        <table class="calendar table table-bordered" >
+        <table class="calendar table table-bordered"  >
             <thead>
             <tr>
                 <th>&nbsp;</th>
@@ -182,7 +182,14 @@
 
                 <td class=" no-events" rowspan="1"></td>
 
-                <td class=" no-events" rowspan="1"></td>
+                <td class=" has-events" id="complet" rowspan="1">
+
+                    <div class="row-fluid lecture" style="width: 99%; height: 100%;">
+
+
+                        <span class="title">Créneau complet</span> <span class="lecturer"></span>
+                    </div>
+                </td
 
             </tr>
 
@@ -223,7 +230,14 @@
 
                 <td class=" no-events" rowspan="1"></td>
 
-                <td class=" no-events" rowspan="1"></td>
+                <td class=" has-events" id="libre" rowspan="1">
+
+                    <div class="row-fluid lecture" style="width: 99%; height: 100%;">
+
+
+                        <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
+                    </div>
+                </td
 
             </tr>
 
@@ -244,8 +258,8 @@
 
             </tbody>
         </table>
-        <p><i class="fa fa-check" aria-hidden="true"></i>15 groupes ont réservé leur créneau</p>
-        <p><i class="fa fa-times" aria-hidden="true"></i>10 groupes n'ont toujours pas réservé</p>
+        <p><i class="fa fa-check" aria-hidden="true"></i> 15 groupes ont réservé leur créneau</p>
+        <p><i class="fa fa-times" aria-hidden="true"></i> 10 groupes n'ont toujours pas réservé</p>
         <button type="submit" class="btn btn-primary" id="droite">Proposer un nouveau créneau</button>
         <button type="submit" class="btn btn-primary" id="droite">Partager le planning</button>
 

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <base href="http://localhost:8080/public">
-    <meta charset="UTF-8">
-    <title>Page de Planning</title>
+<head>  <base href="http://localhost:8080/public">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Page de Planning Etudiant</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="../css/connexion.css"
-
+    <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
+    <link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
 <aside id ="aside">
+    <p class="p8">Vous n'avez pas encore réservé de créneau, vous pouvez en
+        réserver un dans la colonne de droite. Si vous en avez réservé
+        un, vous pouvez modifier votre réservation et choisir un autre
+        créneau disponible.</p>
 
 
 
@@ -21,12 +24,12 @@
 </aside>
 <main id="main">
 
-    <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-link"></i>
+    <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-question" aria-hidden="true"></i>
     </button>
-    <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-link"></i>
+    <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-home" aria-hidden="false"></i>
     </button>
 
-    <p class="p3">Soutenance de -IG </p>
+    <p class="p3">Soutenance de stage - IG3 </p>
     <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa date ou son horaire</p>
     <div class="form-group col-md-4 mb-3">
 
@@ -188,7 +191,14 @@
             <td class=" no-events" rowspan="1"></td>
             <td class=" no-events" rowspan="1"></td>
             <td class=" no-events" rowspan="1"></td>
-            <td class=" no-events" rowspan="1"></td>
+            <td class=" has-events" id="libre" rowspan="1">
+
+                <div class="row-fluid lecture" style="width: 99%; height: 100%;">
+
+
+                    <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
+                </div>
+            </td
 
 
         </tr>
@@ -217,7 +227,14 @@
 
             <td class=" no-events" rowspan="1"></td>
 
-            <td class=" no-events" rowspan="1"></td>
+            <td class=" has-events" id="complet" rowspan="1">
+
+                <div class="row-fluid lecture" style="width: 99%; height: 100%;">
+
+
+                    <span class="title">Créneau complet</span> <span class="lecturer"></span>
+                </div>
+            </td
 
             <td class=" no-events" rowspan="1"></td>
 
@@ -225,7 +242,7 @@
 
         </tbody>
     </table>
-    <button type="submit" class="btn btn-primary">Valider</button>
+    <button type="submit" class="btn btn-primary" id="valid">Valider</button>
 
 
 </main>
