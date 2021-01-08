@@ -117,7 +117,6 @@ p{
   height: 100%;
   float: right;
 
-<<<<<<< HEAD
 
 
 }
@@ -181,12 +180,15 @@ label {
 
 }
 
-
-
-
-
-
-
-=======
+.OMOUnderline {
+  text-decoration: underline;
 }
->>>>>>> a5153b9 (Ajout validation formulaire de connexion)
+
+.OMOColor {
+  color: #015FFF;
+  font-weight: bold;
+}
+
+
+
+

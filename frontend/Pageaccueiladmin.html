@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+<script text="text/javascrîpt" src="js/animations.js" ></script>
 <aside id ="aside">
     <h1>Bienvenue</h1>
     <img src="img/component.png" alt="" id="logo"/>
@@ -18,7 +18,7 @@
 
 
 <main id="main">
-    <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
+    <p class="p1">Vous avez des problèmes? <strong id="help" onmouseover="onUnderlinedText(help)" onmouseout="outUnderlinedText(help)">Aide</strong></p>
 
     <p></p>
     <form>
@@ -29,9 +29,9 @@
     </form>
 </main>
 <footer id="footer">
-    <p class="p5">Contact</p>
-    <p class="p5">En savoir plus</p>
-    <p class="p5">Langues</p>
+    <p id="contact" onmouseover="onColoredText(contact)" onmouseout="outColoredText(contact)" class="p5">Contact</p>
+    <p id="savoir" onmouseover="onColoredText(savoir)" onmouseout="outColoredText(savoir)" class="p5">En savoir plus</p>
+    <p id="langues" onmouseover="onColoredText(langues)" onmouseout="outColoredText(langues)" class="p5">Langues</p>
     <img src="img/LOGO_original_RVB_WEB-1.png" alt="" id="log"/>
     <img src="img/IG.png" alt="" id="log"/>
     <img src="img/unnamed.png" alt="" id="log"/>
