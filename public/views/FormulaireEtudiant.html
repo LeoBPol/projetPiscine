@@ -10,6 +10,8 @@
 </head>
 <body>
 <aside class="aside">
+<script type="text/javascript" src="js/newTextBlock.js"></script>
+<aside id ="aside">
     <h1>Formulaire de réservation pour une soutenance</h1>
     <img src="img/component.png" alt="" class="logo"/>
 
@@ -33,17 +35,21 @@
 
         <div class="col-md-6">
             <label for="exampleRadios1">Type de soutenance</label><br>
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <input onclick="check()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
             <label class="form-check-label" for="exampleRadios1">
                 Projet
             </label>
         </div>
         <div class="col-md-6">
-
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <input onclick="check()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
             <label class="form-check-label" for="exampleRadios2">
                 Stage
             </label>
+            <p id="ifCheckedStage" style="display:none"class="col-md-6">
+                <label for="NameCorp">Nom de l'entreprise</label>
+                <input type="text" class="form-control" id="NameCorp" name="titre" required>
+
+            </p>
         </div>
 
 
