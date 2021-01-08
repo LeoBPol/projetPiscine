@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Page de formulaire admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
 
     <link rel="stylesheet" href="../css/connexion.css"
 </head>
@@ -21,46 +22,56 @@
 <main id="main">
     <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
 
-    <p class="p3">Créez un évènement </p>
+    <p class="p3">Créer un évènement </p>
     <p class="p4">Renseignez les informations suivantes</p>
     <form>
-        <form class="needs-validation" novalidate>
-            <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Titre de l'événement</label>
-                    <input type="text" class="form-control" id="validationCustom01" placeholder="Titre" name="titre" required>
-                    <div class="valid-feedback">
+
+
+                <div class="col-md-6">
+                    <label for="validationCustom03">Titre de l'événement</label>
+                    <input type="text" class="form-control" id="validationCustom03" placeholder="Titre" name="titre" required>
 
                     </div>
-                </div>
-                <div class="form-group col-md-4 mb-3">
-                    <label for="exampleFormControlSelect1">Promotion concernée</label><br>
 
-                    <select class="form-control" id="exampleFormControlSelect1" name="class">
+        <div class="col-md-6">
+
+                    <select class="form-control" id="semaine" name="class">
                         <option>Semaine 51</option>
                         <option>Semaine 50</option>
                         <option>Semaine 49</option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Promotion concernée</label><br>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                <div class="col-md-6"id="promotion">
+                    <label for="promotion">Promotion concernée</label><br>
+                    <select class="form-control" >
                         <option>IG2023</option>
                         <option>IG2022</option>
                         <option>IG2021</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-secondary">Soutenance de Projet</button>
-                <button type="submit" class="btn btn-secondary">Soutenance de Stage</button>
-                <p>Durée de la soutenance</p>
-                <button type="submit" class="btn btn-secondary">1h</button>
-                <button type="submit" class="btn btn-secondary">1h30</button><br>
 
-                <form>
+                <div class="col-md-6">
+                    <label for="exampleRadios1">Durée de la soutenance</label><br>
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        1h
+                    </label>
+                </div>
+                <div class="col-md-6">
 
-                    <p class="fallbackLabel">Date de début</p>
-                    <div class="fallbackDatePicker">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                        1h30
+                    </label>
+                </div>
+
+
+
+
+
+                    <p class="col-md-6">Date de début</p>
+        <div class="col-md-6">
       <span>
         <label for="day">Jour :</label>
         <select id="day" name="day">
@@ -93,18 +104,26 @@
         </select>
       </span>
                     </div>
-                </form>
+
                 <div class="col-md-6">
                     <label for="validationDefault03" class="form-label">Durée de l'événement</label>
                     <input type="text" class="form-control" id="validationDefault03" required>
                 </div>
-                <form>
+                <div class="col-md-6">
+                    <label for="validationDefault04" class="form-label">Nombre de membres dans le jury</label>
+                    <input type="text" class="form-control" id="validationDefault04" required>
+                </div>
 
-                    <p class="fallbackLabel">Date limite de réservation</p>
-                    <div class="fallbackDatePicker">
-      <span>
+
+                    <p class="col-md-6">Date limite de réservation</p>
+                    <div class="col-md-6">
+                      <span>
         <label for="day">Jour :</label>
         <select id="day" name="day">
+          <option selected>1</option>
+          <option>2</option>
+          <option>3</option>
+
         </select>
       </span>
                         <span>
@@ -134,14 +153,12 @@
         </select>
       </span>
                     </div>
-                </form>
-                <div class="col-md-6">
-                    <label for="validationDefault03" class="form-label">Nombre de membres dans le jury</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                </div>
-                <button type="button" class="btn btn-primary"><span>ENREGISTRER</span><img src="../img/flechee.png" alt="" id="flech"/></button>
 
-    </form>
+        <button type="submit" class="btn btn-primary" id="gauche">ENREGISTRER<i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+
+                </form>
+
+
 </main>
 </body>
 </html>
