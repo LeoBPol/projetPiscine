@@ -6,16 +6,20 @@
   background: #015FFF;
   bottom: 0;
 }
+body {
+  background-color: #F6F6F6;
+}
 #main{
+
+  position: relative;
   width: 70%;
   height: 100%;
   float: right;
-
-
+  margin-left: 30%;
 }
 #footer{
 
-  position: absolute;
+  position: fixed;
   margin-left: 30%;
   float: right;
   bottom: 0;
@@ -141,10 +145,6 @@ form{
   color: #2D2D2D;
   opacity: 1;
   margin-left: 0;
-  font-family: "Bold Segoe UI ", sans-serif;
-  border-radius: 0;
-
-
 }
 
 .col-md-4  form-group{
@@ -169,11 +169,13 @@ form{
 }
 
 #gauche{
-  width: 50%;
+  width: 54%;
   float: left!;
   text-align: left;
-  margin-left: 10%;
+  margin-left: 1.5%;
   margin-right: 30%;
+  margin-bottom: 3%;
+
 
 }
 #droite{
@@ -187,11 +189,6 @@ form{
   margin-bottom: 5%;
 
 }
-.btn-secondary{
-  margin-left: 10%;
-
-}
-
 
 #logo{
   position: absolute;
@@ -205,15 +202,7 @@ form{
   width: 37%;
 }
 
-#flech{
-  top: 5%;
-  left: 6%;
-  width: 5%;
-  height: 6%;
-  float: right;
-  background-color: #015FFF;
 
-}
 .btn-circle {
   float: right;
   color: #015FFF;
@@ -230,11 +219,12 @@ form{
 .fallbackDatePicker, .col-md-6{
   margin-left: 10%;
 }
-#log{
-  margin-top: 10%;
-  width: 3%;
-  height: 15%;
+
+#log1{
   float: right;
+  bottom: 0;
+  width: 5%;
+  margin-top: 5%;
 }
 table.calendar{
   float: center;
@@ -321,7 +311,7 @@ table.calendar > tbody > tr > td.m {
   width: 80%;
   color: black;
   text-align: center;
-  border-radius: 0.25em;
+  border-radius: 0.95em;
   background-color: white;
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
 
@@ -329,19 +319,69 @@ table.calendar > tbody > tr > td.m {
 #role{
   float: left;
   border-image: linear-gradient(#015FFF, #015FFF) 27;
+}
+@media all and (max-width: 480px){
+  #aside
+  {
+    display: none;
+  }
+  #main {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    margin-left: 0;
+
+  }
+  .p3 {
+    float: center;
+    margin-top: 10%;
+    font-size: 2em;
+  }
+  form
+  {
+    float: center;
+    width: 50%;
+    margin-left: 10%;
+
+  }
+  #droite {
+    height: 10%;
+    width: 100%;
+  }
+  #gauche {
+    margin-left: 5%;
+    height: 10%;
+    width:155%;
+  }
+  #footer {
+    display: none;
+  }
+  .btn-secondary {
+    width: 150%;
+    height: 15%;
+  }
+  .btn-primary {
+    width: 150%;
+  }
+  .btn-circle {
+    width: 10%;
+    height: 5%;
+  }
+
+
+
 
 
 
 }
-@media all and (max-width: 480px){
-  #logo(float: none;)
 
 }
 @media (min-width: 480px) and (max-width: 780px){
-  #logo(float: none;)
+
 }
 @media (min-width: 781px) and (max-width: 979px){
-  #logo(float: none;)
+
 }
 #exampleFormControlSelect1{
   float: left;
