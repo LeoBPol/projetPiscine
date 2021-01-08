@@ -1,4 +1,4 @@
-#aside {
+.aside {
   position: fixed;
   width: 30%;
   height: 100%;
@@ -8,8 +8,10 @@
 }
 body {
   background-color: #F6F6F6;
+  font-family: "Segoe UI Normal", sans-serif;
+  margin: 0;
 }
-#main{
+.main{
 
   position: relative;
   width: 70%;
@@ -17,7 +19,7 @@ body {
   float: right;
   margin-left: 30%;
 }
-#footer{
+.footer{
 
   position: fixed;
   margin-left: 30%;
@@ -27,11 +29,7 @@ body {
   height: 20%;
   background: #999999;
 }
-body {
-  font-family: "Segoe UI Normal", sans-serif;
-  margin: 0;
 
-}
 h1{
   font-size: 3em;
   text-align: center;
@@ -121,7 +119,7 @@ h2{
   margin-left: 15%;
 }
 
-#confirm{
+.confirm{
   float: left;
   margin-right: 80%;
 }
@@ -168,7 +166,7 @@ form{
 
 }
 
-#gauche{
+.gauche{
   width: 54%;
   float: left!;
   text-align: left;
@@ -178,7 +176,7 @@ form{
 
 
 }
-#droite{
+.droite{
   width: 30%;
   float: right;
   font-size: 1em;
@@ -190,12 +188,12 @@ form{
 
 }
 
-#logo{
+.logo{
   position: absolute;
   right: 0;
   bottom: 0;
 }
-#logodroite{
+.logodroite{
   position: absolute;
   left: 0;
   bottom: 0;
@@ -220,7 +218,7 @@ form{
   margin-left: 10%;
 }
 
-#log1{
+.log1{
   float: right;
   bottom: 0;
   width: 5%;
@@ -234,7 +232,7 @@ table.calendar{
   border-top-radius: 20%;
   border-left: 0;
 }
-#modifier{
+.modifier{
   float: center;
   margin-left: 20%;
   margin-bottom: 5%;
@@ -282,12 +280,8 @@ table.calendar > tbody > tr > td.m {
   width: 180%;
 
 }
-/*#exampleFormControlSelect1{
-  color: white:
-  float: right;
-  text-align: left;
-}*/
-#cadre{
+
+.cadre{
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 10%;
@@ -297,7 +291,7 @@ table.calendar > tbody > tr > td.m {
   color: white;
   padding:2 10px;
 }
-#ombré{
+.ombré{
   float: right;
   background-color: #017FFF;
   border-radius: 0.45em;
@@ -316,16 +310,18 @@ table.calendar > tbody > tr > td.m {
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
 
 }
-#role{
+.role{
   float: left;
+  margin-bottom: 5%;
   border-image: linear-gradient(#015FFF, #015FFF) 27;
 }
+
 @media all and (max-width: 480px){
-  #aside
+  .aside
   {
     display: none;
   }
-  #main {
+  .main {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -345,16 +341,16 @@ table.calendar > tbody > tr > td.m {
     margin-left: 10%;
 
   }
-  #droite {
+  .droite {
     height: 10%;
     width: 100%;
   }
-  #gauche {
+  .gauche {
     margin-left: 5%;
     height: 10%;
     width:155%;
   }
-  #footer {
+  .footer {
     display: none;
   }
   .btn-secondary {
@@ -368,10 +364,6 @@ table.calendar > tbody > tr > td.m {
     width: 10%;
     height: 5%;
   }
-
-
-
-
 
 
 }
@@ -419,7 +411,7 @@ table.calendar > tbody > tr > td.m {
   float: right;
   margin-bottom: 1%;
 }
-#valid{  margin-right: 10%;
+.valid{  margin-right: 10%;
   float: right;
   width: 20%;
   font-size: 1.2em;
@@ -431,13 +423,13 @@ table.calendar > tbody > tr > td.m {
 .fa-times{
   color: red;
 }
-#libre{
+.libre{
   border-top-right-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
   background-color:#82BA93 ;
   text-align: center;
 }
-#complet{
+.complet{
   border-top-right-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
   background-color:#BA8282 ;
@@ -456,7 +448,7 @@ table.calendar > tbody > tr > td.m {
 .form-check-label{
   margin-left: 10%;
 }
-#semaineplan{
+.semaineplan{
   float: right;
   width: 25%;
 }
