@@ -14,13 +14,13 @@
 <body>
 
 
-<aside id="aside">
+<aside class="aside">
     <h1>Création d'un évènement</h1>
-    <img alt="" id="logo" src="img/component.png"/>
+    <img alt="" class="logo" src="img/component.png"/>
 
 </aside>
 
-<main id="main">
+<main class="main">
     <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
 
     <p class="p3">Créer un évènement </p>
@@ -55,13 +55,13 @@
         <p class="col-md-6">Date de début</p>
         <div class="col-md-6">
       <span>
-        <label for="day">Jour :</label>
-        <select id="day1" name="day">
+        <label for="dayDebut">Jour :</label>
+        <select id="dayDebut" name="day">
         </select>
       </span>
             <span>
-        <label for="month">Mois :</label>
-        <select id="month" name="month">
+        <label for="monthDebut">Mois :</label>
+        <select id="monthDebut" name="month">
           <option selected>Janvier</option>
           <option>Février</option>
           <option>Mars</option>
@@ -77,8 +77,8 @@
         </select>
       </span>
             <span>
-        <label for="year">Année :</label>
-        <select id="year" name="year">
+        <label for="yearDebut">Année :</label>
+        <select id="yearDebut" name="year">
             <option selected>2021</option>
             <option>2022</option>
             <option>2023</option>
@@ -90,13 +90,13 @@
         <p class="col-md-6">Date de fin</p>
         <div class="col-md-6">
       <span>
-        <label for="day">Jour :</label>
-        <select id="day" name="day">
+        <label for="dayFin">Jour :</label>
+        <select id="dayFin" name="day">
         </select>
       </span>
             <span>
-        <label for="month">Mois :</label>
-        <select id="month" name="month">
+        <label for="monthFin">Mois :</label>
+        <select id="monthFin" name="month">
           <option selected>Janvier</option>
           <option>Février</option>
           <option>Mars</option>
@@ -112,8 +112,8 @@
         </select>
       </span>
             <span>
-        <label for="year">Année :</label>
-        <select id="year" name="year">
+        <label for="yearFin">Année :</label>
+        <select id="yearFin" name="year">
             <option selected>2021</option>
             <option>2022</option>
             <option>2023</option>
@@ -123,8 +123,8 @@
         </div>
 
         <div class="col-md-6">
-            <label for="promotion">Nombre de membre du jury</label><br>
-            <select class="form-control" name="sizeJury">
+            <label for="jury">Nombre de membre du jury</label><br>
+            <select class="form-control" id="jury"name="sizeJury">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -136,8 +136,8 @@
         <p class="col-md-6">Date limite de réservation</p>
         <div class="col-md-6">
                       <span>
-        <label for="day">Jour :</label>
-        <select id="day" name="day">
+        <label for="daylimit">Jour :</label>
+        <select id="daylimit" name="day">
           <option selected>1</option>
           <option>2</option>
           <option>3</option>
@@ -145,8 +145,8 @@
         </select>
       </span>
             <span>
-        <label for="month">Mois :</label>
-        <select id="month" name="month">
+        <label for="monthlimit">Mois :</label>
+        <select id="monthlimit" name="month">
           <option selected>Janvier</option>
           <option>Février</option>
           <option>Mars</option>
@@ -162,8 +162,8 @@
         </select>
       </span>
             <span>
-        <label for="year">Année :</label>
-        <select id="year" name="year">
+        <label for="yearlimit">Année :</label>
+        <select id="yearlimit" name="year">
             <option selecte>2021</option>
             <option>2022</option>
             <option>2023</option>
@@ -172,7 +172,7 @@
       </span>
         </div>
 
-        <button class="btn btn-primary" id="gauche" type="submit">ENREGISTRER<i aria-hidden="true"
+        <button class="btn btn-primarygauche" type="submit">ENREGISTRER<i aria-hidden="true"
                                                                                 class="fa fa-long-arrow-right"></i></button>
 
     </form>
