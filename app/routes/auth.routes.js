@@ -26,6 +26,10 @@ module.exports = function(app) {
         res.render('Connexion.html')
     })
 
+    app.get("/admin/signin", (req, res) => {
+        res.render('ConnexionAdmin.html')
+    })
+
     app.post(
         "/signup",
         [
@@ -35,6 +39,8 @@ module.exports = function(app) {
     );
 
     app.post("/signin", controller.signin);
+
+    app.post("/admin/signin", controller.signin);
 
     app.get("/", authJwt.verifyToken, (req, res, next) => {
         if (authJwt.isAdmin(req, res, next)) {

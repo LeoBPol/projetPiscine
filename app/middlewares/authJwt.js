@@ -13,7 +13,7 @@ verifyToken = async (req, res, next) => {
             console.log(decode.id)
             const user = await User.findOne({_id: decode.id})
             if (!user) {
-                return res.redirect('/signin');
+                return res.redirect('/home');
             }
             req.token = token
             req.user = user
@@ -21,11 +21,11 @@ verifyToken = async (req, res, next) => {
             return true
         } else {
             // cookie not found redirect to login
-            return res.redirect('/signin');
+            return res.redirect('/home');
         }
     }
     catch {
-        return res.redirect('/signin');
+        return res.redirect('/home');
     }
 };
 
