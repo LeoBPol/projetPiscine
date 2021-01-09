@@ -19,6 +19,8 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.locals.moment = require('moment')
+
 app.use(cookieParser())
 
 app.engine('html', require('ejs').renderFile);

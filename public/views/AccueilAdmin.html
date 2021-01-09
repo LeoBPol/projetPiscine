@@ -24,15 +24,24 @@
 
     <p class="p3">Evénements</p>
     <form>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/plannng'"><span>SOUTENANCE DE STAGE 3A 2020<br>05/09/2021 - 20/09/2021</span></button><br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/plannng'"><span>SOUTENANCE DE STAGE 4A 2020<br>05/09/2021 - 20/09/2021</span></button><br>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/plannng'"><span>SOUTENANCE DE STAGE 5A 2020<br>05/09/2021 - 20/09/2021</span></button><br>
+    <!--<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/plannng'"><span>SOUTENANCE DE STAGE 3A 2020<br>05/09/2021 - 20/09/2021</span></button><br>
+    <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/plannng'"><span>SOUTENANCE DE STAGE 4A 2020<br>05/09/2021 - 20/09/2021</span></button><br>
+    <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/plannng'"><span>SOUTENANCE DE STAGE 5A 2020<br>05/09/2021 - 20/09/2021</span></button><br>-->
+
+    <%  if (events.length==0) { %>
+            <span>Aucun événement en cours</span><br>
+       <% }
+        else {
+            for(var i=0; i<events.length; i++) {%>
+                <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/planning'"><span>SOUTENANCES <%= classes[i].name %><br><%= moment(events[i].start).format('DD/MM/YYYY') %> - <%= moment(events[i].end).format('DD/MM/YYYY') %></span></button><br>
+    <%      }
+        } %>
 
 
-
-        <button type="submit" class="btn btn-primary" onclick="location.href='/api/auth/creerevent'">CREER UN EVENEMENT</button>
-
+    <button type="button" class="btn btn-primary" onclick="location.href='/admin/createEvent'">CREER UN EVENEMENT</button>
     </form>
+
+
 </main>
 <footer class="footer">
     <p class="p6">Contact</p>

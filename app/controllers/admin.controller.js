@@ -47,5 +47,18 @@ exports.createEvent = (req, res) => {
 };
 
 exports.adminBoard = (req, res) => {
-    res.render('AccueilAdmin.html')
+    Event.find(function(err , docs){
+        if (err) return console.log(err)
+        const classesId = [];
+        docs.forEach(function(doc) {
+            classesId.push(doc.class)
+        })
+        Class.find({
+            '_id': { $in : classesId }
+        }, function (err, classes){
+            if (err) return console.log(err)
+
+            res.render('AccueilAdmin.html',{events: docs, classes: classes})
+        })
+    })
 };
