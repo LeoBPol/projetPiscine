@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="http://localhost:8080/public">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Première page</title>
+    <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" title="design2"href="css/connexion.css"/>
+</head>
+<body>
+
+
+<aside class="aside">
+    <h1>Réserver ma soutenance</h1>
+    <img src="img/component.png" alt="" class="logo"/>
+
+</aside>
+
+<main class="main">
+    <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
+
+    <p class="p3">Sélectionnez le type de compte</p>
+    <p class="p4">Indiquez-nous le type de compte auquel vous avez accès</p>
+    <form>
+
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/signin'"><span>ETUDIANT</span><img src="img/et.png" alt="" class="role" /><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button><br>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/api/auth/signin'"><span>ADMINISTRATEUR</span><img src="img/admin.png" alt="" class="role"/><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+
+    </form>
+</main>
+</body>
+</html>

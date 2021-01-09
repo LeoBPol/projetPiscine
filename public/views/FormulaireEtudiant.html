@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  <base href="http://localhost:8080/public">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Formulaire | Réservation de soutenance</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
+    <link rel="stylesheet" href="css/connexion.css">
+</head>
+<body>
+<aside class="aside">
+<script type="text/javascript" src="js/newTextBlock.js"></script>
+<aside id ="aside">
+    <h1>Formulaire de réservation pour une soutenance</h1>
+    <img src="img/component.png" alt="" class="logo"/>
+
+</aside>
+<main class="main">
+    <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
+
+    <p class="p3">Réserver un créneau </p>
+    <p class="p4">Renseignez les informations suivantes</p>
+    <form>
+
+
+        <div class="col-md-6">
+            <label for="validationCustom03">Nom du groupe</label>
+            <input type="text" class="form-control" id="validationCustom03" placeholder="Titre" name="titre" required>
+
+        </div>
+
+
+
+
+        <div class="col-md-6">
+            <label for="exampleRadios1">Type de soutenance</label><br>
+            <input onclick="check()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                Projet
+            </label>
+        </div>
+        <div class="col-md-6">
+            <input onclick="check()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+                Stage
+            </label>
+            <p id="ifCheckedStage" style="display:none"class="col-md-6">
+                <label for="NameCorp">Nom de l'entreprise</label>
+                <input type="text" class="form-control" id="NameCorp" name="titre" required>
+
+            </p>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">Tuteur Polytech</label>
+            <input type="text" class="form-control" id="validationDefault03" required>
+        </div>
+        <div class="col-md-6">
+            <label for="validationDefault04" class="form-label">Tuteur entreprise</label>
+            <input type="text" class="form-control" id="validationDefault04" required>
+        </div>
+
+
+
+
+
+        <button type="submit" class="btn btn-primary gauche">Choisir le créneau</button>
+        <button type="submit" class="btn btn-primary gauche">Réserver le créneau ultérieurement</button>
+    </form>
+
+
+</main>
+</body>
+</html>

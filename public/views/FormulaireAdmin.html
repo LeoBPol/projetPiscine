@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="http://localhost:8080/public">
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+    <title>Page de formulaire admin</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
+
+    <link href="../css/connexion.css" rel="stylesheet"
+</head>
+<body>
+
+
+<aside class="aside">
+    <h1>Création d'un évènement</h1>
+    <img alt="" class="logo" src="img/component.png"/>
+
+</aside>
+
+<main class="main">
+    <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
+
+    <p class="p3">Créer un évènement </p>
+    <p class="p4">Renseignez les informations suivantes</p>
+    <form action="/admin/createEvent" method="post">
+
+
+        <div class="col-md-6">
+            <label for="validationCustom03">Titre de l'événement</label>
+            <input class="form-control" id="validationCustom03" name="name" placeholder="Titre" required type="text">
+
+        </div>
+
+        <div class="col-md-6" id="promotion">
+            <label>Promotion concernée</label><br>
+            <select class="form-control" name="class">
+                <option>IG2023</option>
+                <option>IG2022</option>
+                <option>IG2021</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label>Durée de la soutenance</label><br>
+            <select class="form-control" name="presentationDuration">
+                <option value="60" selected>1H</option>
+                <option value="90">1H30</option>
+            </select>
+        </div>
+
+
+        <p class="col-md-6">Date de début</p>
+        <div class="col-md-6">
+      <span>
+        <label for="dayDebut">Jour :</label>
+        <select id="dayDebut" name="day">
+        </select>
+      </span>
+            <span>
+        <label for="monthDebut">Mois :</label>
+        <select id="monthDebut" name="month">
+          <option selected>Janvier</option>
+          <option>Février</option>
+          <option>Mars</option>
+          <option>Avril</option>
+          <option>Mai</option>
+          <option>Juin</option>
+          <option>Juillet</option>
+          <option>Août</option>
+          <option>Septembre</option>
+          <option>Octobre</option>
+          <option>Novembre</option>
+          <option>Décembre</option>
+        </select>
+      </span>
+            <span>
+        <label for="yearDebut">Année :</label>
+        <select id="yearDebut" name="year">
+            <option selected>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+        </select>
+      </span>
+        </div>
+
+        <p class="col-md-6">Date de fin</p>
+        <div class="col-md-6">
+      <span>
+        <label for="dayFin">Jour :</label>
+        <select id="dayFin" name="day">
+        </select>
+      </span>
+            <span>
+        <label for="monthFin">Mois :</label>
+        <select id="monthFin" name="month">
+          <option selected>Janvier</option>
+          <option>Février</option>
+          <option>Mars</option>
+          <option>Avril</option>
+          <option>Mai</option>
+          <option>Juin</option>
+          <option>Juillet</option>
+          <option>Août</option>
+          <option>Septembre</option>
+          <option>Octobre</option>
+          <option>Novembre</option>
+          <option>Décembre</option>
+        </select>
+      </span>
+            <span>
+        <label for="yearFin">Année :</label>
+        <select id="yearFin" name="year">
+            <option selected>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+        </select>
+      </span>
+        </div>
+
+        <div class="col-md-6">
+            <label for="jury">Nombre de membre du jury</label><br>
+            <select class="form-control" id="jury"name="sizeJury">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+
+
+        <p class="col-md-6">Date limite de réservation</p>
+        <div class="col-md-6">
+                      <span>
+        <label for="daylimit">Jour :</label>
+        <select id="daylimit" name="day">
+          <option selected>1</option>
+          <option>2</option>
+          <option>3</option>
+
+        </select>
+      </span>
+            <span>
+        <label for="monthlimit">Mois :</label>
+        <select id="monthlimit" name="month">
+          <option selected>Janvier</option>
+          <option>Février</option>
+          <option>Mars</option>
+          <option>Avril</option>
+          <option>Mai</option>
+          <option>Juin</option>
+          <option>Juillet</option>
+          <option>Août</option>
+          <option>Septembre</option>
+          <option>Octobre</option>
+          <option>Novembre</option>
+          <option>Décembre</option>
+        </select>
+      </span>
+            <span>
+        <label for="yearlimit">Année :</label>
+        <select id="yearlimit" name="year">
+            <option selecte>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+        </select>
+      </span>
+        </div>
+
+        <button class="btn btn-primary gauche" type="submit">ENREGISTRER<i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
+
+    </form>
+
+
+</main>
+</body>
+</html>
+</body>
+</html>
