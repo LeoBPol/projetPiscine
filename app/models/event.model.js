@@ -5,7 +5,7 @@ const Class = mongoose.model(
     new mongoose.Schema({
         name: String,
         start: Date,
-        duration: Number,
+        end: Date,
         deadline: Date,
         presentationDuration: Number,
         sizeJury: Number,
