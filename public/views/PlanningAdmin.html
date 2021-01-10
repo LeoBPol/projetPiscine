@@ -221,11 +221,53 @@
                 <td class=" no-events" rowspan="1"></td>
                 <td class=" no-events" rowspan="1"></td>
                 <td class=" no-events" rowspan="1"></td>
-                <td class=" no-events" rowspan="1"></td>
+                <td class=" has-events libre"onclick="openForm()" rowspan="1">
+
+                    <div class="row-fluid lecture" style="width: 99%; height: 100%;">
+
+
+                        <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
+                    </div>
+                </td
+                <div class="login-popup">
+                    <div class="form-popup" id="popupForm">
+                        <form action="/action_page.php" class="form-container">
+                            <h2>Modification</h2>
+                            <div class="form-group col-md-4 mb-3 " >
+
+                                <select class="form-control" name="class">
+                                    <option>Jury 1</option>
+                                    <option>Jury 2</option>
+                                    <option>Jury 3</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4 mb-3 " >
+
+                                <select class="form-control" name="class">
+                                    <option>Salle SC102</option>
+                                    <option>Salle SC101</option>
+                                    <option>Salle TD015</option>
+                                </select>
+                            </div>
+
+                            <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
+                        </form>
+                    </div>
+                </div>
+                <script>
+                    function openForm() {
+                        document.getElementById("popupForm").style.display="block";
+                    }
+
+                    function closeForm() {
+                        document.getElementById("popupForm").style.display="none";
+                    }
+                </script>
+
 
 
             </tr>
-
             <tr>
                 <td class="m" width="5%">18:00</td>
 
@@ -237,12 +279,12 @@
 
                 <td class=" no-events" rowspan="1"></td>
 
-                <td class=" has-events libre" rowspan="1">
+                <td class=" has-events complet" rowspan="1">
 
                     <div class="row-fluid lecture" style="width: 99%; height: 100%;">
 
 
-                        <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
+                        <span class="title">Créneau complet</span> <span class="lecturer"></span>
                     </div>
                 </td
 

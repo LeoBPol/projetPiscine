@@ -11,6 +11,9 @@ body {
   font-family: "Segoe UI Normal", sans-serif;
   margin: 0;
 }
+.mobileonly {
+  display: none;
+}
 .main{
 
   position: relative;
@@ -162,7 +165,7 @@ form{
   color : white;
   height: 20%;
   border-radius: 0;
-
+  margin-left: 10%;
 
 }
 
@@ -185,9 +188,20 @@ form{
   border-radius: 0.25em;
   margin-right: 1%;
   margin-bottom: 5%;
+  margin-top: 3%;
 
 }
-
+.espace {
+  width: 35%;
+  float: center;
+  font-size: 1em;
+  text-align: center;
+  display: inline-block;
+  border-radius: 0.25em;
+  margin-right: 1%;
+  margin-bottom: 5%;
+  margin-top: 3%;
+}
 .logo{
   position: absolute;
   right: 0;
@@ -204,13 +218,14 @@ form{
 .btn-circle {
   float: right;
   color: #015FFF;
-  width: 30px;
-  height: 30px;
-  padding: 6px 0px;
-  border-radius: 15px;
+  width: 4%;
+  height: 4%;
+  padding: 1% 1%;
+  border-radius: 2.5em;
   text-align: center;
-  font-size: 12px;
-  line-height: 1.42857;
+  font-size: 50%;
+  margin-left: 0.5%;
+
 }
 
 
@@ -255,12 +270,10 @@ table.calendar > tbody > tr > td.m {
 
 }
 .form-control{
-
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
   border-radius: 0;
-
-
 }
+
 #validationCustom01{
   width: 180%;
 }
@@ -273,14 +286,10 @@ table.calendar > tbody > tr > td.m {
 }
 #exampleFormControlInput1{
   width: 180%;
-
-
 }
 #exampleInputPassword1{
   width: 180%;
-
 }
-
 .cadre{
   margin-left: 5%;
   margin-right: 5%;
@@ -303,32 +312,80 @@ table.calendar > tbody > tr > td.m {
   margin-left: 5%;
   float: center;
   width: 80%;
-  color: black;
+  color: #2D2D2D;
+  letter-spacing: 0.25em;
   text-align: center;
   border-radius: 0.95em;
   background-color: white;
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
 
+
+
+
 }
-.role{
-  float: left;
-  margin-bottom: 5%;
-  border-image: linear-gradient(#015FFF, #015FFF) 27;
+.grand{
+  margin-top: 5%;
+
+
+}
+.petit{
+  font-size: 0.1em;
+  letter-spacing: 0;
+}
+.fa-long-arrow-right{
+  color: #015FFF;
+
+
+}
+.btn-secondary:hover{
+  background-color: rgba(1, 95, 255, 0.1);
+  border: 0.05em solid #015FFF;
+
 }
 
+.role{
+  float: left;
+  width: 7%;
+  margin-bottom: 2%;
+  margin-left: 10%;
+  margin-top: 2%;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 0.05em solid #015FFF;
+
+
+  border-radius: 0.5em;
+
+
+}
+.datepicker{
+
+  margin-top: 3%;
+  width: 46%;
+  margin-bottom: 3%;
+  margin-left: 2%;
+}
 @media all and (max-width: 480px){
   .aside
   {
     display: none;
   }
+  .datepicker {
+    width: 80%;
+    margin-left: 8%;
+  }
+
   .main {
     position: absolute;
     width: 100%;
     height: 100%;
-
     margin-left: 0;
+  }
+  .mobileonly{
+    display: flex;
+    float: left;
 
   }
+
   .p3 {
     float: center;
     margin-top: 10%;
@@ -336,11 +393,13 @@ table.calendar > tbody > tr > td.m {
   }
   form
   {
+
+    margin-left: 15%;
     float: center;
     width: 50%;
-    margin-left: 10%;
 
   }
+
   .droite {
     height: 10%;
     width: 100%;
@@ -354,19 +413,19 @@ table.calendar > tbody > tr > td.m {
     display: none;
   }
   .btn-secondary {
-    width: 150%;
+    width: 100%;
     height: 15%;
   }
   .btn-primary {
-    width: 150%;
+    width: 90%;
+    height: 5%;
+    margin-left: 10%;
   }
   .btn-circle {
     width: 10%;
     height: 5%;
   }
 
-
-}
 
 }
 @media (min-width: 480px) and (max-width: 780px){
@@ -393,10 +452,12 @@ table.calendar > tbody > tr > td.m {
   margin-top: 5%;
 
 }
-#promotion{
+.inscription{
+  width: 100%;
+}
+.promotion{
   float:left;
   margin-left: 0;
-
   margin-right: 50%;
 
 }
@@ -411,7 +472,8 @@ table.calendar > tbody > tr > td.m {
   float: right;
   margin-bottom: 1%;
 }
-.valid{  margin-right: 10%;
+.valid{
+  margin-right: 10%;
   float: right;
   width: 20%;
   font-size: 1.2em;
@@ -426,29 +488,66 @@ table.calendar > tbody > tr > td.m {
 .libre{
   border-top-right-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
-  background-color:#82BA93 ;
+  background-color: #82BA93 ;
+  color: green;
   text-align: center;
 }
+
 .complet{
   border-top-right-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
   background-color:#BA8282 ;
+  color: darkred;
   text-align: center;
 
 }
 
 .col-md-6{
+  margin-top: 2%;
   float:left;
   margin-left: 0;
   margin-right: 10%;
+  margin-bottom: 2%;
 }
-.form-check-input{
+.check{
   margin-left: 5%;
 }
-.form-check-label{
-  margin-left: 10%;
-}
+
 .semaineplan{
   float: right;
   width: 25%;
 }
+.promotioninscription{
+  width: 115%;
+}
+
+/* Positionnez la forme Popup */
+.login-popup {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+/* Masquez la forme Popup */
+.form-popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  background-color: #dddddd;
+  top:50%;
+  border-radius: 1em;
+  transform: translate(-45%,5%);
+  border: 0.05em solid #dddddd;
+  z-index: 9;
+}
+
+
+
+
+
+/* Stylez le bouton pour annuler */
+.form-container .cancel {
+  background-color: #cc0000;
+}
+
+
+

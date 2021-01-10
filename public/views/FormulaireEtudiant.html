@@ -9,14 +9,20 @@
     <link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
+<script type="text/javascript" src="views/js/newTextBlock.js"></script>
+
 <aside class="aside">
-<script type="text/javascript" src="js/newTextBlock.js"></script>
-<aside id ="aside">
     <h1>Formulaire de réservation pour une soutenance</h1>
     <img src="img/component.png" alt="" class="logo"/>
 
 </aside>
 <main class="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mobileonly">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+
+        </ol>
+    </nav>
     <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
 
     <p class="p3">Réserver un créneau </p>
@@ -30,17 +36,14 @@
 
         </div>
 
-
-
-
-        <div class="col-md-6">
+        <div class="col-md-6 check">
             <label for="exampleRadios1">Type de soutenance</label><br>
             <input onclick="check()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
             <label class="form-check-label" for="exampleRadios1">
                 Projet
             </label>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 check">
             <input onclick="check()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
             <label class="form-check-label" for="exampleRadios2">
                 Stage
@@ -51,13 +54,6 @@
 
             </p>
         </div>
-
-
-
-
-
-
-
 
 
         <div class="col-md-6">
@@ -73,8 +69,8 @@
 
 
 
-        <button type="submit" class="btn btn-primary gauche">Choisir le créneau</button>
-        <button type="submit" class="btn btn-primary gauche">Réserver le créneau ultérieurement</button>
+        <button type="submit" class="btn btn-primary espace">Choisir le créneau</button>
+        <button type="submit" class="btn btn-primary espace">Réserver ultérieurement</button>
     </form>
 
 
