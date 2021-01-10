@@ -9,9 +9,18 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
 
+
+
     <link href="../css/connexion.css" rel="stylesheet"
 </head>
+
 <body>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- votre propre fichier dans le dossier de votre projet -->
+    <script type="text/javascript" src="views/js/datepicker.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 
 
 <aside class="aside">
@@ -21,6 +30,12 @@
 </aside>
 
 <main class="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mobileonly">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+
+        </ol>
+    </nav>
     <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
 
     <p class="p3">Créer un évènement </p>
@@ -34,7 +49,7 @@
 
         </div>
 
-        <div class="col-md-6" id="promotion">
+        <div class="col-md-6 promotion">
             <label>Promotion concernée</label><br>
             <select class="form-control" name="class">
                 <option>IG2023</option>
@@ -50,77 +65,13 @@
                 <option value="90">1H30</option>
             </select>
         </div>
+        <input class="form-control datepicker" id="dateDebut" name="dateDebut" placeholder="Date de début" type="text"/>
 
 
-        <p class="col-md-6">Date de début</p>
-        <div class="col-md-6">
-      <span>
-        <label for="dayDebut">Jour :</label>
-        <select id="dayDebut" name="day">
-        </select>
-      </span>
-            <span>
-        <label for="monthDebut">Mois :</label>
-        <select id="monthDebut" name="month">
-          <option selected>Janvier</option>
-          <option>Février</option>
-          <option>Mars</option>
-          <option>Avril</option>
-          <option>Mai</option>
-          <option>Juin</option>
-          <option>Juillet</option>
-          <option>Août</option>
-          <option>Septembre</option>
-          <option>Octobre</option>
-          <option>Novembre</option>
-          <option>Décembre</option>
-        </select>
-      </span>
-            <span>
-        <label for="yearDebut">Année :</label>
-        <select id="yearDebut" name="year">
-            <option selected>2021</option>
-            <option>2022</option>
-            <option>2023</option>
-            <option>2024</option>
-        </select>
-      </span>
-        </div>
 
-        <p class="col-md-6">Date de fin</p>
-        <div class="col-md-6">
-      <span>
-        <label for="dayFin">Jour :</label>
-        <select id="dayFin" name="day">
-        </select>
-      </span>
-            <span>
-        <label for="monthFin">Mois :</label>
-        <select id="monthFin" name="month">
-          <option selected>Janvier</option>
-          <option>Février</option>
-          <option>Mars</option>
-          <option>Avril</option>
-          <option>Mai</option>
-          <option>Juin</option>
-          <option>Juillet</option>
-          <option>Août</option>
-          <option>Septembre</option>
-          <option>Octobre</option>
-          <option>Novembre</option>
-          <option>Décembre</option>
-        </select>
-      </span>
-            <span>
-        <label for="yearFin">Année :</label>
-        <select id="yearFin" name="year">
-            <option selected>2021</option>
-            <option>2022</option>
-            <option>2023</option>
-            <option>2024</option>
-        </select>
-      </span>
-        </div>
+
+        <input class="form-control datepicker" id="dateFin" name="dateFin" placeholder="Date de Fin" type="text"/>
+
 
         <div class="col-md-6">
             <label for="jury">Nombre de membre du jury</label><br>
@@ -133,44 +84,8 @@
         </div>
 
 
-        <p class="col-md-6">Date limite de réservation</p>
-        <div class="col-md-6">
-                      <span>
-        <label for="daylimit">Jour :</label>
-        <select id="daylimit" name="day">
-          <option selected>1</option>
-          <option>2</option>
-          <option>3</option>
+        <input class="form-control datepicker" id="datelimite" name="datelimite" placeholder="Date limite" type="text"/>
 
-        </select>
-      </span>
-            <span>
-        <label for="monthlimit">Mois :</label>
-        <select id="monthlimit" name="month">
-          <option selected>Janvier</option>
-          <option>Février</option>
-          <option>Mars</option>
-          <option>Avril</option>
-          <option>Mai</option>
-          <option>Juin</option>
-          <option>Juillet</option>
-          <option>Août</option>
-          <option>Septembre</option>
-          <option>Octobre</option>
-          <option>Novembre</option>
-          <option>Décembre</option>
-        </select>
-      </span>
-            <span>
-        <label for="yearlimit">Année :</label>
-        <select id="yearlimit" name="year">
-            <option selecte>2021</option>
-            <option>2022</option>
-            <option>2023</option>
-            <option>2024</option>
-        </select>
-      </span>
-        </div>
 
         <button class="btn btn-primary gauche" type="submit">ENREGISTRER<i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
 

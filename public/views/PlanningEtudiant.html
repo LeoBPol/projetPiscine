@@ -31,9 +31,9 @@
 
     <p class="p3">Soutenance de stage - IG3 </p>
     <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa date ou son horaire</p>
-    <div class="form-group col-md-4 mb-3">
+    <div class="form-group col-md-4 mb-3 semaineplan" >
 
-        <select class="form-control" id="exampleFormControlSelect1" name="class">
+        <select class="form-control" name="class">
             <option>Semaine 51</option>
             <option>Semaine 50</option>
             <option>Semaine 49</option>
@@ -68,7 +68,7 @@
         <tr>
             <td class="m" width="5%">09:00</td>
 
-            <td class=" no-events" rowspan="1"></td>
+            <td type="button" class=" no-events" rowspan="1"></td>
 
             <td class=" no-events" rowspan="1"></td>
 
@@ -191,7 +191,7 @@
             <td class=" no-events" rowspan="1"></td>
             <td class=" no-events" rowspan="1"></td>
             <td class=" no-events" rowspan="1"></td>
-            <td class=" has-events libre" rowspan="1">
+            <td type="button" class=" has-events libre"onclick="openForm()" rowspan="1">
 
                 <div class="row-fluid lecture" style="width: 99%; height: 100%;">
 
@@ -201,25 +201,13 @@
             </td
 
 
-        </tr>
 
+
+        </tr>
         <tr>
             <td class="m" width="5%">18:00</td>
 
             <td class=" no-events" rowspan="1"></td>
-
-            <td class=" no-events" rowspan="1"></td>
-
-            <td class=" no-events" rowspan="1"></td>
-
-            <td class=" no-events" rowspan="1"></td>
-
-            <td class=" no-events" rowspan="1"></td>
-
-        </tr>
-
-        <tr>
-            <td class="m" width="5%">19:00</td>
 
             <td class=" no-events" rowspan="1"></td>
 
@@ -236,9 +224,23 @@
                 </div>
             </td
 
+        </tr>
+
+        <tr>
+            <td class="m" width="5%">19:00</td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
+            <td class=" no-events" rowspan="1"></td>
+
             <td class=" no-events" rowspan="1"></td>
 
         </tr>
+
 
         </tbody>
     </table>
