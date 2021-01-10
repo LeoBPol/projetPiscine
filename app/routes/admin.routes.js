@@ -23,4 +23,10 @@ module.exports = function(app) {
         controller.createEvent
     );
 
+    app.get(
+        "/admin/planning",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.adminPlanning
+    );
+
 };

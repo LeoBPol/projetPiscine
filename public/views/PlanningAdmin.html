@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Page de Planning</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/connexion.css"
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/connexion.css">
 
 </head>
 <body>
@@ -18,17 +18,24 @@
         <span class="border border-white"></span>
         <div class="cadre">
             <p class="p7">Informations de l'événement  </p>
-            <p><i class="fa fa-refresh" aria-hidden="true"></i> Durée d'une soutenance  <span class="encadrer-un-contenu"><strong>1h30</strong></span></p>
-            <p><i class="fa fa-clock-o" aria-hidden="true"></i> Nombre de jury par soutenance  <span class="encadrer-un-contenu"><strong>2</strong></span></p></p>
-            <p> Date limite de réservation  <span class="encadrer-un-contenu"><strong>15 Novembre</strong></span></p></p>
-            <p> Nombre d'élèves par soutenance  <span class="encadrer-un-contenu"><strong>2</strong></span></p></p>
+            <p><i class="fa fa-refresh" aria-hidden="true"></i> Durée d'une soutenance  <span class="encadrer-un-contenu"><strong><%= event.presentationDuration %> min</strong></span></p>
+            <p><i class="fa fa-clock-o" aria-hidden="true"></i> Nombre de jury par soutenance  <span class="encadrer-un-contenu"><strong><%= event.sizeJury %></strong></span></p></p>
+            <p> Date limite de réservation  <span class="encadrer-un-contenu"><strong><%= moment(event.deadLine).format('DD/MM') %></strong></span></p></p>
             <button type="submit" class="btn btn-light modifier">Modifier ces informations</button>
 
 
         </div>
         <p class="p9">Autres événements</p>
-        <button type="submit" class="btn btn-primary ombré">Soutenance de stage - IG5<i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-        <button type="submit" class="btn btn-primary ombré">Soutenance de stage - IG3<i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+        <%  if (events.length==0) { %>
+        <span>Aucun événement en cours</span><br>
+        <% }
+        else {
+            for(var i=0; i < events.length; i++) {%>
+                 <button type="button" class="btn btn-primary ombré"  onclick="location.href='/admin/planning?eventID=<%=events[i]._id%>'"><%= events[i].name %> - <%= classes[i].name %><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+            <%}
+        } %>
+        <!--<button type="submit" class="btn btn-primary ombré">Soutenance de stage - IG5<i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+        <button type="submit" class="btn btn-primary ombré">Soutenance de stage - IG3<i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>-->
 
 
 
@@ -40,10 +47,10 @@
 
         <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-question" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-home" aria-hidden="false"></i>
+        <button type="button" class="btn btn-primary btn-circle" onclick="location.href='/admin/accueil'"><i class="fa fa-home" aria-hidden="false"></i>
         </button>
 
-        <p class="p3">Soutenance de stage - IG4 </p>
+        <p class="p3"><%= event.name %> - <%= classe.name%></p>
         <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa date ou son horaire</p>
         <div class="form-group col-md-4 mb-3 semaineplan" >
 
