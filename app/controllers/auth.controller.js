@@ -114,3 +114,8 @@ exports.signin = (req, res) => {
             })
         });
 };
+
+exports.logout = (req, res) => {
+    res.clearCookie("x-access-token")
+    res.redirect('/home')
+};

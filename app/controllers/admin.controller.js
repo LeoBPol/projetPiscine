@@ -65,8 +65,8 @@ exports.adminBoard = (req, res) => {
             if (err) return console.log(err)
 
             res.render('AccueilAdmin.html',{events: docs, classes: classes})
-        })
-    })
+        }).sort({ '_id' : 1 })
+    }).sort({ 'class' : 1 })
 };
 
 exports.adminPlanning = (req, res) => {
@@ -95,8 +95,8 @@ exports.adminPlanning = (req, res) => {
                     res.render("PlanningAdmin.html", {event: event, classe: classe, events: events, classes: classes})
 
                 })
-            })
-        })
+            }).sort({ '_id' : 1 })
+        }).sort({ 'class' : 1 })
     })
 
 };
