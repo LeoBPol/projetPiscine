@@ -10,6 +10,7 @@
 
 </head>
 <body>
+
     <aside class="aside">
 
         <span class="border"></span>
@@ -37,6 +38,7 @@
 
     </aside>
     <main class="main">
+
 
         <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-question" aria-hidden="true"></i>
         </button>
@@ -248,19 +250,21 @@
                         </form>
                     </div>
                 </div>
-                <script>
-                    function openForm() {
-                        document.getElementById("popupForm").style.display="block";
-                    }
 
-                    function closeForm() {
-                        document.getElementById("popupForm").style.display="none";
-                    }
-                </script>
 
 
 
             </tr>
+            <script>
+                function openForm() {
+                    document.getElementById("popupForm").style.display="block";
+                }
+
+                function closeForm() {
+                    document.getElementById("popupForm").style.display="none";
+                }
+
+            </script>
             <tr>
                 <td class="m" width="5%">18:00</td>
 
@@ -272,13 +276,14 @@
 
                 <td class=" no-events" rowspan="1"></td>
 
-                <td class=" has-events complet" rowspan="1">
+                <td class=" has-events complet"onclick="openForm() rowspan="1">
 
                     <div class="row-fluid lecture" style="width: 99%; height: 100%;">
 
 
                         <span class="title">Créneau complet</span> <span class="lecturer"></span>
                     </div>
+
                 </td
 
             </tr>
