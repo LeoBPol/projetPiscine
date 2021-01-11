@@ -191,6 +191,8 @@ form{
   margin-top: 3%;
 
 }
+.lettrespace{
+  letter-spacing: 0.25em;}
 .espace {
   width: 35%;
   float: center;
@@ -211,7 +213,7 @@ form{
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 37%;
+  width: 32%;
 }
 
 
@@ -273,7 +275,15 @@ table.calendar > tbody > tr > td.m {
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
   border-radius: 0;
 }
-
+#datelimite{
+  border-radius: 0;
+}
+#dateFin{
+  border-radius: 0;
+}
+#dateDebut{
+  border-radius: 0;
+}
 #validationCustom01{
   width: 180%;
 }
@@ -306,6 +316,7 @@ table.calendar > tbody > tr > td.m {
   border-radius: 0.45em;
   height: 5%;
   margin-top: 5%;
+  margin-right: 5%;
 }
 .btn-secondary {
   border : 0;
@@ -313,7 +324,7 @@ table.calendar > tbody > tr > td.m {
   float: center;
   width: 80%;
   color: #2D2D2D;
-  letter-spacing: 0.25em;
+
   text-align: center;
   border-radius: 0.95em;
   background-color: white;
@@ -363,6 +374,7 @@ table.calendar > tbody > tr > td.m {
   width: 46%;
   margin-bottom: 3%;
   margin-left: 2%;
+  border-radius: 0;
 }
 @media all and (max-width: 480px){
   .aside
@@ -424,7 +436,9 @@ table.calendar > tbody > tr > td.m {
   .btn-circle {
     width: 10%;
     height: 5%;
+    margin-left: 0;
   }
+  
 
 
 }
@@ -516,6 +530,7 @@ table.calendar > tbody > tr > td.m {
 .semaineplan{
   float: right;
   width: 25%;
+  margin-right: 8%;
 }
 .promotioninscription{
   width: 115%;
@@ -548,6 +563,23 @@ table.calendar > tbody > tr > td.m {
 .form-container .cancel {
   background-color: #cc0000;
 }
+.overlay {
+  background: #e9e9e9;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+}
+
+
+
+
+
+
+
 
 
 
