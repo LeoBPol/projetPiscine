@@ -39,8 +39,31 @@
     <p class="p3">Proposer un créneau </p>
     <p class="p4">Renseignez les informations suivantes</p>
     <form>
+        <div class="mb-3 form-check">
+            <input type="checkbox" onclick="checkcreneau()" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1" >Je précise les créneaux ultérieurement</label>
+            <script>
+                function checkcreneau() {
+                    var checkBox = document.getElementById("exampleCheck1");
 
-        <div class="col-md-6">
+                    var text = document.getElementById("label1");
+                    var text1 = document.getElementById("label2");
+                    var text2 = document.getElementById("label3");
+                    if (checkBox.checked){
+                        text.style.display = "none";
+                        text1.style.display = "none";
+                        text2.style.display = "none";
+                    }
+                    else {
+                        text.style.display = "block";
+                        text1.style.display = "block";
+                        text2.style.display = "block";
+                    }
+                }
+            </script>
+        </div>
+
+        <div class="col-md-6" id="label1" >
             <label for="nbcreneau">Nombre de créneaux par heure</label><br>
             <select class="form-control" id="nbcreneau"name="nbcreneau">
                 <option>1</option>
@@ -49,7 +72,7 @@
                 <option>4</option>
             </select>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" id="label2">
             <label for="salle">Salle</label><br>
             <select class="form-control" id="salle"name="salle">
                 <option>SC102</option>
@@ -57,7 +80,7 @@
 
             </select>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" id="label3">
             <label for="jury">Numéro du jury</label><br>
             <select class="form-control" id="jury"name="Jury">
                 <option>1</option>
@@ -73,7 +96,7 @@
 
         </div>
 
-        <div class="input-group clock col-md-6">
+        <div class="clock col-md-6">
 
 
 
