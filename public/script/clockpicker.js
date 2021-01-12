@@ -1,9 +1,9 @@
 var $input = $('.clock').clockpicker({
-    default:          'now',
+    default:          '12:00',
     placement:        'bottom',
     align:            'left',
-    donetext:         'jesuisuneboss',
-    autoclose:        false,
+    donetext:         'jevaistegoumer',
+    autoclose:        true,
     vibrate:          true,
     fromnow:          0,
     init:             function () { console.log('initial') },
@@ -16,5 +16,3 @@ var $input = $('.clock').clockpicker({
     beforeDone:       function () { console.log('avant finaliser') },
     afterDone:        function () { console.log('apres finaliser') }
 });
-
-$input.clockpicker('show');

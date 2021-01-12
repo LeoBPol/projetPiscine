@@ -7,7 +7,7 @@
     <title>Proposer créneau</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/connexion.css"
+    <link rel="stylesheet" href="css/connexion.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.css">
     <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
@@ -38,11 +38,11 @@
 
     <p class="p3">Proposer un créneau </p>
     <p class="p4">Renseignez les informations suivantes</p>
-    <form>
+    <form action="/admin/proposeTimeSlot/<%= eventID %>" method="post">
 
         <div class="col-md-6">
             <label for="nbcreneau">Nombre de créneaux par heure</label><br>
-            <select class="form-control" id="nbcreneau"name="nbcreneau">
+            <select class="form-control" id="nbcreneau"name="nbSlot">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -51,7 +51,7 @@
         </div>
         <div class="col-md-6">
             <label for="salle">Salle</label><br>
-            <select class="form-control" id="salle"name="salle">
+            <select class="form-control" id="salle"name="room">
                 <option>SC102</option>
                 <option>SC101</option>
 
@@ -59,26 +59,23 @@
         </div>
         <div class="col-md-6">
             <label for="jury">Numéro du jury</label><br>
-            <select class="form-control" id="jury"name="Jury">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+            <select class="form-control" id="jury" name="jury">
+                <option value="5ff8bfc736a0e432b38cf441">1</option>
+                <option value="5ff8bfc736a0e432b38cf441">2</option>
+                <option value="5ff8bfc736a0e432b38cf441">3</option>
+                <option value="5ff8bfc736a0e432b38cf441">4</option>
             </select>
         </div>
         <div class="col-md-6">
-            <label>Date de début</label><br>
-            <input class="form-control" id="dateDebut" name="dateDebut" placeholder="jj/mm/aaaa" type="text"/>
+            <label>Date</label><br>
+            <input class="form-control" id="dateDebut" name="date" placeholder="JJ/MM/AAAA" type="text"/>
             <script type="text/javascript" src="script/datepicker.js"></script>
 
         </div>
 
-        <div class="input-group clock col-md-6">
-
-
-
-            <input type="text" class="form-control" value="" placeholder="00:00">
-
+        <div class="clock col-md-6">
+            <label>Heure de début</label><br>
+            <input type="text" class="form-control" placeholder="HH:MM" name="startingTime">
             <script type="text/javascript" src="script/clockpicker.js"></script>
         </div>
 

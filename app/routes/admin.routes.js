@@ -29,4 +29,18 @@ module.exports = function(app) {
         controller.adminPlanning
     );
 
+    app.get(
+        "/admin/proposeTimeSlot",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        (req, res) => {
+            res.render("ProposerCreneau.html", {eventID: req.query.eventID})
+        }
+    );
+
+    app.post(
+        "/admin/proposeTimeSlot/:eventID",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.proposeTimeSlot
+    );
+
 };

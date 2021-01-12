@@ -4,10 +4,10 @@ const moment = require('moment')
 const db = require("../models");
 const Event = db.event
 const Class = db.class
+const TimeSlot = db.timeSlot
 
 
 exports.createEvent = (req, res) => {
-    console.log(req.body)
 
     const start = moment(req.body.start, 'DD/MM/YYYY');
     const end = moment(req.body.end, 'DD/MM/YYYY');
@@ -76,7 +76,6 @@ exports.adminBoard = (req, res) => {
 
 exports.adminPlanning = (req, res) => {
 
-
     Event.findOne({ '_id' : mongoose.Types.ObjectId(req.query.eventID)}, function(err , event) {
         if (err) return console.log(err)
 
@@ -105,3 +104,23 @@ exports.adminPlanning = (req, res) => {
     })
 
 };
+
+exports.proposeTimeSlot = (req, res) => {
+
+    const date = moment(req.body.date, 'DD/MM/YYYY');
+    const startingTime = parseInt(req.body.startingTime.substring(0, 1)) + parseInt(req.body.startingTime.substring(3, 4)) * 60;
+
+    const timeSlot = new TimeSlot({
+        date: Date.parse(moment(date).format('YYYY-MM-DD')),
+        startingTime: startingTime,
+        event: mongoose.Types.ObjectId(req.params.eventID)
+    });
+
+    timeSlot.save(function(err,timeSlot){
+        if (err) {
+            res.status(500).send({message: err});
+            return;
+        }
+        res.redirect("/admin/planning?eventID="+req.params.eventID)
+    });
+}
