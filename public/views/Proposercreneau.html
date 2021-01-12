@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="http://localhost:8080/public">
+    <meta charset="UTF-8">
+    <title>Proposer créneau</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/connexion.css"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.css">
+    <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<aside class="aside">
+    <h1>Création des créneaux</h1>
+    <img alt="" class="logo" src="img/component.png"/>
+
+</aside>
+<main class="main">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mobileonly">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+
+        </ol>
+    </nav>
+    <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
+
+    <p class="p3">Proposer un créneau </p>
+    <p class="p4">Renseignez les informations suivantes</p>
+    <form>
+
+        <div class="col-md-6">
+            <label for="nbcreneau">Nombre de créneaux par heure</label><br>
+            <select class="form-control" id="nbcreneau"name="nbcreneau">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="salle">Salle</label><br>
+            <select class="form-control" id="salle"name="salle">
+                <option>SC102</option>
+                <option>SC101</option>
+
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="jury">Numéro du jury</label><br>
+            <select class="form-control" id="jury"name="Jury">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label>Date de début</label><br>
+            <input class="form-control" id="dateDebut" name="dateDebut" placeholder="jj/mm/aaaa" type="text"/>
+            <script type="text/javascript" src="views/js/datepicker.js"></script>
+
+        </div>
+
+        <div class="input-group clock col-md-6">
+
+
+
+            <input type="text" class="form-control" value="" placeholder="00:00">
+
+            <script type="text/javascript" src="views/js/clockpicker.js"></script>
+        </div>
+
+        <button class="btn btn-primary gauche" type="submit">ENREGISTRER<i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
+    </form>
+
+</main>
+</body>
+
+</html>

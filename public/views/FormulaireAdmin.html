@@ -65,13 +65,16 @@
                 <option value="90">1H30</option>
             </select>
         </div>
-        <input class="form-control datepicker" id="dateDebut" name="dateDebut" placeholder="Date de début" type="text"/>
+        <div class="col-md-6">
+            <label>Date de début</label><br>
+        <input class="form-control" id="dateDebut" name="dateDebut" placeholder="jj/mm/aaaa" type="text"/>
+        </div>
 
 
-
-
-        <input class="form-control datepicker" id="dateFin" name="dateFin" placeholder="Date de Fin" type="text"/>
-
+        <div class="col-md-6">
+            <label>Date de fin</label><br>
+        <input class="form-control" id="dateFin" name="dateFin" placeholder="jj/mm/aaaa" type="text"/>
+        </div>
 
         <div class="col-md-6">
             <label for="jury">Nombre de membre du jury</label><br>
@@ -82,10 +85,10 @@
                 <option>4</option>
             </select>
         </div>
-
-
-        <input class="form-control datepicker" id="datelimite" name="datelimite" placeholder="Date limite" type="text"/>
-
+        <div class="col-md-6">
+            <label>Date limite de réservation</label><br>
+            <input class="form-control " id="datelimite" name="datelimite" placeholder="jj/mm/aaaa" type="text"/>
+        </div>
 
         <button class="btn btn-primary gauche" type="submit">ENREGISTRER<i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
 

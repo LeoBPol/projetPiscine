@@ -30,11 +30,7 @@
     <form>
 
 
-        <div class="col-md-6">
-            <label for="validationCustom03">Nom du groupe</label>
-            <input type="text" class="form-control" id="validationCustom03" placeholder="Titre" name="titre" required>
 
-        </div>
 
         <div class="col-md-6 check">
             <label for="exampleRadios1">Type de soutenance</label><br>
@@ -57,14 +53,43 @@
 
 
         <div class="col-md-6">
-            <label for="validationDefault03" class="form-label">Tuteur Polytech</label>
-            <input type="text" class="form-control" id="validationDefault03" required>
+        <label for="tuteur">Tuteur Polytech</label><br>
+        <select class="form-control" id="tuteur"name="tuteur">
+            <option>Vincent Berry</option>
+            <option>Christophe Fiorio</option>
+
+        </select>
+    </div>
+        <div class="col-md-6">
+            <label for="tuteurentrepriseNom" class="form-label">Nom Tuteur entreprise</label>
+            <input type="text" class="form-control" id="tuteurentrepriseNom" required>
         </div>
         <div class="col-md-6">
-            <label for="validationDefault04" class="form-label">Tuteur entreprise</label>
-            <input type="text" class="form-control" id="validationDefault04" required>
+            <label for="tuteurentreprisePrenom" class="form-label">Prénom Tuteur entreprise</label>
+            <input type="text" class="form-control" id="tuteurentreprisePrenom" required>
         </div>
+        <div class="col-md-6">
+        <label for="sizegroupe">Nombre de membres dans le groupe</label><br>
+        <select class="form-control" id="sizegroupe"name="sizegroupe">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
 
+        </select>
+
+    </div>
+        <div class="col-md-6">
+            <label for="email1" class="form-label">E-mail universitaire du premier membre</label><br>
+            <input type="email" class="form-control" id="email1" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email1">
+        </div>
+        <div class="col-md-6">
+            <label for="email2" class="form-label">E-mail universitaire du second membre</label><br>
+            <input type="email" class="form-control" id="email2" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email2">
+        </div>
+        <div class="col-md-6">
+            <label for="email3" class="form-label">E-mail universitaire du troisième membre</label><br>
+            <input type="email" class="form-control" id="email3" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email3">
+        </div>
 
 
 
