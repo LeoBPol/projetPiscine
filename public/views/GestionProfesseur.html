@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="http://localhost:8080/public">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+    <title>Page d'accueil admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/connexion.css">
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+</head>
+<body>
+
+
+<aside class="aside">
+    <h1>Bienvenue</h1>
+    <img src="img/component.png" alt="" class="logo"/>
+
+</aside>
+
+
+<main class="main">
+    <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
+    <p class="p3">Gérer les professeurs</p>
+    <p class="p4">Gérer la liste des professeurs susceptible de participer à une soutenance</p>
+
+    <ul class="list-group" style="margin-left: 10%; margin-right: 10%">
+        <% for(var i=0; i < teachers.length; i++) { %>
+            <li id="teacher" class="list-group-item">
+                <span id="deleteTeacher"  class="fa fa-times" style="right: 10%"></span>
+                <%= teachers[i].teacherFirstName %> <%= teachers[i].teacherLastName %>
+                <p id="id" value="<%= teachers[i]._id %>" style="display: none"><%= teachers[i]._id %></p>
+            </li>
+        <% } %>
+
+        <li class="list-group-item" id="form-teacher" style="display: none">
+            <form action="/admin/manageTeachers" method="post" style="margin-left: 0%">
+                <span class="fa fa-close" style="float: right;" onclick="$('#form-teacher').attr('style','display: none');"></span>
+                <label>Prénom</label>
+                <input type="text" class="form-control" placeholder="Christophe" name="firstName">
+                <br>
+                <label>Nom de famille</label>
+                <input type="text" class="form-control" placeholder="Fiorio" name="lastName">
+                <button class="btn btn-primary gauche" type="submit" style="margin-top:5%;WIDTH: 100%;margin-left: 0%;margin-right: 10%;text-align: center;">AJOUTER</button>
+            </form>
+        </li>
+    </ul>
+
+    <button id="addButton" class="btn btn-secondary btn-lg btn-block" onclick="$('#form-teacher').attr('style','display: block');" type="button" style="margin-left:10%; margin-top:2%"><i class="fa fa-plus-circle"></i></button>
+
+    <button class="btn btn-primary gauche" type="button" style="margin-left:10%; margin-top:5%">ENREGISTRER<i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
+
+    <script type="text/javascript" src="script/deleteTeacher.js"></script>-
+</main>
+</body>
+</html>

@@ -5,6 +5,7 @@ const db = require("../models");
 const Event = db.event
 const Class = db.class
 const TimeSlot = db.timeSlot
+const Teacher = db.teacher
 
 
 exports.createEvent = (req, res) => {
@@ -123,4 +124,39 @@ exports.proposeTimeSlot = (req, res) => {
         }
         res.redirect("/admin/planning?eventID="+req.params.eventID)
     });
+}
+
+exports.manageTeachers = (req, res) => {
+
+    Teacher.find(function (err, teachers) {
+        if (err) return console.log(err)
+
+        console.log(teachers)
+
+        res.render("GestionProfesseur.html", {teachers: teachers})
+    }).sort({'teacherLastName': 1});
+
+}
+
+exports.addTeacher = (req, res) => {
+
+    const teacher = new Teacher({
+        teacherFirstName: req.body.firstName,
+        teacherLastName: req.body.lastName
+    });
+
+    teacher.save(function (err, teacher) {
+        if (err) return console.log(err)
+        res.redirect('/admin/manageTeachers/')
+    });
+
+}
+
+exports.deleteTeacher = (req, res) => {
+
+    Teacher.deleteOne({'_id' : mongoose.Types.ObjectId(req.params.id) }, function (err, teacher) {
+        if (err) return console.log(err)
+        res.redirect('/admin/manageTeachers/')
+    });
+
 }

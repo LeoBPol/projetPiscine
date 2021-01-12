@@ -43,4 +43,21 @@ module.exports = function(app) {
         controller.proposeTimeSlot
     );
 
+    app.get(
+        "/admin/manageTeachers",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.manageTeachers
+    );
+
+    app.post(
+        "/admin/manageTeachers",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.addTeacher
+    );
+
+    app.delete(
+        "/admin/manageTeachers/:id",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.deleteTeacher
+    );
 };
