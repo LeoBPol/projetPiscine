@@ -1,18 +1,23 @@
 const config = require("../config/auth.config");
 const mongoose = require("mongoose");
-var ObjectId = require('mongodb').ObjectID;
+const moment = require('moment')
 const db = require("../models");
 const Event = db.event
 const Class = db.class
 
+
 exports.createEvent = (req, res) => {
     console.log(req.body)
 
+    const start = moment(req.body.start, 'DD/MM/YYYY');
+    const end = moment(req.body.end, 'DD/MM/YYYY');
+    const deadline = moment(req.body.deadline, 'DD/MM/YYYY');
+
     const event = new Event({
         name: req.body.name,
-        start: /*req.body.start*/Date.parse("2011-10-10"),
-        end: /*req.body.end*/Date.parse("2011-10-10"),
-        deadline: /*req.body.deadline*/Date.parse("2011-10-10"),
+        start: Date.parse(moment(start).format('YYYY-MM-DD')),
+        end: Date.parse(moment(end).format('YYYY-MM-DD')),
+        deadline: Date.parse(moment(deadline).format('YYYY-MM-DD')),
         presentationDuration: req.body.presentationDuration,
         sizeJury: req.body.sizeJury
     });
