@@ -1,0 +1,65 @@
+.btn {
+    background-color: #015FFF;;
+    border-radius: 20px;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 15px;
+    width: 15%;
+    align-items: center;
+    margin-right: 30px;
+    margin-top: 10px;
+    text-align: center;
+    height: 42px;
+}
+
+.btn:hover {
+    background-color: #222;
+    border-radius: 20px;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 15px;
+    width: 15%;
+    align-items: center;
+    transition-duration: 0.2s;
+    text-align: center;
+    height: 42px;
+}
+
+.btn_disabled {
+    background-color: #E8E8E8;
+    pointer-events: none;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.form_block {
+    margin: 0 100px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 130px;
+}
+
+.indisponible {
+    background-color: red;
+}
+
+.valide {
+    background-color: orange;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
