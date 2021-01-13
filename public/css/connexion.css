@@ -120,7 +120,7 @@ p{
 .p9{
   color: white;
   font-size: 1.5em;
-  margin-top: 25%;
+  margin-top: 5%;
   text-align: right;
   margin-right: 5%;
   margin-bottom: 5%;
@@ -218,7 +218,7 @@ form{
 }
 .logodroite{
   position: absolute;
-  left: 0;
+  right: 0;
   bottom: 0;
   width: 27%;
 }
@@ -260,6 +260,12 @@ table.calendar{
   float: center;
   margin-left: 20%;
   margin-bottom: 5%;
+}
+
+.jury-button{
+  margin-left: 10%;
+  margin-top: 5%;
+  width: 80%;
 }
 table.calendar > thead > tr > th {
   text-align: center;

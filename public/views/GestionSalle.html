@@ -26,22 +26,19 @@
     <p class="p4">Gérer la liste des professeurs susceptible de participer à une soutenance</p>
 
     <ul class="list-group" style="margin-left: 10%; margin-right: 10%">
-        <% for(var i=0; i < teachers.length; i++) { %>
+        <% for(var i=0; i < rooms.length; i++) { %>
             <li id="teacher" class="list-group-item">
                 <span id="deleteTeacher"  class="fa fa-times" style="right: 10%"></span>
-                <%= teachers[i].teacherFirstName %> <%= teachers[i].teacherLastName %>
-                <p id="id" value="<%= teachers[i]._id %>" style="display: none"><%= teachers[i]._id %></p>
+                <%= rooms[i].name %>
+                <p id="id" value="<%= rooms[i]._id %>" style="display: none"><%= rooms[i]._id %></p>
             </li>
         <% } %>
 
         <li class="list-group-item" id="form-teacher" style="display: none">
-            <form action="/admin/manageTeachers" method="post" style="margin-left: 0%">
+            <form action="/admin/manageRooms" method="post" style="margin-left: 0%">
                 <span class="fa fa-close" style="float: right;" onclick="$('#form-teacher').attr('style','display: none');"></span>
-                <label>Prénom</label>
-                <input type="text" class="form-control" placeholder="Christophe" name="firstName">
-                <br>
-                <label>Nom de famille</label>
-                <input type="text" class="form-control" placeholder="Fiorio" name="lastName">
+                <label>Salle</label>
+                <input type="text" class="form-control" placeholder="SC102" name="name">
                 <button class="btn btn-primary gauche" type="submit" style="margin-top:5%;WIDTH: 100%;margin-left: 0%;margin-right: 10%;text-align: center;">AJOUTER</button>
             </form>
         </li>

@@ -6,6 +6,7 @@ const Event = db.event
 const Class = db.class
 const TimeSlot = db.timeSlot
 const Teacher = db.teacher
+const Room = db.room
 
 
 exports.createEvent = (req, res) => {
@@ -145,7 +146,7 @@ exports.addTeacher = (req, res) => {
         teacherLastName: req.body.lastName
     });
 
-    teacher.save(function (err, teacher) {
+    teacher.save(function (err) {
         if (err) return console.log(err)
         res.redirect('/admin/manageTeachers/')
     });
@@ -154,9 +155,43 @@ exports.addTeacher = (req, res) => {
 
 exports.deleteTeacher = (req, res) => {
 
-    Teacher.deleteOne({'_id' : mongoose.Types.ObjectId(req.params.id) }, function (err, teacher) {
+    Teacher.deleteOne({'_id' : mongoose.Types.ObjectId(req.params.id) }, function (err) {
         if (err) return console.log(err)
         res.redirect('/admin/manageTeachers/')
+    });
+
+}
+
+exports.manageTeachers = (req, res) => {
+
+    Room.find(function (err, rooms) {
+        if (err) return console.log(err)
+
+        console.log(rooms)
+
+        res.render("GestionSalle.html", {rooms: rooms})
+    }).sort({'name': 1});
+
+}
+
+exports.addTeacher = (req, res) => {
+
+    const room = new Room({
+        name: req.body.name
+    });
+
+    room.save(function (err) {
+        if (err) return console.log(err)
+        res.redirect('/admin/manageRooms/')
+    });
+
+}
+
+exports.deleteTeacher = (req, res) => {
+
+    Room.deleteOne({'_id' : mongoose.Types.ObjectId(req.params.id) }, function (err) {
+        if (err) return console.log(err)
+        res.redirect('/admin/manageRooms/')
     });
 
 }

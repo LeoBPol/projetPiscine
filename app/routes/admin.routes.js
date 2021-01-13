@@ -60,4 +60,22 @@ module.exports = function(app) {
         [authJwt.verifyToken, authJwt.isAdmin],
         controller.deleteTeacher
     );
+
+    app.get(
+        "/admin/manageRooms",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.manageTeachers
+    );
+
+    app.post(
+        "/admin/manageRooms",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.addTeacher
+    );
+
+    app.delete(
+        "/admin/manageRooms/:id",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.deleteTeacher
+    );
 };

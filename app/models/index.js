@@ -11,6 +11,7 @@ db.class = require("./class.model");
 db.event = require("./event.model")
 db.timeSlot = require("./timeSlot.model")
 db.teacher = require("./teacher.model")
+db.room = require("./room.model")
 
 db.ROLES = ["user", "admin"];
 

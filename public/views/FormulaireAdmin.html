@@ -76,15 +76,136 @@
         <input class="form-control" id="dateFin" name="end" placeholder="JJ/MM/AAAA" type="text"/>
         </div>
 
-        <div class="col-md-6">
-            <label for="jury">Nombre de membre du jury</label><br>
-            <select class="form-control" id="jury"name="sizeJury">
+        <div class="mb-6 form-check">
+            <input type="checkbox" onclick="checkcreneau()" class="form-check-input" id="exampleCheck1">
+            <label  for="exampleCheck1" >Je précise les jurys ultérieurement</label>
+            <script>
+                function checkcreneau() {
+                    var checkBox = document.getElementById("exampleCheck1");
+
+                    var text = document.getElementById("selector");
+                    var text1 = document.getElementById("timeSlotCreator");
+                    if (checkBox.checked){
+                        text.style.display = "none";
+                        text1.style.display = "none";
+                    }
+                    else {
+                        text.style.display = "block";
+                        text1.style.display = "block";
+                        text.getElementsByTagName('option')[0].selected = 'selected'
+                    }
+
+                    for(var i = 0; i <10; i++){
+                        var timeSlotCreator = document.getElementById("timeSlotCreator"+i);
+                        if (checkBox.checked){
+                            timeSlotCreator.style.display = "none";
+                        }
+                    }
+
+
+                }
+            </script>
+        </div>
+
+        <div id="selector" class="col-md-6">
+            <label for="nbjury">Nombre de jury</label><br>
+            <select class="form-control" id="nbjury"name="nbSlot">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
             </select>
         </div>
+
+
+        <div id="juryCreator" class="col-md-6 input-group-room-jury">
+            <div class="input-inside-group">
+                    <label for="jury">Nombre de membre du jury</label><br>
+                    <select class="form-control" id="jury"name="sizeJury">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+            </div>
+            <div id="teacherSelector" class="input-inside-group">
+                <label for="teacher">Professeur</label><br>
+                <select class="form-control" id="teacher" name="jury">
+                    <option value="5ff8bfc736a0e432b38cf441">1</option>
+                    <option value="5ff8bfc736a0e432b38cf441">2</option>
+                    <option value="5ff8bfc736a0e432b38cf441">3</option>
+                    <option value="5ff8bfc736a0e432b38cf441">4</option>
+                </select>
+            </div>
+        </div>
+
+        <script>
+            const nbjury = document.querySelector('#nbjury');
+            const juryCreator = document.querySelector('#juryCreator');
+
+
+            nbjury.addEventListener('change', (event) => {
+                for (var i = 0, copy; i < event.target.value - 1; i++) {
+                    if (document.getElementById('juryCreator' + i)) {
+                        document.getElementById('juryCreator' + i).style.display = 'block'
+                    } else {
+                        copy = juryCreator.cloneNode(true);
+                        copy.attributes.id.nodeValue = copy.attributes.id.nodeValue + i
+                        juryCreator.parentNode.insertBefore(copy, juryCreator.nextSibling);
+
+                        const jury = copy.querySelector('#jury');
+                        const teacherSelector = copy.querySelector('#teacherSelector');
+
+                        console.log(jury.attributes)
+                        console.log(jury.attributes.id)
+
+                        jury.attributes.id.nodeValue = jury.attributes.id.nodeValue + i
+                        console.log(jury.attributes.id)
+                        jury.addEventListener('change', (event2) => {
+                            console.log(event2.target.value)
+                            for (var i = 0; i < event2.target.value - 1; i++) {
+                                if (copy.querySelector('#teacherSelector' + i)) {
+                                    copy.querySelector('#teacherSelector' + i).style.display = 'block'
+                                } else {
+                                    copyTeacherSelector = teacherSelector.cloneNode(true);
+                                    copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + i
+                                    teacherSelector.parentNode.insertBefore(copyTeacherSelector, teacherSelector.nextSibling);
+                                }
+                            }
+
+                            for (var j =  event2.target.value - 1; j < 10; j++) {
+                                copy.querySelector('#teacherSelector'+j).style.display = 'none'
+                            }
+                        });
+                    }
+
+                }
+
+                for (var j =  event.target.value - 1; j < 10; j++) {
+                    document.getElementById('juryCreator'+j).style.display = 'none'
+                }
+            });
+
+            const jury = document.querySelector('#jury');
+            const teacherSelector = document.querySelector('#teacherSelector');
+
+            jury.addEventListener('change', (event2) => {
+                console.log(event2.target.value)
+                for (var i = 0; i < event2.target.value - 1; i++) {
+                    if (document.querySelector('#teacherSelector' + i)) {
+                        document.querySelector('#teacherSelector' + i).style.display = 'block'
+                    } else {
+                        copyTeacherSelector = teacherSelector.cloneNode(true);
+                        copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + i
+                        teacherSelector.parentNode.insertBefore(copyTeacherSelector, teacherSelector.nextSibling);
+                    }
+                }
+
+                for (var j =  event2.target.value - 1; j < 10; j++) {
+                    document.querySelector('#teacherSelector'+j).style.display = 'none'
+                }
+            });
+        </script>
         <div class="col-md-6">
             <label>Date limite de réservation</label><br>
             <input class="form-control " id="datelimite" name="deadline" placeholder="JJ/MM/AAAA" type="text"/>
