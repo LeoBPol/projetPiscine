@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/connexion.css"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.css">
+    <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
 </head>
 <body>
 
@@ -70,159 +75,104 @@
             </thead>
             <tbody>
             <tr>
-                <td class="m" width="5%">08:00</td>
-                <td class=" no-events" rowspan="1"></td>
+                <td class="m" width="5%">8:00 - 12:00</td>
 
-                <td class=" no-events" rowspan="1"></td>
+                <td class=" no-events" id="div15" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
+                <td class=" no-events" id="div13" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
+                <td class=" no-events" id="div13" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
 
-                <td class=" no-events" rowspan="1"></td>
+                <td class=" has-events"  id="div232" ondrop="drop(event)" ondragover="allowDrop(event)"   rowspan="1">
+                    <div class="complet" onclick="openForm()" id="drag230" draggable="true" ondragstart="drag(event)">
 
-                <td class=" no-events" rowspan="1"></td>
+                        <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
 
-                <td class=" no-events" rowspan="1"></td>
+                            <span class="title">8:15 - 9:15</span> <span class="lecturer"></span>
 
-            </tr>
+                            <span class="title">Créneau complet</span> <span class="lecturer"></span>
+                        </div>
+                    </div>
+                    <div class="complet" onclick="openForm()" id="drag260" draggable="true" ondragstart="drag(event)">
 
-            <tr>
-                <td class="m" width="5%">09:00</td>
+                        <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
 
-                <td class=" no-events" rowspan="1"></td>
+                            <span class="title">10:15 - 11:15</span> <span class="lecturer"></span>
 
-                <td class=" no-events" rowspan="1"></td>
+                            <span class="title">Créneau complet</span> <span class="lecturer"></span>
+                        </div>
+                    </div>
+                </td
+                <td class=" no-events"id="div12" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
 
-                <td class=" no-events" rowspan="1"></td>
+                <td class=" has-events" onclick="openForm()" id="div23" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1">
 
-                <td class=" no-events" rowspan="1"></td>
+                <div class="complet"id="drag232" draggable="true" ondragstart="drag(event)">
 
-                <td class=" no-events" rowspan="1"></td>
+                    <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
 
-            </tr>
-
-            <tr>
-                <td class="m" width="5%">10:00</td>
-
-                <td class=" no-events" rowspan="1"></td>
-                <td class=" no-events" rowspan="1"></td>
-                <td class=" no-events" rowspan="1"></td>
-
-                <td class=" no-events" rowspan="1"></td>
-
-
-                <td class=" no-events" rowspan="1"></td>
-
-            </tr>
-
-            <tr>
-                <td class="m" width="5%">11:00</td>
-                <td class=" no-events" rowspan="1"></td>
-                <td class=" no-events" rowspan="1"></td>
-                <td class=" no-events" rowspan="1"></td>
-
-
-                <td class=" no-events" rowspan="1"></td>
-
-                <td class=" no-events" rowspan="1"></td>
-
-            </tr>
-
-            <tr>
-                <td class="m" width="5%">12:00</td>
-
-                <td class=" no-events" id="div34" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-
-                <td class=" no-events" id="div35" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-
-                <td class=" no-events" id="div36" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-                <td class=" no-events"id="div37" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-
-                <td class=" no-events"id="div38" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-
-
-            </tr>
-
-            <tr>
-                <td class="m" width="5%">13:00</td>
-
-                <td class=" no-events" id="div29" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-
-                <td class=" no-events" id="div30" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-
-                <td class=" no-events" id="div31" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-                <td class=" no-events"id="div32" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-
-                <td class=" no-events"id="div33" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-
-
-            </tr>
-
-            <tr>
-                <td class="m" width="5%">14:00</td>
-
-                <td class=" no-events" id="div28" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-
-                <td class=" no-events" id="div27" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-
-                <td class=" no-events" id="div26" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-                <td class=" no-events"id="div25" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-
-                <td class=" no-events"id="div24" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-
-
-            </tr>
-
-            <tr>
-                <td class="m" width="5%">15:00</td>
-                <td class=" no-events" id="div20" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class=" no-events" id="div21" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-
-                <td class=" no-events" id="div22" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-
-                <td class=" no-events" id="div23" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-                <td class=" has-events complet" rowspan="1">
-
-                    <div class="row-fluid lecture" style="width: 99%; height: 100%;">
-
+                        <span class="title">8:15 - 9:15</span> <span class="lecturer"></span>
 
                         <span class="title">Créneau complet</span> <span class="lecturer"></span>
                     </div>
+                </div>
                 </td
+                <div class="login-popup">
+                    <div class="form-popup" id="popupForm">
+                        <form action="/action_page.php" class="form-container">
+                            <h2>Modification</h2>
+                            <div class="clock col-md-6">
+
+
+
+                                <input type="text" class="form-control" value="" placeholder="00:00">
+
+                                <script type="text/javascript" src="views/js/clockpicker.js"></script>
+                            </div>
+                            <div class="form-group col-md-4 mb-3 " >
+
+                                <select class="form-control" name="class">
+                                    <option>Jury 1</option>
+                                    <option>Jury 2</option>
+                                    <option>Jury 3</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4 mb-3 " >
+
+                                <select class="form-control" name="class">
+                                    <option>Salle SC102</option>
+                                    <option>Salle SC101</option>
+                                    <option>Salle TD015</option>
+                                </select>
+                            </div>
+
+                            <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
+                        </form>
+                    </div>
+                </div>
+
+
+
 
             </tr>
 
-            <tr>
-                <td class="m" width="5%">16:00</td>
-                <td class=" no-events" id="div16" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-                <td class=" no-events"id="div17" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class=" no-events"id="div18" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class=" no-events" id="div19" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
 
 
-                <td class=" no-events" rowspan="1"></td>
-
-
-
-            </tr>
 
             <tr>
-                <td class="m" width="5%">17:00</td>
+                <td class="m" width="5%">13:00 - 19:00</td>
 
                 <td class=" no-events" id="div15" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
                 <td class=" no-events" id="div14" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
                 <td class=" no-events" id="div13" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
                 <td class=" no-events"id="div12" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
 
-                <td class=" has-events" onclick="openForm()" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"   rowspan="1">
+
+                <td class=" has-events" onclick="openForm()" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"  rowspan="1">
                     <div class="libre"id="drag1" draggable="true" ondragstart="drag(event)">
 
                         <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
 
+                            <span class="title">14:15 - 15:15</span> <span class="lecturer"></span>
 
                             <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
                         </div>
@@ -232,6 +182,14 @@
                     <div class="form-popup" id="popupForm">
                         <form action="/action_page.php" class="form-container">
                             <h2>Modification</h2>
+                            <div class="clock col-md-6">
+
+
+
+                                <input type="text" class="form-control" value="" placeholder="00:00">
+
+                                <script type="text/javascript" src="views/js/clockpicker.js"></script>
+                            </div>
                             <div class="form-group col-md-4 mb-3 " >
 
                                 <select class="form-control" name="class">
@@ -269,30 +227,7 @@
                 }
 
             </script>
-            <tr>
-                <td class="m" width="5%">18:00</td>
 
-                <td class=" no-events" id="div6" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-                <td class=" no-events" id="div5" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-                <td class=" no-events" id="div4" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-                <td class=" no-events" id="div3" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-
-                <td class=" has-events" onclick="openForm()" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1">
-                    <div class="complet" id="drag2" draggable="true" ondragstart="drag(event)">
-
-                        <div class="row-fluid lecture" style="width: 99%; height: 100%;">
-
-
-                            <span class="title">Créneau complet</span> <span class="lecturer"></span>
-                        </div>
-                    </div>
-                </td
-
-            </tr>
             <script>
                 function allowDrop(ev) {
                     ev.preventDefault();
@@ -309,20 +244,7 @@
                 }
             </script>
 
-            <tr>
-                <td class="m" width="5%">19:00</td>
 
-                <td class=" no-events" id="div7" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-                <td class=" no-events" id="div8" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-                <td class=" no-events" id="div9" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-                <td class=" no-events" id="div10" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-                <td class=" no-events" id="div11" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-            </tr>
 
             </tbody>
         </table>

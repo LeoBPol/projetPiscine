@@ -1,2 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  <base href="http://localhost:8080/public">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Aide | Réservation de soutenance</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
+    <link rel="stylesheet" href="css/connexion.css">
+</head>
+<body>
 
+<label>Nombre de membres dans le groupe
+    <select class="from-control nana" name="nana">
+        <option value="">Select One …</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+</label>
+<div class="result"></div>
+<script>
+
+    const selectElement = document.querySelector('.nana');
+
+    selectElement.addEventListener('change', (event) => {
+        var texte = document.getElementById("bjr");
+
+        const result = document.querySelector('.result');
+        result.textContent = `You like ${event.target.value}`;
+        if (event.target.value === 1){
+            texte.style.display = "block";
+
+        }
+        else{
+            texte.style.display = "none";
+
+        }
+    });
+</script>
+<p id="bjr">bonjour</p>
+<div class="col-md-6 no">
+    <label for="email1" class="form-label">E-mail universitaire du premier membre</label><br>
+    <input type="email" class="form-control" id="email1" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email1">
+</div>
+
+
+
+
+</body>
+</html>
 
