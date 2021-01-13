@@ -216,13 +216,12 @@ form{
   right: 0;
   bottom: 0;
 }
-.logodroite{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 27%;
-}
 
+
+.mi{
+  width: 20%;
+  display: inline-block;
+}
 
 .btn-circle {
   float: right;
@@ -234,7 +233,6 @@ form{
   text-align: center;
   font-size: 50%;
   margin-left: 0.5%;
-
 }
 
 

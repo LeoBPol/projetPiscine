@@ -15,6 +15,8 @@
     <script src="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
 </head>
 <body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
     <aside class="aside">
 
@@ -24,10 +26,29 @@
         <span class="border border-white"></span>
         <div class="cadre">
             <p class="p7">Informations de l'événement  </p>
-            <p><i class="fa fa-refresh" aria-hidden="true"></i> Durée d'une soutenance  <span class="encadrer-un-contenu"><strong>1h30</strong></span></p>
-            <p><i class="fa fa-clock-o" aria-hidden="true"></i> Nombre de jury par soutenance  <span class="encadrer-un-contenu"><strong>2</strong></span></p></p>
-            <p> Date limite de réservation  <span class="encadrer-un-contenu"><strong>15 Novembre</strong></span></p></p>
-            <p> Nombre d'élèves par soutenance  <span class="encadrer-un-contenu"><strong>2</strong></span></p></p>
+            <p> Durée d'une soutenance
+
+            <select class="form-control mi" >
+                <option>1h</option>
+                <option>1h30</option>
+
+            </select>
+       </p>
+            <p>Nombre de jury par soutenance <select class="form-control mi" >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+
+            </select></p></p>
+            <p> Date limite de réservation  <input class="form-control mi" id="dateDebut" name="dateDebut" placeholder="jj/mm/aaaa" type="text"/>
+                <script type="text/javascript" src="views/js/datepicker.js"></script></p></p>
+            <p> Nombre d'élèves par soutenance
+                <select class="form-control mi" >
+                    <option>1h</option>
+                    <option>1h30</option>
+
+                </select> </p></p>
             <button type="submit" class="btn btn-light modifier">Modifier ces informations</button>
 
 
@@ -39,12 +60,12 @@
 
 
 
-        <img src="../img/component.png" alt="" class="logodroite"/>
+
 
     </aside>
     <main class="main">
-
-
+        <button type="button" class="btn btn-primary btn-circle"><i class="far fa-sign-out"></i>
+        </button>
         <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-question" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-home" aria-hidden="false"></i>
@@ -75,7 +96,7 @@
             </thead>
             <tbody>
             <tr>
-                <td class="m" width="5%">8:00 - 12:00</td>
+                <td class="m" width="5%">8:00-12:00</td>
 
                 <td class=" no-events" id="div15" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
                 <td class=" no-events" id="div13" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
@@ -159,7 +180,7 @@
 
 
             <tr>
-                <td class="m" width="5%">13:00 - 19:00</td>
+                <td class="m" width="5%">13:00-19:00</td>
 
                 <td class=" no-events" id="div15" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
                 <td class=" no-events" id="div14" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
