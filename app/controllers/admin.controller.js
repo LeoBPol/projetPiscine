@@ -20,6 +20,8 @@ exports.getEventCreation = (req, res) => {
 
 exports.createEvent = (req, res) => {
 
+    console.log(req.body)
+
     const start = moment(req.body.start, 'DD/MM/YYYY');
     const end = moment(req.body.end, 'DD/MM/YYYY');
     const deadline = moment(req.body.deadline, 'DD/MM/YYYY');

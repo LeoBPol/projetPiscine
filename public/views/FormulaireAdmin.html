@@ -81,27 +81,34 @@
             <label  for="exampleCheck1" >Je précise les jurys ultérieurement</label>
             <script>
                 function checkcreneau() {
-                    var checkBox = document.getElementById("exampleCheck1");
+                    let checkBox = document.getElementById("exampleCheck1");
 
-                    var selector = document.getElementById("selector");
-                    var text = document.getElementById("juryCreator");
-                    var text1 = document.getElementById("teacherSelector");
+                    let selector = document.getElementById("selector");
+                    let text = document.getElementById("juryCreator");
+                    let text1 = document.getElementById("teacherSelector");
+                    let text3 = document.getElementById("nbjury")
+                    let text2 = document.getElementById("nbjuryselector");
+                    let text4 = document.getElementById("textjury");
                     if (checkBox.checked){
                         selector.style.display = "none";
                         text1.style.display = "none";
+                        text2.style.display = "none";
+                        text4.style.display = "none";
                         text.style.display = "none";
                     }
                     else {
                         selector.style.display = "block";
                         text.style.display = "block";
                         text1.style.display = "block";
+                        text2.style.display = "block";
+                        text4.style.display = "block";
                         text.getElementsByTagName("select")[0].getElementsByTagName('option')[0].selected = 'selected'
-                        selector.getElementsByTagName('option')[0].selected = 'selected'
+                        text2.getElementsByTagName("select")[0].getElementsByTagName('option')[0].selected = 'selected'
                     }
 
-                    for(var i = 0; i <3; i++){
-                        var teacherSelector = document.getElementById("teacherSelector"+i);
-                        var juryCreator = document.getElementById("juryCreator"+i);
+                    for(let i = 0; i <3; i++){
+                        let teacherSelector = document.getElementById("teacherSelector"+i);
+                        let juryCreator = document.getElementById("juryCreator"+i);
 
                         console.log(teacherSelector)
                         if (checkBox.checked){
@@ -118,26 +125,27 @@
         <div id="selector" class="col-md-6">
             <label for="nbjury">Nombre de jury</label><br>
             <select class="form-control" id="nbjury"name="nbSlot">
-                <option>1</option>
+                <option selected="selected">1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
             </select>
         </div>
 
+        <div id="nbjuryselector" class="col-md-6">
+            <label for="jury">Nombre de membre du jury</label><br>
+            <select class="form-control" id="jury"name="sizeJury">
+                <option selected="selected">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
 
-        <div id="juryCreator" class="col-md-6 input-group-room-jury">
-            <div class="input-inside-group">
-                    <label for="jury">Nombre de membre du jury</label><br>
-                    <select class="form-control" id="jury"name="sizeJury">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
-            </div>
+        <label id="textjury" class="col-md-6" style="margin-bottom: .5rem">Jury(s)</label><br>
+        <div id="juryCreator" class="col-md-6 input-group-room-jury" style="margin-top: 0">
             <div id="teacherSelector" class="input-inside-group">
-                <label for="teacher">Professeur</label><br>
+                <label for="teacher" style="margin-top: 2%">Professeur</label><br>
                 <select class="form-control" id="teacher" name="jury">
                     <% for(var i = 0; i < teachers.length; i++) {%>
                         <option value="<%= teachers[i]._id %>"><%= teachers[i].teacherFirstName %> <%= teachers[i].teacherLastName %></option>
@@ -152,71 +160,80 @@
 
 
             nbjury.addEventListener('change', (event) => {
-                for (var i = 0, copy; i < event.target.value - 1; i++) {
+                for (let i = 0, copy; i < event.target.value - 1; i++) {
                     if (document.getElementById('juryCreator' + i)) {
                         document.getElementById('juryCreator' + i).style.display = 'block'
                     } else {
                         copy = juryCreator.cloneNode(true);
                         copy.attributes.id.nodeValue = copy.attributes.id.nodeValue + i
+                        let e = copy.querySelector('#teacherSelector')
+                        e.id = 'teacher'+i.toString()+'Selector'
                         juryCreator.parentNode.insertBefore(copy, juryCreator.nextSibling);
-
-                        const jury = copy.querySelector('#jury');
-                        const teacherSelector = copy.querySelector('#teacherSelector');
-
-                        console.log(jury.attributes)
-                        console.log(jury.attributes.id)
-
-                        jury.attributes.id.nodeValue = jury.attributes.id.nodeValue + i
-                        console.log(jury.attributes.id)
-                        jury.addEventListener('change', (event2) => {
-                            console.log(event2.target.value)
-                            for (var k = 0; k < event2.target.value - 1; k++) {
-                                if (copy.querySelector('#teacherSelector' + i + k)) {
-                                    copy.querySelector('#teacherSelector' + i + k).style.display = 'block'
-                                } else {
-                                    copyTeacherSelector = teacherSelector.cloneNode(true);
-                                    copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + k
-                                    teacherSelector.parentNode.insertBefore(copyTeacherSelector, teacherSelector.nextSibling);
-                                }
-                            }
-
-                            for (var j =  event2.target.value - 1; j < 10; j++) {
-                                let teacherSelector = copy.querySelector('#teacherSelector'+i + j)
-                                if (teacherSelector != null)
-                                teacherSelector.style.display = 'none'
-                            }
-                        });
                     }
 
                 }
 
-                for (var j =  event.target.value - 1; j < 10; j++) {
+                for (let j =  event.target.value - 1; j < 10; j++) {
                     let juryCreator = document.getElementById('juryCreator'+j)
-                    if (juryCreator != null) juryCreator.style.display = 'none'
+                    if (juryCreator != null) juryCreator.parentNode.removeChild(juryCreator)
+                        //juryCreator.style.display = 'none'
                 }
             });
 
             const jury = document.querySelector('#jury');
-            const teacherSelector = document.querySelector('#teacherSelector');
+            let teacherSelector = document.querySelector('#teacherSelector');
+            const teacherSelectors = document.querySelectorAll('#teacherSelector');
 
             jury.addEventListener('change', (event2) => {
+                console.log("ntm")
+                console.log(teacherSelectors.length)
                 console.log(event2.target.value)
-                for (var i = 0; i < event2.target.value - 1; i++) {
-                    if (document.querySelector('#teacherSelector' + i)) {
-                        document.querySelector('#teacherSelector' + i).style.display = 'block'
-                    } else {
-                        copyTeacherSelector = teacherSelector.cloneNode(true);
-                        copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + i
-                        teacherSelector.parentNode.insertBefore(copyTeacherSelector, teacherSelector.nextSibling);
+                for (let numTeacherSelector = 0; numTeacherSelector < parseInt(nbjury.options[nbjury.selectedIndex].text) -1; numTeacherSelector++) {
+                    console.log("numTeacherSelector")
+                    console.log(numTeacherSelector)
+                    for (var i = 0; i < event2.target.value - 1; i++) {
+                        if (document.querySelector('#teacher'+numTeacherSelector+'Selector' + i)) {
+                            document.querySelector('#teacher'+numTeacherSelector+'Selector' + i).style.display = 'block'
+                        } else {
+                            console.log('#teacher'+numTeacherSelector+'Selector')
+                            console.log('#teacher'+numTeacherSelector+'Selector')
+                            const teacherSel = document.getElementById('teacher'+numTeacherSelector+'Selector')
+                            console.log(teacherSel)
+                            let copyTeacherSelector = teacherSel.cloneNode(true);
+                            copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + i
+                            teacherSel.parentNode.insertBefore(copyTeacherSelector, teacherSel);
+                        }
+                    }
+
+                    for (let j = event2.target.value - 1; j < 10; j++) {
+                        let teacherSelector = document.querySelector('#teacher'+numTeacherSelector+'Selector' + j)
+                        if (teacherSelector != null) teacherSelector.parentNode.removeChild(teacherSelector)
+                            //teacherSelector.style.display = 'none'
                     }
                 }
-
-                for (var j =  event2.target.value - 1; j < 10; j++) {
-                    let teacherSelector = document.querySelector('#teacherSelector'+j)
-                    if (teacherSelector != null)
-                        teacherSelector.style.display = 'none'
-                }
             });
+
+            jury.addEventListener('change', (event2) => {
+                console.log("ntm")
+                console.log(teacherSelectors.length)
+                console.log(event2.target.value)
+                    for (let i = 0; i < event2.target.value - 1; i++) {
+                        if (document.querySelector('#teacherSelector' + i)) {
+                            document.querySelector('#teacherSelector' + i).style.display = 'block'
+                        } else {
+                            copyTeacherSelector = teacherSelector.cloneNode(true);
+                            copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + i
+                            teacherSelector.parentNode.insertBefore(copyTeacherSelector, teacherSelector.nextSibling);
+                        }
+                    }
+
+                    for (let j = event2.target.value - 1; j < 10; j++) {
+                        let teacherSelector = document.querySelector('#teacherSelector' + j)
+                        if (teacherSelector != null) teacherSelector.parentNode.removeChild(teacherSelector)
+                            //teacherSelector.style.display = 'none'
+                    }
+            });
+
         </script>
         <div class="col-md-6">
             <label>Date limite de réservation</label><br>
