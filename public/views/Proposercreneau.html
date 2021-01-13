@@ -71,7 +71,7 @@
 
         <div id="selector" class="col-md-6">
             <label for="nbcreneau">Nombre de créneaux par heure</label><br>
-            <select class="form-control" id="nbcreneau"name="nbSlot">
+            <select class="form-control" id="nbcreneau"name="nbSlot" required>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -116,7 +116,9 @@
                 }
 
                 for (var j =  event.target.value - 1; j < 10; j++) {
-                    document.getElementById('timeSlotCreator'+j).style.display = 'none'
+                    let timeSlotCreator = document.getElementById('timeSlotCreator'+j)
+                    if (timeSlotCreator != null) timeSlotCreator.parentNode.removeChild(timeSlotCreator)
+                    //teacherSelector.style.display = 'none'
                 }
             });
         </script>

@@ -7,6 +7,7 @@ const Class = db.class
 const TimeSlot = db.timeSlot
 const Teacher = db.teacher
 const Room = db.room
+const Jury = db.jury
 
 
 exports.getEventCreation = (req, res) => {
@@ -58,12 +59,42 @@ exports.createEvent = (req, res) => {
                     }
 
                     event.class = classe._id;
-                    event.save(err => {
+
+                    event.save((err, event) => {
                         if (err) {
                             res.status(500).send({message: err});
                             return;
                         }
-                        res.redirect('/admin/accueil')
+
+                        if (req.body.withJury === "on"){
+
+                            let juries = []
+                            for(let i = 0; i < req.body.nbJury; i++) {
+                                let teachers = []
+
+                                for (let j = 0; j < req.body.sizeJury; j++) {
+                                    console.log(req.body.jury[(i*req.body.sizeJury)+j])
+                                    teachers.push(mongoose.Types.ObjectId(req.body.jury[(i*req.body.sizeJury)+j]))
+                                }
+                                const jury = new Jury({
+                                    event: event._id,
+                                    teachers: teachers
+                                })
+                                juries.push(jury)
+                            }
+
+                            Jury.insertMany(juries, function (err){
+                                if (err) return console.log(err)
+                                res.redirect('/admin/accueil')
+                            })
+
+
+
+
+                        } else {
+                            res.redirect('/admin/accueil')
+                        }
+
                     })
                 })
         }

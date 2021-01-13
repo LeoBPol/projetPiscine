@@ -77,8 +77,8 @@
         </div>
 
         <div class="col-md-6 form-check">
-            <input type="checkbox" onclick="checkcreneau()" class="form-check-input" id="exampleCheck1">
-            <label  for="exampleCheck1" >Je précise les jurys ultérieurement</label>
+            <input type="checkbox" onclick="checkcreneau()" class="form-check-input" id="exampleCheck1" checked="true" name="withJury">
+            <label  for="exampleCheck1" >Je précise les jurys maintenant</label>
             <script>
                 function checkcreneau() {
                     let checkBox = document.getElementById("exampleCheck1");
@@ -89,7 +89,7 @@
                     let text3 = document.getElementById("nbjury")
                     let text2 = document.getElementById("nbjuryselector");
                     let text4 = document.getElementById("textjury");
-                    if (checkBox.checked){
+                    if (!(checkBox.checked)){
                         selector.style.display = "none";
                         text1.style.display = "none";
                         text2.style.display = "none";
@@ -124,7 +124,7 @@
 
         <div id="selector" class="col-md-6">
             <label for="nbjury">Nombre de jury</label><br>
-            <select class="form-control" id="nbjury"name="nbSlot">
+            <select class="form-control" id="nbjury"name="nbJury">
                 <option selected="selected">1</option>
                 <option>2</option>
                 <option>3</option>
