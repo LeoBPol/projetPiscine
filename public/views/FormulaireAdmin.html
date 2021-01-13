@@ -45,7 +45,7 @@
 
         <div class="col-md-6">
             <label for="validationCustom03">Titre de l'événement</label>
-            <input class="form-control" id="validationCustom03" name="name" placeholder="Titre" required type="text">
+            <input class="form-control" id="validationCustom03" name="name" placeholder="Titre" type="text" autocomplete="off" required>
 
         </div>
 
@@ -67,42 +67,50 @@
         </div>
         <div class="col-md-6">
             <label>Date de début</label><br>
-        <input class="form-control" id="dateDebut" name="start" placeholder="JJ/MM/AAAA" type="text"/>
+        <input class="form-control" id="dateDebut" name="start" placeholder="JJ/MM/AAAA" type="text" autocomplete="off" required/>
         </div>
 
 
         <div class="col-md-6">
             <label>Date de fin</label><br>
-        <input class="form-control" id="dateFin" name="end" placeholder="JJ/MM/AAAA" type="text"/>
+        <input class="form-control" id="dateFin" name="end" placeholder="JJ/MM/AAAA" type="text" autocomplete="off" required/>
         </div>
 
-        <div class="mb-6 form-check">
+        <div class="col-md-6 form-check">
             <input type="checkbox" onclick="checkcreneau()" class="form-check-input" id="exampleCheck1">
             <label  for="exampleCheck1" >Je précise les jurys ultérieurement</label>
             <script>
                 function checkcreneau() {
                     var checkBox = document.getElementById("exampleCheck1");
 
-                    var text = document.getElementById("selector");
-                    var text1 = document.getElementById("timeSlotCreator");
+                    var selector = document.getElementById("selector");
+                    var text = document.getElementById("juryCreator");
+                    var text1 = document.getElementById("teacherSelector");
                     if (checkBox.checked){
-                        text.style.display = "none";
+                        selector.style.display = "none";
                         text1.style.display = "none";
+                        text.style.display = "none";
                     }
                     else {
+                        selector.style.display = "block";
                         text.style.display = "block";
                         text1.style.display = "block";
-                        text.getElementsByTagName('option')[0].selected = 'selected'
+                        text.getElementsByTagName("select")[0].getElementsByTagName('option')[0].selected = 'selected'
+                        selector.getElementsByTagName('option')[0].selected = 'selected'
                     }
 
-                    for(var i = 0; i <10; i++){
-                        var timeSlotCreator = document.getElementById("timeSlotCreator"+i);
+                    for(var i = 0; i <3; i++){
+                        var teacherSelector = document.getElementById("teacherSelector"+i);
+                        var juryCreator = document.getElementById("juryCreator"+i);
+
+                        console.log(teacherSelector)
                         if (checkBox.checked){
-                            timeSlotCreator.style.display = "none";
+                            if (teacherSelector != null)
+                            teacherSelector.style.display = "none";
+                            if (juryCreator != null)
+                            juryCreator.style.display = "none";
                         }
                     }
-
-
                 }
             </script>
         </div>
@@ -131,10 +139,9 @@
             <div id="teacherSelector" class="input-inside-group">
                 <label for="teacher">Professeur</label><br>
                 <select class="form-control" id="teacher" name="jury">
-                    <option value="5ff8bfc736a0e432b38cf441">1</option>
-                    <option value="5ff8bfc736a0e432b38cf441">2</option>
-                    <option value="5ff8bfc736a0e432b38cf441">3</option>
-                    <option value="5ff8bfc736a0e432b38cf441">4</option>
+                    <% for(var i = 0; i < teachers.length; i++) {%>
+                        <option value="<%= teachers[i]._id %>"><%= teachers[i].teacherFirstName %> <%= teachers[i].teacherLastName %></option>
+                    <%}%>
                 </select>
             </div>
         </div>
@@ -163,18 +170,20 @@
                         console.log(jury.attributes.id)
                         jury.addEventListener('change', (event2) => {
                             console.log(event2.target.value)
-                            for (var i = 0; i < event2.target.value - 1; i++) {
-                                if (copy.querySelector('#teacherSelector' + i)) {
-                                    copy.querySelector('#teacherSelector' + i).style.display = 'block'
+                            for (var k = 0; k < event2.target.value - 1; k++) {
+                                if (copy.querySelector('#teacherSelector' + i + k)) {
+                                    copy.querySelector('#teacherSelector' + i + k).style.display = 'block'
                                 } else {
                                     copyTeacherSelector = teacherSelector.cloneNode(true);
-                                    copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + i
+                                    copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + k
                                     teacherSelector.parentNode.insertBefore(copyTeacherSelector, teacherSelector.nextSibling);
                                 }
                             }
 
                             for (var j =  event2.target.value - 1; j < 10; j++) {
-                                copy.querySelector('#teacherSelector'+j).style.display = 'none'
+                                let teacherSelector = copy.querySelector('#teacherSelector'+i + j)
+                                if (teacherSelector != null)
+                                teacherSelector.style.display = 'none'
                             }
                         });
                     }
@@ -182,7 +191,8 @@
                 }
 
                 for (var j =  event.target.value - 1; j < 10; j++) {
-                    document.getElementById('juryCreator'+j).style.display = 'none'
+                    let juryCreator = document.getElementById('juryCreator'+j)
+                    if (juryCreator != null) juryCreator.style.display = 'none'
                 }
             });
 
@@ -202,13 +212,15 @@
                 }
 
                 for (var j =  event2.target.value - 1; j < 10; j++) {
-                    document.querySelector('#teacherSelector'+j).style.display = 'none'
+                    let teacherSelector = document.querySelector('#teacherSelector'+j)
+                    if (teacherSelector != null)
+                        teacherSelector.style.display = 'none'
                 }
             });
         </script>
         <div class="col-md-6">
             <label>Date limite de réservation</label><br>
-            <input class="form-control " id="datelimite" name="deadline" placeholder="JJ/MM/AAAA" type="text"/>
+            <input class="form-control " id="datelimite" name="deadline" placeholder="JJ/MM/AAAA" type="text" autocomplete="off"  required/>
         </div>
 
         <button class="btn btn-primary gauche" type="submit">ENREGISTRER<i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>

@@ -12,9 +12,7 @@ module.exports = function(app) {
     app.get(
         "/admin/createEvent",
         [authJwt.verifyToken, authJwt.isAdmin],
-        (req, res) => {
-            res.render("FormulaireAdmin.html")
-        }
+        controller.getEventCreation
     );
 
     app.post(
@@ -64,18 +62,18 @@ module.exports = function(app) {
     app.get(
         "/admin/manageRooms",
         [authJwt.verifyToken, authJwt.isAdmin],
-        controller.manageTeachers
+        controller.manageRooms
     );
 
     app.post(
         "/admin/manageRooms",
         [authJwt.verifyToken, authJwt.isAdmin],
-        controller.addTeacher
+        controller.addRoom
     );
 
     app.delete(
         "/admin/manageRooms/:id",
         [authJwt.verifyToken, authJwt.isAdmin],
-        controller.deleteTeacher
+        controller.deleteRoom
     );
 };

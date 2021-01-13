@@ -9,6 +9,15 @@ const Teacher = db.teacher
 const Room = db.room
 
 
+exports.getEventCreation = (req, res) => {
+    Teacher.find(function (err, teachers){
+        if (err) return console.log(err)
+
+        res.render("FormulaireAdmin.html", {teachers: teachers})
+    })
+}
+
+
 exports.createEvent = (req, res) => {
 
     const start = moment(req.body.start, 'DD/MM/YYYY');
@@ -162,7 +171,7 @@ exports.deleteTeacher = (req, res) => {
 
 }
 
-exports.manageTeachers = (req, res) => {
+exports.manageRooms = (req, res) => {
 
     Room.find(function (err, rooms) {
         if (err) return console.log(err)
@@ -174,7 +183,7 @@ exports.manageTeachers = (req, res) => {
 
 }
 
-exports.addTeacher = (req, res) => {
+exports.addRoom = (req, res) => {
 
     const room = new Room({
         name: req.body.name
@@ -187,7 +196,7 @@ exports.addTeacher = (req, res) => {
 
 }
 
-exports.deleteTeacher = (req, res) => {
+exports.deleteRoom = (req, res) => {
 
     Room.deleteOne({'_id' : mongoose.Types.ObjectId(req.params.id) }, function (err) {
         if (err) return console.log(err)
