@@ -30,9 +30,7 @@ module.exports = function(app) {
     app.get(
         "/admin/proposeTimeSlot",
         [authJwt.verifyToken, authJwt.isAdmin],
-        (req, res) => {
-            res.render("ProposerCreneau.html", {eventID: req.query.eventID})
-        }
+        controller.getTimeSlotProposition
     );
 
     app.post(

@@ -5,12 +5,12 @@ const TimeSlot = mongoose.model(
     new mongoose.Schema({
         date: Date,
         startingTime: Number,
-        room:
+        rooms:
             [{
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Room"
             }],
-        group:
+        groups:
             [{
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Group"
@@ -20,7 +20,7 @@ const TimeSlot = mongoose.model(
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Event"
             },
-        jury:
+        juries:
             [{
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Jury"

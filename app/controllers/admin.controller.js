@@ -151,6 +151,7 @@ exports.adminPlanning = (req, res) => {
 
 exports.proposeTimeSlot = (req, res) => {
 
+    console.log(req.body)
     const date = moment(req.body.date, 'DD/MM/YYYY');
     const startingTime = parseInt(req.body.startingTime.substring(0, 1)) + parseInt(req.body.startingTime.substring(3, 4)) * 60;
 
@@ -160,13 +161,42 @@ exports.proposeTimeSlot = (req, res) => {
         event: mongoose.Types.ObjectId(req.params.eventID)
     });
 
+    if (req.body.withJury === "on") {
+        timeSlot.juries = req.body.jury
+        timeSlot.rooms = req.body.room
+    }
+
     timeSlot.save(function(err,timeSlot){
+
+
         if (err) {
             res.status(500).send({message: err});
             return;
         }
         res.redirect("/admin/planning?eventID="+req.params.eventID)
     });
+}
+
+exports.getTimeSlotProposition = (req, res) => {
+
+    Jury.find({event : req.query.eventID},function (err, juries) {
+        if (err) return console.log(err)
+        let teachers = []
+        juries.forEach( jury => {
+            console.log(jury.teachers)
+            Teacher.find({_id: {$in: jury.teachers}}, function (err, result) {
+                teachers.push(result)
+            })
+        })
+        Room.find(function (err, rooms){
+            if (err) return console.log(err)
+            console.log(teachers)
+            res.render("ProposerCreneau.html", {eventID: req.query.eventID, rooms: rooms, juries: juries, teachers: teachers})
+        }).sort({'name': 1});
+        /*Teacher.find({'$in' : teachersID}, function (err, teachers){
+
+        })*/
+    }).sort({'event': 1});
 }
 
 exports.manageTeachers = (req, res) => {
