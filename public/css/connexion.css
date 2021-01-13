@@ -99,6 +99,13 @@ p{
 .p6{
   color: white;
   display : inline-block;
+  margin-left: 15%;
+  margin-top: 1%;
+}
+.p6bis{
+  color: white;
+  display : inline-block;
+  margin-left: 27%;
 }
 .p7{
   color: white;
@@ -213,7 +220,7 @@ form{
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 32%;
+  width: 27%;
 }
 
 
@@ -263,6 +270,8 @@ table.calendar > thead > tr > th {
 
 }
 
+
+
 table.calendar > tbody > tr > td.m {
   text-align: center;
   color: #8E8E8E;
@@ -271,6 +280,8 @@ table.calendar > tbody > tr > td.m {
 
 
 }
+
+
 .form-control{
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
   border-radius: 0;
@@ -324,6 +335,7 @@ table.calendar > tbody > tr > td.m {
   height: 5%;
   margin-top: 5%;
   margin-right: 5%;
+  width: 70%;
 }
 .btn-secondary {
   border : 0;
@@ -341,14 +353,14 @@ table.calendar > tbody > tr > td.m {
 
 
 }
-.grand{
-  margin-top: 5%;
 
-
-}
 .petit{
   font-size: 0.1em;
   letter-spacing: 0;
+
+}
+.n{
+  display: inline-block;
 }
 .fa-long-arrow-right{
   color: #015FFF;
@@ -492,6 +504,8 @@ table.calendar > tbody > tr > td.m {
   margin-top: 1%;
   float: right;
   margin-bottom: 1%;
+  color: white;
+
 }
 .valid{
   margin-right: 10%;
@@ -503,6 +517,7 @@ table.calendar > tbody > tr > td.m {
 .fa-check{
   color: green;
 }
+
 .fa-times{
   color: red;
 }
@@ -521,6 +536,11 @@ table.calendar > tbody > tr > td.m {
   color: darkred;
   text-align: center;
 
+
+
+}
+.no{
+  display: none;
 }
 
 .col-md-6{
@@ -561,6 +581,10 @@ table.calendar > tbody > tr > td.m {
   border: 0.05em solid #dddddd;
   z-index: 9;
 }
+#bjr{
+  display: none;
+}
+
 
 
 
@@ -580,6 +604,7 @@ table.calendar > tbody > tr > td.m {
   left: 0;
   opacity: 0.5;
 }
+
 
 
 

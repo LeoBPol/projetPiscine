@@ -2,7 +2,7 @@ var $input = $('.clock').clockpicker({
     default:          '12:00',
     placement:        'bottom',
     align:            'left',
-    donetext:         'jevaistegoumer',
+    donetext:         'Valider',
     autoclose:        true,
     vibrate:          true,
     fromnow:          0,

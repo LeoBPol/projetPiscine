@@ -38,7 +38,38 @@
     <p class="p4">Renseignez les informations suivantes</p>
     <form action="/admin/proposeTimeSlot/<%= eventID %>" method="post">
 
-        <div class="col-md-6">
+        <div class="mb-3 form-check">
+            <input type="checkbox" onclick="checkcreneau()" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1" >Je précise les jurys et salles ultérieurement</label>
+            <script>
+                function checkcreneau() {
+                    var checkBox = document.getElementById("exampleCheck1");
+
+                    var text = document.getElementById("selector");
+                    var text1 = document.getElementById("timeSlotCreator");
+                    if (checkBox.checked){
+                        text.style.display = "none";
+                        text1.style.display = "none";
+                    }
+                    else {
+                        text.style.display = "block";
+                        text1.style.display = "block";
+                        text.getElementsByTagName('option')[0].selected = 'selected'
+                    }
+
+                    for(var i = 0; i <10; i++){
+                        var timeSlotCreator = document.getElementById("timeSlotCreator"+i);
+                        if (checkBox.checked){
+                            timeSlotCreator.style.display = "none";
+                        }
+                    }
+
+
+                }
+            </script>
+        </div>
+
+        <div id="selector" class="col-md-6">
             <label for="nbcreneau">Nombre de créneaux par heure</label><br>
             <select class="form-control" id="nbcreneau"name="nbSlot">
                 <option>1</option>
@@ -75,11 +106,17 @@
             selectElement.addEventListener('change', (event) => {
                 console.log(event.target.value)
                 for (var i = 0, copy; i < event.target.value - 1; i++) {
-                    copy = node.cloneNode(true);
-                    console.log(copy.attributes.id.nodeValue)
-                    copy.attributes.id.nodeValue = copy.attributes.id.nodeValue + i
-                    console.log(copy.attributes.id.nodeValue)
-                    node.parentNode.insertBefore(copy, node);
+                    if (document.getElementById('timeSlotCreator' + i)) {
+                        document.getElementById('timeSlotCreator' + i).style.display = 'block'
+                    } else {
+                        copy = node.cloneNode(true);
+                        copy.attributes.id.nodeValue = copy.attributes.id.nodeValue + i
+                        node.parentNode.insertBefore(copy, node);
+                    }
+                }
+
+                for (var j =  event.target.value - 1; j < 10; j++) {
+                    document.getElementById('timeSlotCreator'+j).style.display = 'none'
                 }
             });
         </script>
