@@ -47,23 +47,44 @@
                 <option>4</option>
             </select>
         </div>
-        <div class="col-md-6">
-            <label for="salle">Salle</label><br>
-            <select class="form-control" id="salle"name="room">
-                <option>SC102</option>
-                <option>SC101</option>
 
-            </select>
+
+        <div id="timeSlotCreator" class="col-md-6 input-group-room-jury">
+            <div class="input-inside-group">
+                <label for="salle">Salle</label><br>
+                <select class="form-control" id="salle"name="room">
+                    <option>SC102</option>
+                    <option>SC101</option>
+                </select>
+            </div>
+            <div class="input-inside-group">
+                <label for="jury">Numéro du jury</label><br>
+                <select class="form-control" id="jury" name="jury">
+                    <option value="5ff8bfc736a0e432b38cf441">1</option>
+                    <option value="5ff8bfc736a0e432b38cf441">2</option>
+                    <option value="5ff8bfc736a0e432b38cf441">3</option>
+                    <option value="5ff8bfc736a0e432b38cf441">4</option>
+                </select>
+            </div>
         </div>
-        <div class="col-md-6">
-            <label for="jury">Numéro du jury</label><br>
-            <select class="form-control" id="jury" name="jury">
-                <option value="5ff8bfc736a0e432b38cf441">1</option>
-                <option value="5ff8bfc736a0e432b38cf441">2</option>
-                <option value="5ff8bfc736a0e432b38cf441">3</option>
-                <option value="5ff8bfc736a0e432b38cf441">4</option>
-            </select>
-        </div>
+
+        <script>
+            const selectElement = document.querySelector('#nbcreneau');
+            const node = document.querySelector('#timeSlotCreator');
+
+            selectElement.addEventListener('change', (event) => {
+                console.log(event.target.value)
+                for (var i = 0, copy; i < event.target.value - 1; i++) {
+                    copy = node.cloneNode(true);
+                    console.log(copy.attributes.id.nodeValue)
+                    copy.attributes.id.nodeValue = copy.attributes.id.nodeValue + i
+                    console.log(copy.attributes.id.nodeValue)
+                    node.parentNode.insertBefore(copy, node);
+                }
+            });
+        </script>
+
+
         <div class="col-md-6">
             <label>Date</label><br>
             <input class="form-control" id="dateDebut" name="date" placeholder="JJ/MM/AAAA" type="text"/>

@@ -294,6 +294,13 @@ table.calendar > tbody > tr > td.m {
   width: 186%;
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
 }
+.input-group-room-jury{
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.4);
+  margin-left: 15px!important;
+}
+.input-inside-group{
+  margin-bottom: 5%;
+}
 #exampleFormControlInput1{
   width: 180%;
 }
