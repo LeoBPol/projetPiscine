@@ -8,9 +8,7 @@ verifyToken = async (req, res, next) => {
     try {
         let token = req.cookies['x-access-token'];
         if (token) {
-            console.log(token);
             const decode = jwt.verify(token, config.secret)
-            console.log(decode.id)
             const user = await User.findOne({_id: decode.id})
             if (!user) {
                 return res.redirect('/home');

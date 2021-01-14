@@ -17,6 +17,11 @@ module.exports = function(app) {
 
     app.get("/groupRegistration",
         authJwt.verifyToken,
+        controller.getGroupRegistration
+    );
+
+    app.post("/groupRegistration",
+        authJwt.verifyToken,
         controller.groupRegistration
     );
 
