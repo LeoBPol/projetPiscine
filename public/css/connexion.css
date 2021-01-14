@@ -24,13 +24,14 @@ body {
 }
 .footer{
 
-  position: fixed;
+  position: relative;
   margin-left: 30%;
   float: right;
   bottom: 0;
   width:70%;
   height: 20%;
   background: #999999;
+  margin-top: 15%;
 }
 
 h1{
@@ -232,13 +233,12 @@ form{
 
 .btn-circle {
   float: right;
-  color: #015FFF;
-  width: 4%;
-  height: 4%;
+  color: white;
+
   padding: 1% 1%;
   border-radius: 2.5em;
   text-align: center;
-  font-size: 50%;
+  font-size: 150%;
   margin-left: 0.5%;
 }
 
@@ -601,9 +601,6 @@ table.calendar > tbody > tr > td.m {
   transform: translate(-45%,5%);
   border: 0.05em solid #dddddd;
   z-index: 9;
-}
-#bjr{
-  display: none;
 }
 
 

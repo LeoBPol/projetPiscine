@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Page d'accueil admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
     <link rel="stylesheet" href="/css/connexion.css">
 </head>
@@ -13,6 +14,8 @@
 
 
 <aside class="aside">
+    <button class="btn btn-circle"><i class="far fa-sign-out"></i></button>
+    <button class="btn btn-circle"><i class="fa fa-home"></i></button>
     <h1>Bienvenue</h1>
     <img src="img/component.png" alt="" class="logo"/>
 
@@ -20,8 +23,9 @@
 
 
 <main class="main">
+
+
     <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
-    <button type="button" class="btn btn-primary btn-circle mobileonly"><i class="fa fa-home" aria-hidden="false"></i>
 
     <p class="p3">Evénements</p>
     <form>
@@ -38,11 +42,12 @@
     <%      }
         } %>
     <button type="button" class="btn btn-primary" onclick="location.href='/admin/createEvent'">CREER UN EVENEMENT</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/admin/manageTeachers'">GÉRER LES PROFESSEURS</button>
+        <br><br>
+        <button type="button" class="btn btn-primary" onclick="location.href='/admin/manageRooms'">GÉRER LES SALLES</button>
     </form>
     <br><br>
-    <button type="button" class="btn btn-primary" onclick="location.href='/admin/manageTeachers'">GÉRER LES PROFESSEURS</button>
-    <br><br>
-    <button type="button" class="btn btn-primary" onclick="location.href='/admin/manageRooms'">GÉRER LES SALLES</button>
+
 
 
 </main>
