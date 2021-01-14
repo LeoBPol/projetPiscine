@@ -11,7 +11,7 @@ const Group = mongoose.model(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Teacher"
             },
-        student:
+        students:
             [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"

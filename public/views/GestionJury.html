@@ -31,6 +31,7 @@
         <li id="juryElement" class="list-group-item" value="<%= juries[i]._id %>">
             <span id="deleteJury" class="fa fa-times" onclick="test()" style="right: 10%"></span>
             <%
+            console.log(teachersInJuries)
             for(var j = 0; j < teachersInJuries[0].length; j++) {%>
                 <%= teachersInJuries[i][j].teacherLastName %>
             <%}%>

@@ -13,13 +13,48 @@
 <body>
 <aside class="aside">
 
+    <%
+    hasBooking = function (timeSlots, group) {
+    timeSlots.forEach(timeSlot => {
+        if (timeSlot.length > 0){
+            if (timeSlot.groups){
+                timeSlot.groups.forEach(timeSlotGroup => {
+                    if (timeSlotGroup._id === group._id) {
+                        return true
+                    }
+                })
+            }
+        }
+    })
+    return false
+    }
+    getBooking = function (timeSlots, group) {
+    timeSlots.forEach(timeSlot => {
+        if (timeSlot.length > 0){
+            for(let i = 0; i < timeSlot.length; i++){
+                if (timeSlot[i].groups){
+                    timeSlot[i].groups.forEach(groupid => {
+                        if (JSON.stringify(groupid) === JSON.stringify(group._id)) {
+                            console.log("bfjbijunrtd")
+                            console.log(timeSlot[i])
+                            return "true"
+                        }
+                    })
+                }
+            }
+        }
+    })
+    return "false"
+    }
+    %>
+
     <div class="cadre">
         <p class="p7">Informations du groupe</p>
         <%
         if (group) {%>
         <p><i class="fa fa-users" aria-hidden="true"></i> Membres :</p>
-        <% for (var i = 0; i < group.students.length; i++) {%>
-            <p><strong class="encadrer-un-contenu"><%= group.students[i].firstName %> <%= group.students[i].lastName %></strong> - <%= group.students[i].email %> </p>
+        <% for (var i = 0; i < students.length; i++) {%>
+            <p><strong class="encadrer-un-contenu"><%= students[i].firstName %> <%= students[i].lastName %></strong> - <%= students[i].email %> </p>
         <%}%>
         <button type="submit" class="btn btn-light modifier">Modifier ces informations</button>
         <%} else {%>
@@ -29,11 +64,17 @@
 
 
     </div>
-    <p class="p2" style="color: white">Vous n'avez pas encore réservé de créneau, vous pouvez en
+
+    <% if (hasBooking(timeslots, group) === "false") {%>
+    <p class="p2" style="color: white; margin-top: 5%">Vous n'avez pas encore réservé de créneau, vous pouvez en
         réserver un dans la colonne de droite. Si vous en avez réservé
         un, vous pouvez modifier votre réservation et choisir un autre
         créneau disponible.</p>
-
+    <%} else {%>
+    <p class="p2" style="color: white; margin-top: 5%">Bv la résa.</p>
+    <%
+    console.log(getBooking(timeslots, group))
+    }%>
 
 
 
@@ -106,7 +147,7 @@
 
             <td class="no-events" id="morning<%=i%>" value="">
                 <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[i*2].length; nbTimeSlot++) { %>
-                <div class="<%= isFull(timeslots[(i*2)][nbTimeSlot]) %>" onclick="openForm('<%= timeslots[(i*2)+1][nbTimeSlot]._id %>','<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %>','<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %>', '<%= timeslots[(i*2)][nbTimeSlot].date %>')" id="<%= timeslots[(i*2)][nbTimeSlot]._id%>">
+                <div class="<%= isFull(timeslots[(i*2)][nbTimeSlot]) %>" onclick="openForm('<%= timeslots[(i*2)][nbTimeSlot]._id %>','<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %>','<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %>', '<%= timeslots[(i*2)][nbTimeSlot].date %>', 'morning<%=i%>')" id="<%= timeslots[(i*2)][nbTimeSlot]._id%>">
                     <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
                         <span class="title"><%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
                         <span class="title">Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot]) %></span> <span class="lecturer"></span>
@@ -153,42 +194,14 @@
             </div>
         </tr>
 
-
-
-
         <tr>
             <td id="afternoon" class="m" width="5%">13:00 - 19:00</td>
-
-            <!--<td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-            <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-            <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-            <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-            <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"  rowspan="1">
-                <div class="libre"id="drag1" draggable="true" ondragstart="drag(event)" onclick="openForm()" >
-
-                    <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                        <span class="title">14:15 - 15:15</span> <span class="lecturer"></span>
-
-                        <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
-                    </div>
-                </div>
-                <div class="libre"id="drag2" draggable="true" ondragstart="drag(event)" onclick="openForm()" >
-
-                    <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                        <span class="title">14:15 - 15:15</span> <span class="lecturer"></span>
-
-                        <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
-                    </div>
-                </div>
-            </td>-->
 
             <%for( let i = 0; i < 5; i++) {%>
 
             <td class="no-events" id="afternoon<%=i%>" value="">
                 <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[(i*2)+1].length; nbTimeSlot++) { %>
-                <div class="<%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %>" onclick="openForm('<%= timeslots[(i*2)+1][nbTimeSlot]._id %>','<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %>','<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %>', '<%= timeslots[(i*2)+1][nbTimeSlot].date %>')" id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>" >
+                <div class="<%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %>" onclick="openForm('<%= timeslots[(i*2)+1][nbTimeSlot]._id %>','<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %>','<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %>', '<%= timeslots[(i*2)+1][nbTimeSlot].date %>','afternoon<%=i%>')" id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>" >
                     <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
                         <span class="title"><%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
                         <span class="title">Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %></span> <span class="lecturer"></span>
@@ -199,61 +212,17 @@
 
             <%}%>
 
-            <!--<div class="login-popup">
-                <div class="form-popup" id="popupForm">
-                    <form action="/action_page.php" class="form-container">
-                        <h2>Modification</h2>
-                        <div class="clock col-md-6">
-
-
-
-                            <input type="text" class="form-control" value="" placeholder="00:00">
-
-                            <script type="text/javascript" src="views/js/clockpicker.js"></script>
-                        </div>
-                        <div class="form-group col-md-4 mb-3 " >
-
-                            <select class="form-control" name="class">
-                                <option>Jury 1</option>
-                                <option>Jury 2</option>
-                                <option>Jury 3</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-4 mb-3 " >
-
-                            <select class="form-control" name="class">
-                                <option>Salle SC102</option>
-                                <option>Salle SC101</option>
-                                <option>Salle TD015</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" class="btn cancel" onclick="closeForm()">Fermer</button>
-                    </form>
-                </div>
-                <div class="form-popup" id="popupHourForm">
-                    <form action="" class="form-container" method="POST">
-                        <h2>Modification</h2>
-                        <div class="clock col-md-6">
-                            <input type="text" class="form-control" value="" placeholder="00:00" name="startingTime" required>
-                            <script type="text/javascript" src="views/js/clockpicker.js"></script>
-                        </div>
-
-                        <button type="submit" class="btn cancel" onclick="closeFormHour()">Fermer</button>
-                    </form>
-                </div>
-            </div>-->
-
         </tr>
 
         <script>
-            function openForm(id, firstHour, lastHour, date) {
-                date = moment(date).format("DD/MM/YYYY")
-                document.getElementById("popupForm").style.display="block";
-                document.getElementById("hours").innerHTML = "Horaires : " + firstHour + " - " + lastHour
-                document.getElementById("date").innerHTML = "Date : " +date
-                document.getElementById("popupForm").firstChild.nextSibling.setAttribute('action', "/planning?eventID="+"<%= event._id %>"+"&timeslotID="+id+"&_method=PUT")
+            function openForm(id, firstHour, lastHour, date, idElement) {
+                if(document.getElementById(idElement).firstChild.nextSibling.getAttribute('class') !== 'complet') {
+                    date = moment(date).format("DD/MM/YYYY")
+                    document.getElementById("popupForm").style.display = "block";
+                    document.getElementById("hours").innerHTML = "Horaires : " + firstHour + " - " + lastHour
+                    document.getElementById("date").innerHTML = "Date : " + date
+                    document.getElementById("popupForm").firstChild.nextSibling.setAttribute('action', "/planning?eventID=" + "<%= event._id %>" + "&timeslotID=" + id + "&_method=PUT")
+                }
             }
 
             function closeForm() {

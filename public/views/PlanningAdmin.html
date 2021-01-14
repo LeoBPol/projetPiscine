@@ -25,27 +25,26 @@
             <p class="p7">Informations de l'événement  </p>
             <p> Durée d'une soutenance
 
-            <select class="form-control mi" >
+            <select class="form-control mi input-cadre" >
                 <option>1h</option>
                 <option>1h30</option>
 
             </select>
        </p>
-            <p>Nombre de jury par soutenance <select class="form-control mi" >
+            <p>Nombre de jury par soutenance <select class="form-control mi input-cadre" >
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
 
             </select></p></p>
-            <p> Date limite de réservation  <input class="form-control mi" id="dateDebut" name="dateDebut" placeholder="jj/mm/aaaa" type="text"/>
+            <p> Date limite de réservation  <input class="form-control mi input-cadre" id="dateDebut" name="dateDebut" placeholder="jj/mm/aaaa" type="text"/>
                 <script type="text/javascript" src="views/js/datepicker.js"></script></p></p>
             <p> Nombre d'élèves par soutenance
-                <select class="form-control mi" >
+                <select class="form-control mi input-cadre" >
                     <option>1h</option>
                     <option>1h30</option>
-
-                </select> </p></p>
+                </select></p>
             <button type="submit" class="btn btn-light modifier">Modifier ces informations</button>
 
 
@@ -365,6 +364,8 @@
         </table>
         <p><i class="fa fa-check" aria-hidden="true"></i> 15 groupes ont réservé leur créneau</p>
         <p><i class="fa fa-times" aria-hidden="true"></i> 10 groupes n'ont toujours pas réservé</p>
+        <p><i class="fa fa-times" aria-hidden="true"></i> 10 élèves n'ont pas rejoint de groupe</p>
+        <p><i class="fa fa-times" aria-hidden="true"></i> 10 élèves n'ont pas créé de compte</p>
         <button type="submit" class="btn btn-primary droite" onclick="location.href='/admin/proposeTimeSlot?eventID=<%= event._id %>'">Proposer un nouveau créneau</button>
         <button type="submit" class="btn btn-primary droite" >Partager le planning</button>
 

@@ -12,7 +12,7 @@
 <script type="text/javascript" src="script/newTextBlock.js"></script>
 
 <aside class="aside">
-    <h1>Formulaire de réservation pour une soutenance</h1>
+    <h1>Formulaire de création du groupe d'étudiant</h1>
     <img src="img/component.png" alt="" class="logo"/>
 
 </aside>
@@ -25,22 +25,22 @@
     </nav>
     <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
 
-    <p class="p3">Réserver un créneau </p>
+    <p class="p3">Créer un groupe</p>
     <p class="p4">Renseignez les informations suivantes</p>
-    <form>
+    <form method="post" action="/groupRegistration">
 
 
 
 
         <div class="col-md-6 check">
             <label for="exampleRadios1">Type de soutenance</label><br>
-            <input onclick="check()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <input onclick="check()" class="form-check-input" type="radio" name="type" id="exampleRadios1" value="false" checked>
             <label class="form-check-label" for="exampleRadios1">
                 Projet
             </label>
         </div>
         <div class="col-md-6 check">
-            <input onclick="check()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <input onclick="check()" class="form-check-input" type="radio" name="type" id="exampleRadios2" value="true">
             <label class="form-check-label" for="exampleRadios2">
                 Stage
             </label>
@@ -48,22 +48,23 @@
         </div>
         <div class="col-md-6" id="ifCheckedStage" style="display: none">
             <label for="NameCorp" class="form-label" >Nom Entreprise</label>
-            <input type="text" class="form-control" id="NameCorp" name="titre" placeholder="Entreprise">
+            <input type="text" class="form-control" id="NameCorp"placeholder="Entreprise" name="companyName">
         </div>
 
+        <div class="col-md-6" id="ifCheckedStage2" style="display: none">
+            <label for="tuteurentreprisePrenom" class="form-label">Prénom Tuteur entreprise</label>
+            <input type="text" class="form-control" id="tuteurentreprisePrenom" placeholder="Prénom tuteur" name="tutorFirstName">
+        </div>
 
         <div class="col-md-6" id="ifCheckedStage1" style="display: none">
             <label for="tuteurentrepriseNom" class="form-label">Nom Tuteur entreprise</label>
-            <input type="text" class="form-control" id="tuteurentrepriseNom" placeholder="Nom tuteur">
+            <input type="text" class="form-control" id="tuteurentrepriseNom" placeholder="Nom tuteur" name="tutorLastName">
         </div>
-        <div class="col-md-6" id="ifCheckedStage2" style="display: none">
-            <label for="tuteurentreprisePrenom" class="form-label">Prénom Tuteur entreprise</label>
-            <input type="text" class="form-control" id="tuteurentreprisePrenom" placeholder="Prénom tuteur">
-        </div>
+
 
         <div class="col-md-6">
             <label for="tuteur">Tuteur Polytech</label><br>
-            <select class="form-control" id="tuteur"name="tuteur">
+            <select class="form-control" id="tuteur"name="teacher" required>
                 <% for(var i = 0; i < teachers.length; i++) {%>
                 <option value="<%= teachers[i]._id %>"><%= teachers[i].teacherFirstName %> <%= teachers[i].teacherLastName %></option>
                 <%}%>
@@ -72,48 +73,46 @@
 
         <div class="col-md-6">
             <label for="sizegroupe">Nombre de membres dans le groupe</label><br>
-            <select class="form-control" id="sizegroupe"name="sizegroupe">
+            <select class="form-control" id="sizegroupe"name="sizegroup">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-
             </select>
-
-
         </div>
+
+        <div id="mailInput" class="col-md-6">
+            <label for="email1" class="form-label">E-mail universitaire</label><br>
+            <input type="email" class="form-control" id="email1" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email" required>
+        </div>
+
         <script>
-            var texte = document.getElementById("email1");
 
-            document.addEventListener('DOMContentLoaded',function(){
-                document.querySelector('select[name="sizegroupe"]').onchange = (changeEventHandler, false);
-                function changeEventHandler(event){
-                    if (event.target.value === 2){
-                        texte.style.display = "block";
+            const sizegroupe = document.querySelector('#sizegroupe');
+            const mailInput = document.querySelector('#mailInput');
+
+
+            sizegroupe.addEventListener('change', (event) => {
+                for (let i = 0, copy; i < event.target.value - 1; i++) {
+                    if (document.getElementById('juryCreator' + i)) {
+                        document.getElementById('juryCreator' + i).style.display = 'block'
+                    } else {
+                        copy = mailInput.cloneNode(true);
+                        copy.attributes.id.nodeValue = copy.attributes.id.nodeValue + i
+                        mailInput.parentNode.insertBefore(copy, mailInput.nextSibling);
                     }
-                    else {
-                        texte.style.display = "none";
-                    }
+
                 }
-            })
+
+                for (let j =  event.target.value - 1; j < 10; j++) {
+                    let mailInput = document.getElementById('mailInput'+j)
+                    if (mailInput != null) mailInput.parentNode.removeChild(mailInput)
+                }
+            });
         </script>
-        <div class="col-md-6 no">
-            <label for="email1" class="form-label">E-mail universitaire du premier membre</label><br>
-            <input type="email" class="form-control" id="email1" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email1">
-        </div>
-        <div class="col-md-6 no">
-            <label for="email2" class="form-label">E-mail universitaire du second membre</label><br>
-            <input type="email" class="form-control" id="email2" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email2">
-        </div>
-        <div class="col-md-6 no">
-            <label for="email3" class="form-label">E-mail universitaire du troisième membre</label><br>
-            <input type="email" class="form-control" id="email3" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email3">
-        </div>
 
 
-
-
-        <button type="submit" class="btn btn-primary espace">Choisir le créneau</button>
-        <button type="submit" class="btn btn-primary espace">Réserver ultérieurement</button>
+        <button type="submit" class="btn btn-primary espace">ENREGISTRER LE GROUPE</button>
+        <!--<button type="submit" class="btn btn-primary espace">Réserver ultérieurement</button>-->
     </form>
 
 

@@ -38,8 +38,6 @@ h1{
   text-align: center;
   color: white;
   margin-top: 50%;
-  float: center;
-
   font-family:  "Bold Segoe UI ", sans-serif;
   letter-spacing: 0px;
   opacity : 1;
@@ -178,7 +176,7 @@ form{
 
 .gauche{
   width: 54%;
-  float: left!;
+  float: left;
   text-align: left;
   margin-left: 1.5%;
   margin-right: 30%;
@@ -220,6 +218,7 @@ form{
 
 .mi {
   width: 20%;
+  height: 10%;
   display: inline-block;
 }
 
@@ -340,7 +339,10 @@ table.calendar > tbody > tr > td.m {
   border-style:solid solid;
   border-color: white;
   color: white;
-  padding:2 10px;
+}
+.input-cadre {
+  float: right;
+  margin-right: 5%;
 }
 .ombré{
   float: right;
