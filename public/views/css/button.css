@@ -1,4 +1,4 @@
-.btn {
+.btn2 {
     background-color: #015FFF;;
     border-radius: 20px;
     color: #ffffff;
@@ -12,7 +12,7 @@
     height: 42px;
 }
 
-.btn:hover {
+.btn2:hover {
     background-color: #222;
     border-radius: 20px;
     color: #ffffff;
@@ -25,7 +25,7 @@
     height: 42px;
 }
 
-.btn_disabled {
+.btn2_disabled {
     background-color: #E8E8E8;
     pointer-events: none;
 }

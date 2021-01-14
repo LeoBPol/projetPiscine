@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> PlanningEtudiant </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/mark-your-calendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="../css/connexion.css">
+</head>
+<body>
+  <aside class="aside">
+    <p class="p8">Vous n'avez pas encore réservé de créneau, vous pouvez en
+        réserver un dans la colonne de droite. Si vous en avez réservé
+        un, vous pouvez modifier votre réservation et choisir un autre
+        créneau disponible.</p>
+
+    <img src="../img/component.png" alt="" class="logo"/>
+
+</aside>
+
+<main class="main">
+  <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-question" aria-hidden="true"></i>
+  </button>
+  <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-home" aria-hidden="false"></i>
+  </button>
+
+  <p class="p3">Soutenance de stage - IG3 </p>
+  <p class="p4">Sélectionnez un créneau en fonction de la date et l'horraire désirés</p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/mark-your-calendar.js"></script>
+  <script type="text/javascript" src="js/validation.js"></script>
+    <div id="picker"></div>
+    <div class="form">
+        <div class="form_block">
+          <h6 class="form_label">Jour sélectionnée : <span id="selected-date"><i>Veuillez choisir un créneau</i></span></h6>
+        </div>
+        <div class="form_block">
+          <h6 class="form_label">Créneau sélectionné : <span id="selected-time"><i>Veuillez choisir un créneau</i></span></h6>
+        </div>
+        <button id="valideBtn" class="btn2 btn2_disabled" onclick="buttonClicked()" >Valider</button>
+        <div class="form_block">
+          <h6 id="demo" style="display: none"></h6>
+          <h6 id="demo2"></h6>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function($) {
+          $('#picker').markyourcalendar({
+            availability: [
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  [],            
+                  []
+                ],
+            startDate: new Date("2021-01-12"),
+            onClick: function(ev, data) {
+              // data is a list of datetimes
+              var d = data[0].split(' ')[0];
+              var t = data[0].split(' ')[1];
+
+              var res_d_list = d.split("-")
+              var an = res_d_list[0]
+              var mo = res_d_list[1]
+              var jo = res_d_list[2]
+              var res_d = jo + ' / ' + mo + ' / ' + an
+
+              var res_t_list = t.split(":")
+              var ho = res_t_list[0]
+              var mi = res_t_list[1]
+              var res_t = ho + " : " + mi
+
+              $('#selected-date').html(res_d);
+              $('#selected-time').html(res_t);
+            },
+            onClickNavigator: function(ev, instance) {
+              var arr = [
+              [
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  ['8:00', '9:30', '11:00', '14:00', '15:30', '17:00'],
+                  [],            
+                  []
+                ],
+                [
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],  
+                  [],            
+                  []
+                ],
+                [
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],  
+                  [],            
+                  []
+                ],
+                [
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],  
+                  [],            
+                  []
+                ],
+                [
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],  
+                  [],            
+                  []
+                ],
+                [
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],  
+                  [],            
+                  []
+                ],
+                [
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],
+                  ['8:00', '10:00', '13:00', '15:00'],  
+                  [],            
+                  []
+                ],
+              ]
+              
+              instance.setAvailability(arr[0]);
+            }
+          });
+        })(jQuery);
+    </script>
+</main>
+  
+</body>
+</html>

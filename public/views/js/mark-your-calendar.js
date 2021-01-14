@@ -152,7 +152,7 @@
             render(instance);
             document.getElementById('selected-date').innerHTML = '<i>Veuillez choisir un créneau</i>'
             document.getElementById('selected-time').innerHTML = '<i>Veuillez choisir un créneau</i>'
-            document.getElementById('valideBtn').classList.add('btn_disabled');
+            document.getElementById('valideBtn').classList.add('btn2_disabled');
 
             if ($.isFunction(onClickNavigator)) {
                 onClickNavigator.call(this, ...arguments, instance);
@@ -167,7 +167,7 @@
             render(instance);
             document.getElementById('selected-date').innerHTML = '<i>Veuillez choisir un créneau</i>'
             document.getElementById('selected-time').innerHTML = '<i>Veuillez choisir un créneau</i>'
-            document.getElementById('valideBtn').classList.add('btn_disabled');
+            document.getElementById('valideBtn').classList.add('btn2_disabled');
 
             if ($.isFunction(onClickNavigator)) {
                 onClickNavigator.call(this, ...arguments, instance);
@@ -185,7 +185,7 @@
                     $(this).removeClass('selected');
                     document.getElementById('selected-date').innerHTML = '<i>Veuillez choisir un créneau</i>'
                     document.getElementById('selected-time').innerHTML = '<i>Veuillez choisir un créneau</i>'
-                    document.getElementById('valideBtn').classList.add('btn_disabled') 
+                    document.getElementById('valideBtn').classList.add('btn2_disabled') 
                     var idx = settings.selectedDates.indexOf(tmp);
                     if (idx !== -1) {
                         settings.selectedDates.splice(idx, 1);
@@ -220,7 +220,7 @@
                             // y est la date au format aaaa-mm-jj
                             z = y + " | " + x
                             document.getElementById('demo').innerHTML = z
-                            document.getElementById('valideBtn').classList.remove('btn_disabled')                       
+                            document.getElementById('valideBtn').classList.remove('btn2_disabled')                       
                             
                         }
 
