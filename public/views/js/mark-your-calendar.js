@@ -226,6 +226,7 @@
 
                     }
                 }
+
         });
 
         var render = function() {
