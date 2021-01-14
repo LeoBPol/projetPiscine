@@ -46,56 +46,55 @@
             </label>
 
         </div>
-        <div class="col-md-6" id="ifCheckedStage" >
-            <label for="NameCorp" class="form-label">Nom Entreprise</label>
-            <input type="text" class="form-control" id="NameCorp" name="titre" required>
+        <div class="col-md-6" id="ifCheckedStage" style="display: none">
+            <label for="NameCorp" class="form-label" >Nom Entreprise</label>
+            <input type="text" class="form-control" id="NameCorp" name="titre" placeholder="Entreprise">
         </div>
 
 
-
-        <div class="col-md-6">
-        <label for="tuteur">Tuteur Polytech</label><br>
-        <select class="form-control" id="tuteur"name="tuteur">
-            <option>Vincent Berry</option>
-            <option>Christophe Fiorio</option>
-
-        </select>
-    </div>
-
-        <div class="col-md-6">
+        <div class="col-md-6" id="ifCheckedStage1" style="display: none">
             <label for="tuteurentrepriseNom" class="form-label">Nom Tuteur entreprise</label>
-            <input type="text" class="form-control" id="tuteurentrepriseNom" required>
+            <input type="text" class="form-control" id="tuteurentrepriseNom" placeholder="Nom tuteur">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" id="ifCheckedStage2" style="display: none">
             <label for="tuteurentreprisePrenom" class="form-label">Prénom Tuteur entreprise</label>
-            <input type="text" class="form-control" id="tuteurentreprisePrenom" required>
+            <input type="text" class="form-control" id="tuteurentreprisePrenom" placeholder="Prénom tuteur">
         </div>
+
         <div class="col-md-6">
-        <label for="sizegroupe">Nombre de membres dans le groupe</label><br>
-        <select class="form-control" id="sizegroupe"name="sizegroupe">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            <label for="tuteur">Tuteur Polytech</label><br>
+            <select class="form-control" id="tuteur"name="tuteur">
+                <% for(var i = 0; i < teachers.length; i++) {%>
+                <option value="<%= teachers[i]._id %>"><%= teachers[i].teacherFirstName %> <%= teachers[i].teacherLastName %></option>
+                <%}%>
+            </select>
+        </div>
 
-        </select>
+        <div class="col-md-6">
+            <label for="sizegroupe">Nombre de membres dans le groupe</label><br>
+            <select class="form-control" id="sizegroupe"name="sizegroupe">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+
+            </select>
 
 
-    </div>
+        </div>
         <script>
             var texte = document.getElementById("email1");
 
-            document.addEventListener('DOMContentLoaded',function()){
-                document.querySelector('select[name="sizegroupe"]').onchange=changeEventHandler;},false);
-            function changeEventHandler(event){
-                if (event.target.value === 2){
-                    texte.style.display = "block";
+            document.addEventListener('DOMContentLoaded',function(){
+                document.querySelector('select[name="sizegroupe"]').onchange = (changeEventHandler, false);
+                function changeEventHandler(event){
+                    if (event.target.value === 2){
+                        texte.style.display = "block";
+                    }
+                    else {
+                        texte.style.display = "none";
+                    }
                 }
-                else {
-                    texte.style.display = "none";
-                }
-
-            }
-        }
+            })
         </script>
         <div class="col-md-6 no">
             <label for="email1" class="form-label">E-mail universitaire du premier membre</label><br>

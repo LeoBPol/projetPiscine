@@ -106,5 +106,7 @@ exports.userBooking = (req, res) => {
 }
 
 exports.groupRegistration = (req, res) => {
-    res.render('FormulaireEtudiant.html')
+    Teacher.find(function (err, teachers){
+        res.render('FormulaireEtudiant.html', {teachers : teachers})
+    })
 }
