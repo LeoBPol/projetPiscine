@@ -6,21 +6,47 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Page de Planning</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/connexion.css">
-
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/connexion.css"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.css">
+    <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
 </head>
 <body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
     <aside class="aside">
 
 
         <div class="cadre">
             <p class="p7">Informations de l'événement  </p>
-            <p><i class="fa fa-refresh" aria-hidden="true"></i> Durée d'une soutenance  <span class="encadrer-un-contenu"><strong><%= event.presentationDuration %> min</strong></span></p>
-            <p><i class="fa fa-clock-o" aria-hidden="true"></i> Nombre de jury par soutenance  <span class="encadrer-un-contenu"><strong><%= event.sizeJury %></strong></span></p></p>
-            <p> Date limite de réservation  <span class="encadrer-un-contenu"><strong><%= moment(event.deadLine).format('DD/MM') %></strong></span></p></p>
-            <button type="button" class="btn btn-light modifier">Modifier ces informations</button>
+            <p> Durée d'une soutenance
+
+            <select class="form-control mi" >
+                <option>1h</option>
+                <option>1h30</option>
+
+            </select>
+       </p>
+            <p>Nombre de jury par soutenance <select class="form-control mi" >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+
+            </select></p></p>
+            <p> Date limite de réservation  <input class="form-control mi" id="dateDebut" name="dateDebut" placeholder="jj/mm/aaaa" type="text"/>
+                <script type="text/javascript" src="views/js/datepicker.js"></script></p></p>
+            <p> Nombre d'élèves par soutenance
+                <select class="form-control mi" >
+                    <option>1h</option>
+                    <option>1h30</option>
+
+                </select> </p></p>
+            <button type="submit" class="btn btn-light modifier">Modifier ces informations</button>
 
 
         </div>
@@ -43,12 +69,12 @@
 
 
 
-        <img src="../img/component.png" alt="" class="logodroite"/>
+
 
     </aside>
     <main class="main">
-
-
+        <button type="button" class="btn btn-primary btn-circle"><i class="far fa-sign-out"></i>
+        </button>
         <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-question" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-primary btn-circle" onclick="location.href='/admin/accueil'"><i class="fa fa-home" aria-hidden="false"></i>
