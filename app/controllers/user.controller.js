@@ -58,7 +58,6 @@ exports.userBoard = (req, res) => {
                         allTimeSlot[(2 * day) + (i)] = await dbQuery(i, day, originalDate);
                     }
                 }
-                //console.log(allRooms[1])
                 Class.findOne({_id: event.class}, function (err, classe){
                     Group.findOne({students : req.user.id}, function (err, group){
                         if (group === null){
@@ -75,7 +74,7 @@ exports.userBoard = (req, res) => {
             doIt()
         })
     } else {
-        res.send('200', 'Pas d\'évent')
+        res.render('AccueilEtudiant.html')
     }
 };
 

@@ -111,7 +111,12 @@ exports.signin = (req, res) => {
                     else {
                         Event.findOne({class: mongoose.Types.ObjectId(user.class)}, function (err, event){
                             console.log(event)
-                            res.redirect('/planning?eventID='+event._id)
+                            if (event != null){
+                                res.redirect('/planning?eventID='+event._id)
+                            } else {
+                                res.redirect('/planning')
+                            }
+
                         })
                     }
             })
