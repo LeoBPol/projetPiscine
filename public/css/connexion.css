@@ -33,7 +33,17 @@ body {
   background: #999999;
   margin-top: 15%;
 }
+.deux{
+  margin-top: 30%;
+}
+.mon{
+  margin-left: 15%;
+  font-family: "Segoe UI Normal", sans-serif;
+  color: dimgrey;
+  font-size: 1.5em;
+  display: inline-block;
 
+}
 h1{
   font-size: 3em;
   text-align: center;
@@ -72,6 +82,10 @@ h1{
   letter-spacing: 0px;
   color: #2D2D2D;
   opacity: 1;
+}
+.centre{
+  margin-top: 10%;
+  float: center;
 }
 .p4{
   font-size: 1em;
