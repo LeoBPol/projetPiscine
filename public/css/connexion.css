@@ -318,6 +318,9 @@ table.calendar > tbody > tr > td.m {
 .input-inside-group{
   margin-bottom: 5%;
 }
+.exampleFormControlInput1{
+  width: 180%;
+}
 #exampleFormControlInput1{
   width: 180%;
 }
@@ -463,7 +466,7 @@ table.calendar > tbody > tr > td.m {
     height: 5%;
     margin-left: 0;
   }
-  
+
 
 
 }
