@@ -22,17 +22,36 @@
 
 <main class="main">
     <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
-    <p class="p3">Gérer les professeurs</p>
-    <p class="p4">Gérer la liste des professeurs susceptible de participer à une soutenance</p>
+    <p class="p3">Gérer les salle</p>
+    <p class="p4">Gérer la liste des salles où les soutenances peuvent se dérouler</p>
 
     <ul class="list-group" style="margin-left: 10%; margin-right: 10%">
         <% for(var i=0; i < rooms.length; i++) { %>
             <li id="teacher" class="list-group-item">
-                <span id="deleteTeacher"  class="fa fa-times" style="right: 10%"></span>
+                <span id="deleteTeacher"  class="fa fa-times" onclick="test()" style="right: 10%"></span>
                 <%= rooms[i].name %>
                 <p id="id" value="<%= rooms[i]._id %>" style="display: none"><%= rooms[i]._id %></p>
             </li>
         <% } %>
+
+        <script>
+            function test(){
+                console.log("deleting")
+                var id = $('#id').text();
+                console.log(id)
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/admin/manageRooms/' + id,
+                    success: (data) => {
+                        console.log(data);
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    }
+                });
+                $('#teacher').attr('style', 'display: none');
+            }
+        </script>
 
         <li class="list-group-item" id="form-teacher" style="display: none">
             <form action="/admin/manageRooms" method="post" style="margin-left: 0%">
@@ -48,7 +67,7 @@
 
     <button class="btn btn-primary gauche" type="button" onclick="location.href='/admin/accueil'" style="margin-left:10%; margin-top:5%">ENREGISTRER<i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
 
-    <script type="text/javascript" src="script/deleteTeacher.js"></script>-
+    <!--<script type="text/javascript" src="script/deleteRoom.js"></script>-->
 </main>
 </body>
 </html>

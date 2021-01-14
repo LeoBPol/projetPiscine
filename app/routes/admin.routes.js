@@ -75,6 +75,24 @@ module.exports = function(app) {
         controller.deleteRoom
     );
 
+    app.get(
+        "/admin/manageJuries",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.manageJuries
+    );
+
+    app.post(
+        "/admin/manageJuries/:eventid",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.addJury
+    );
+
+    app.delete(
+        "/admin/manageJuries/:id/:eventid",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.deleteJury
+    );
+
     app.put(
         "/admin/planning",
         [authJwt.verifyToken, authJwt.isAdmin],

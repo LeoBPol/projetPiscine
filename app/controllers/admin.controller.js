@@ -131,16 +131,16 @@ exports.adminPlanning = (req, res) => {
 
         let allTimeSlot = Array(10).fill([])
 
-        for(let day = 0; day < 5; day++) {
+        for (let day = 0; day < 5; day++) {
             for (let i = 0; i < 2; i++) {
                 let firstDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * day)
-                let lastDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * (day+1))
+                let lastDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * (day + 1))
                 TimeSlot.find(
                     {
                         startingTime:
                             {
                                 $gte: 780 * i,
-                                $lt: 780 * (i+1)
+                                $lt: 780 * (i + 1)
                             },
                         date:
                             {
@@ -149,7 +149,7 @@ exports.adminPlanning = (req, res) => {
                             }
                     },
                     function (err, timeslots) {
-                        allTimeSlot[(2*day)+(i)] = timeslots
+                        allTimeSlot[(2 * day) + (i)] = timeslots
                     }).sort({date: 1, startingTime: 1})
             }
         }
@@ -223,17 +223,20 @@ exports.editTimeSlot = (req, res) => {
     let eventID = ""
     let date = new Date()
 
-    TimeSlot.findOne({_id : req.query.timeslotID}, async function (err, timeslot){
+    TimeSlot.findOne({_id: req.query.timeslotID}, async function (err, timeslot) {
 
         eventID = timeslot.event
-        date = new Date(timeslot.date.getTime()+ (60 * 60 * 24) * 1000 * req.query.diff)
+        date = new Date(timeslot.date.getTime() + (60 * 60 * 24) * 1000 * req.query.diff)
 
         console.log("new")
         console.log(date)
         console.log(startingTime)
         //diff jours calculs
 
-        TimeSlot.updateOne({_id : req.query.timeslotID}, {startingTime:startingTime, date:date}, function (err, timeSlot){
+        TimeSlot.updateOne({_id: req.query.timeslotID}, {
+            startingTime: startingTime,
+            date: date
+        }, function (err, timeSlot) {
             if (err) {
                 console.log(err)
                 return;
@@ -336,6 +339,70 @@ exports.deleteRoom = (req, res) => {
     Room.deleteOne({'_id': mongoose.Types.ObjectId(req.params.id)}, function (err) {
         if (err) return console.log(err)
         res.redirect('/admin/manageRooms/')
+    });
+
+}
+
+exports.manageJuries = (req, res) => {
+
+    Jury.find({event: req.query.eventID}, async function (err, juries) {
+        if (err) return console.log(err)
+
+        async function dbQuery(ids) {
+            const result = await Teacher.find({_id: {$in: ids}})
+            return result;
+        }
+
+        async function doIt() {
+            let teachersInJuries = Array(juries.length).fill([])
+            try {
+                for (let i = 0; i < juries.length; i++) {
+                    teachersInJuries[i] = await dbQuery(juries[i].teachers);
+                }
+
+                Teacher.find(function (err, teachers){
+                    Event.findOne({_id: req.query.eventID}, function (error, event){
+                        res.render("GestionJury.html", {juries: juries, teachersInJuries: teachersInJuries, teachers: teachers, event:event})
+                    })
+                }).sort({'teacherLastName': 1})
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        await doIt()
+
+    })/*.sort({'teachers': 1})*/
+
+}
+
+exports.addJury = (req, res) => {
+
+    let juries = []
+    for (let i = 0; i < req.body.nbJury; i++) {
+        let teachers = []
+
+        for (let j = 0; j < req.body.sizeJury; j++) {
+            console.log(req.body.jury[(i * req.body.sizeJury) + j])
+            teachers.push(mongoose.Types.ObjectId(req.body.jury[(i * req.body.sizeJury) + j]))
+        }
+        const jury = new Jury({
+            event: req.params.eventid,
+            teachers: teachers
+        })
+        juries.push(jury)
+        res.redirect('/admin/manageJuries?eventID='+req.params.eventid)
+    }
+
+    Jury.insertMany(juries)
+
+}
+
+exports.deleteJury = (req, res) => {
+
+    Jury.deleteOne({'_id': mongoose.Types.ObjectId(req.params.id)}, function (err) {
+        if (err) return console.log(err)
+        res.redirect('/admin/manageJuries?eventID='+req.params.eventid)
     });
 
 }

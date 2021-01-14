@@ -28,11 +28,30 @@
     <ul class="list-group" style="margin-left: 10%; margin-right: 10%">
         <% for(var i=0; i < teachers.length; i++) { %>
             <li id="teacher" class="list-group-item">
-                <span id="deleteTeacher"  class="fa fa-times" style="right: 10%"></span>
+                <span id="deleteTeacher"  class="fa fa-times" onclick="test()" style="right: 10%"></span>
                 <%= teachers[i].teacherFirstName %> <%= teachers[i].teacherLastName %>
                 <p id="id" value="<%= teachers[i]._id %>" style="display: none"><%= teachers[i]._id %></p>
             </li>
         <% } %>
+
+        <script>
+            function test(){
+                console.log("deleting")
+                var id = $('#id').text();
+                console.log(id)
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/admin/manageTeachers/' + id,
+                    success: (data) => {
+                        console.log(data);
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    }
+                });
+                $('#teacher').attr('style', 'display: none');
+            }
+        </script>
 
         <li class="list-group-item" id="form-teacher" style="display: none">
             <form action="/admin/manageTeachers" method="post" style="margin-left: 0%">
@@ -51,7 +70,7 @@
 
     <button class="btn btn-primary gauche" type="button" onclick="location.href='/admin/accueil'" style="margin-left:10%; margin-top:5%">ENREGISTRER<i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
 
-    <script type="text/javascript" src="script/deleteTeacher.js"></script>-
+    <!--<script type="text/javascript" src="script/deleteTeacher.js"></script>-->
 </main>
 </body>
 </html>
