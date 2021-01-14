@@ -44,12 +44,13 @@
             <label class="form-check-label" for="exampleRadios2">
                 Stage
             </label>
-            <p id="ifCheckedStage" style="display:none"class="col-md-6">
-                <label for="NameCorp">Nom de l'entreprise</label>
-                <input type="text" class="form-control" id="NameCorp" name="titre" required>
 
-            </p>
         </div>
+        <div class="col-md-6" id="ifCheckedStage" >
+            <label for="NameCorp" class="form-label">Nom Entreprise</label>
+            <input type="text" class="form-control" id="NameCorp" name="titre" required>
+        </div>
+
 
 
         <div class="col-md-6">
@@ -60,6 +61,7 @@
 
         </select>
     </div>
+
         <div class="col-md-6">
             <label for="tuteurentrepriseNom" class="form-label">Nom Tuteur entreprise</label>
             <input type="text" class="form-control" id="tuteurentrepriseNom" required>
@@ -71,22 +73,39 @@
         <div class="col-md-6">
         <label for="sizegroupe">Nombre de membres dans le groupe</label><br>
         <select class="form-control" id="sizegroupe"name="sizegroupe">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
 
         </select>
 
+
     </div>
-        <div class="col-md-6">
+        <script>
+            var texte = document.getElementById("email1");
+
+            document.addEventListener('DOMContentLoaded',function()){
+                document.querySelector('select[name="sizegroupe"]').onchange=changeEventHandler;},false);
+            function changeEventHandler(event){
+                if (event.target.value === 2){
+                    texte.style.display = "block";
+                }
+                else {
+                    texte.style.display = "none";
+                }
+
+            }
+        }
+        </script>
+        <div class="col-md-6 no">
             <label for="email1" class="form-label">E-mail universitaire du premier membre</label><br>
             <input type="email" class="form-control" id="email1" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email1">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 no">
             <label for="email2" class="form-label">E-mail universitaire du second membre</label><br>
             <input type="email" class="form-control" id="email2" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email2">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 no">
             <label for="email3" class="form-label">E-mail universitaire du troisième membre</label><br>
             <input type="email" class="form-control" id="email3" placeholder="name@example.com" aria-label="Large" aria-describedby="inputGroup-sizing-sm"  name="email3">
         </div>
