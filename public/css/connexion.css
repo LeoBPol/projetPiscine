@@ -520,6 +520,13 @@ table.calendar > tbody > tr > td.m {
   font-size: 1.2em;
   border-radius: 0.25em;
 }
+
+.pop-up-button {
+  border-radius: 2px;
+  width: 80%;
+  margin: 5%;
+}
+
 .fa-check{
   color: green;
 }

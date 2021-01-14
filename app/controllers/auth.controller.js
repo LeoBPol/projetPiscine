@@ -1,8 +1,10 @@
 const config = require("../config/auth.config");
 const db = require("../models");
+const mongoose = require("mongoose");
 const User = db.user;
 const Role = db.role;
 const Class = db.class;
+const Event = db.event;
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -108,7 +110,12 @@ exports.signin = (req, res) => {
                         res.redirect('/admin/accueil')
                     }
                     else {
-                         res.redirect('/planning')
+                        console.log("user.class")
+                        console.log(user.class)
+                        Event.findOne({class: mongoose.Types.ObjectId(user.class)}, function (err, event){
+                            console.log(event)
+                            res.redirect('/planning?eventID='+event._id)
+                        })
                     }
             })
         });

@@ -13,6 +13,7 @@ db.timeSlot = require("./timeSlot.model")
 db.teacher = require("./teacher.model")
 db.room = require("./room.model")
 db.jury = require("./jury.model")
+db.group = require("./group.model")
 
 db.ROLES = ["user", "admin"];
 

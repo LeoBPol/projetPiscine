@@ -10,14 +10,14 @@ module.exports = function(app) {
         next();
     });
 
-    app.get("/api/test/all", controller.allAccess);
-
-    app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
-
     app.get("/planning",
         authJwt.verifyToken,
-        (req, res) => {
-        res.render('PlanningEtudiant.html')
-    });
+        controller.userBoard
+    );
+
+    app.put("/planning",
+        authJwt.verifyToken,
+        controller.userBooking
+    );
 
 };
