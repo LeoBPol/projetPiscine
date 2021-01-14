@@ -22,8 +22,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 <aside class="aside">
-    <button class="btn btn-circle"><i class="far fa-sign-out"></i></button>
-    <button class="btn btn-circle"><i class="fa fa-home"></i></button>
+    <button class="btn btn-circle" onclick="location.href='/logout'"><i class="far fa-sign-out"></i></button>
+    <button class="btn btn-circle" onclick="location.href='/admin/accueil'"><i class="fa fa-home"></i></button>
     <h1>Création des créneaux</h1>
     <img alt="" class="logo" src="img/component.png"/>
 
@@ -95,7 +95,8 @@
             <div class="input-inside-group">
                 <label for="jury">Jury</label><br>
                 <select class="form-control" id="jury" name="jury">
-                    <% for(var i = 0; i < juries.length; i++) {%>
+                    <%
+                    for(var i = 0; i < juries.length; i++) {%>
                         <option value="<%= juries[i]._id %>">
                             <% for(var j = 0; j < teachers[0].length; j++) {%>
                                 <%= teachers[i][j].teacherLastName %>
@@ -104,6 +105,7 @@
                 </select>
             </div>
         </div>
+
 
         <script>
             const selectElement = document.querySelector('#nbcreneau');

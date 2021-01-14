@@ -22,8 +22,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
     <aside class="aside">
-        <button class="btn btn-circle"><i class="far fa-sign-out"></i></button>
-        <button class="btn btn-circle"><i class="fa fa-home"></i></button>
+        <button class="btn btn-circle" onclick="location.href='/logout'"><i class="far fa-sign-out"></i></button>
+        <button class="btn btn-circle" onclick="location.href='/admin/accueil'"><i class="fa fa-home"></i></button>
 
 
         <div class="cadre">
@@ -66,14 +66,6 @@
                  <button type="button" class="btn btn-primary ombré"  onclick="location.href='/admin/planning?eventID=<%=events[i]._id%>'"><%= events[i].name %> - <%= classes[i].name %><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
             <%}
         } %>
-        <!--<button type="submit" class="btn btn-primary ombré">Soutenance de stage - IG5<i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-        <button type="submit" class="btn btn-primary ombré">Soutenance de stage - IG3<i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>-->
-
-
-
-
-
-
 
     </aside>
     <main class="main">

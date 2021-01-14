@@ -56,8 +56,7 @@ exports.signup = (req, res) => {
                                         res.status(500).send({message: err});
                                         return;
                                     }
-
-                                    res.send({message: "User was registered successfully!"});
+                                    res.redirect('/signin')
                                 });
                             });
                     });
@@ -72,12 +71,14 @@ exports.signin = (req, res) => {
     })
         .exec((err, user) => {
             if (err) {
-                res.status(500).send({ message: err });
-                return;
+                console.log(err)
+                res.redirect('/signin')
+                return
             }
 
             if (!user) {
-                return res.status(404).send({ message: "User Not found." });
+                res.redirect('/signin')
+                return
             }
 
             var passwordIsValid = bcrypt.compareSync(
@@ -86,10 +87,8 @@ exports.signin = (req, res) => {
             );
 
             if (!passwordIsValid) {
-                return res.status(401).send({
-                    accessToken: null,
-                    message: "Invalid Password!"
-                });
+                res.redirect('/signin')
+                return
             }
 
             var token = jwt.sign({ id: user.id }, config.secret, {
@@ -110,8 +109,6 @@ exports.signin = (req, res) => {
                         res.redirect('/admin/accueil')
                     }
                     else {
-                        console.log("user.class")
-                        console.log(user.class)
                         Event.findOne({class: mongoose.Types.ObjectId(user.class)}, function (err, event){
                             console.log(event)
                             res.redirect('/planning?eventID='+event._id)

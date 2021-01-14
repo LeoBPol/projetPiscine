@@ -30,6 +30,7 @@ exports.userBoard = (req, res) => {
             }
 
             let allTimeSlot = Array(10).fill([])
+            let allRooms = Array(10).fill([[]])
 
             async function dbQuery(i, day, originalDate) {
                 let firstDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * day)
@@ -47,6 +48,7 @@ exports.userBoard = (req, res) => {
                                 $lt: lastDate
                             }
                     })
+                //console.log(result)
                 return result;
             }
 
@@ -56,10 +58,15 @@ exports.userBoard = (req, res) => {
                         allTimeSlot[(2 * day) + (i)] = await dbQuery(i, day, originalDate);
                     }
                 }
+                //console.log(allRooms[1])
                 Class.findOne({_id: event.class}, function (err, classe){
                     Group.findOne({students : req.user.id}, function (err, group){
+                        if (group === null){
+                            res.render("PlanningEtudiant.html", {event: event, timeslots: allTimeSlot, classe: classe, group: group, students: null, rooms: allRooms})
+                            return
+                        }
                         User.find({_id: {$in: group.students}}, function (err, students){
-                            res.render("PlanningEtudiant.html", {event: event, timeslots: allTimeSlot, classe: classe, group: group, students: students})
+                            res.render("PlanningEtudiant.html", {event: event, timeslots: allTimeSlot, classe: classe, group: group, students: students, rooms: allRooms})
                         })
                     })
                 })
@@ -87,7 +94,11 @@ exports.userBooking = (req, res) => {
 
 exports.getGroupRegistration = (req, res) => {
     Teacher.find(function (err, teachers){
-        res.render('FormulaireEtudiant.html', {teachers : teachers})
+        User.findOne({_id: req.user._id}, function (err, user){
+            Event.findOne({class: user.class}, function (err, event){
+                res.render('FormulaireEtudiant.html', {teachers : teachers, event: event})
+            })
+        })
     })
 }
 

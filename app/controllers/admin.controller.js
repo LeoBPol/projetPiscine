@@ -252,22 +252,31 @@ exports.getTimeSlotProposition = (req, res) => {
     Jury.find({event: req.query.eventID}, function (err, juries) {
         if (err) return console.log(err)
         let teachers = []
-        juries.forEach(jury => {
-            console.log(jury.teachers)
-            Teacher.find({_id: {$in: jury.teachers}}, function (err, result) {
-                teachers.push(result)
-            })
-        })
-        Room.find(function (err, rooms) {
-            if (err) return console.log(err)
-            console.log(teachers)
-            res.render("ProposerCreneau.html", {
-                eventID: req.query.eventID,
-                rooms: rooms,
-                juries: juries,
-                teachers: teachers
-            })
-        }).sort({'name': 1});
+
+        async function dbQuery(teachers) {
+            const teachersFind = await Teacher.find({_id: {$in: teachers}});
+            return teachersFind
+        }
+
+        async function doIt(){
+            for (let i = 0; i < juries.length; i++) {
+                const teacher = await dbQuery(juries[i].teachers)
+                teachers.push(teacher)
+            }
+
+            Room.find(function (err, rooms) {
+                if (err) return console.log(err)
+
+                res.render("ProposerCreneau.html", {
+                    eventID: req.query.eventID,
+                    rooms: rooms,
+                    juries: juries,
+                    teachers: teachers
+                })
+            }).sort({'name': 1});
+        }
+
+        doIt()
         /*Teacher.find({'$in' : teachersID}, function (err, teachers){
 
         })*/

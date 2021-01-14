@@ -562,6 +562,17 @@ table.calendar > tbody > tr > td.m {
 
 
 }
+
+.reserve{
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  background-color: #d7c575;
+  color: #705827;
+  text-align: center;
+
+
+
+}
 .no{
   display: none;
 }
