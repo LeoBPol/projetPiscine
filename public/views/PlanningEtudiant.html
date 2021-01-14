@@ -11,18 +11,25 @@
 
 </head>
 <body>
-<aside class="aside">a
+<aside class="aside">
 
     <div class="cadre">
         <p class="p7">Informations du groupe</p>
+        <%
+        if (group) {%>
         <p><i class="fa fa-users" aria-hidden="true"></i> Membres :</p>
-        <p><strong class="encadrer-un-contenu">Léo Brunet</strong> - leobrunet91@gmail.com </p>
-        <p><strong class="encadrer-un-contenu">Léo Brunet</strong> - leobrunet91@gmail.com </p>
+        <% for (var i = 0; i < group.students.length; i++) {%>
+            <p><strong class="encadrer-un-contenu"><%= group.students[i].firstName %> <%= group.students[i].lastName %></strong> - <%= group.students[i].email %> </p>
+        <%}%>
         <button type="submit" class="btn btn-light modifier">Modifier ces informations</button>
+        <%} else {%>
+        <p>Tu n'appartiens à aucun groupe</p>
+        <button type="button" class="btn btn-light modifier"onclick="location.href='/groupRegistration'">Indiquer son groupe</button>
+        <%}%>
 
 
     </div>
-    <p class="p2">Vous n'avez pas encore réservé de créneau, vous pouvez en
+    <p class="p2" style="color: white">Vous n'avez pas encore réservé de créneau, vous pouvez en
         réserver un dans la colonne de droite. Si vous en avez réservé
         un, vous pouvez modifier votre réservation et choisir un autre
         créneau disponible.</p>

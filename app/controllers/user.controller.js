@@ -58,7 +58,9 @@ exports.userBoard = (req, res) => {
                     }
                 }
                 Class.findOne({_id: event.class}, function (err, classe){
-                    res.render("PlanningEtudiant.html", {event: event, timeslots: allTimeSlot, classe: classe})
+                    Group.findOne({student : {$elemMatch: req.user.id }}, function (err, group){
+                        res.render("PlanningEtudiant.html", {event: event, timeslots: allTimeSlot, classe: classe, group: group})
+                    })
                 })
             }
 
@@ -101,4 +103,8 @@ exports.userBooking = (req, res) => {
         console.log(group)
         res.redirect('/planning?eventID='+req.query.eventID)
     })
+}
+
+exports.groupRegistration = (req, res) => {
+    res.render('FormulaireEtudiant.html')
 }

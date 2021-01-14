@@ -15,6 +15,11 @@ module.exports = function(app) {
         controller.userBoard
     );
 
+    app.get("/groupRegistration",
+        authJwt.verifyToken,
+        controller.groupRegistration
+    );
+
     app.put("/planning",
         authJwt.verifyToken,
         controller.userBooking
