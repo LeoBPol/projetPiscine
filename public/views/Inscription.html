@@ -22,7 +22,7 @@
     <p class="p1">Vous avez des problèmes? <strong>Aide</strong></p>
     <p class="p3">Inscrivez-vous </p>
     <p class="p4">Entrez votre adresse mail universitaire, votre formation et votre promotion</p>
-        <form action="/api/auth/signup" method="POST">
+        <form action="/api/auth/signup" method="POST" onSubmit="return validation(this)">
             <div class="form">
                 <div class="col-md-4 mb-3">
                     <label for="validationCustom01">Prénom</label>
@@ -66,6 +66,27 @@
                     </div>
                 </div>
             </div>
+            <script>
+                function validation(f) {
+                    if (f.password.value == '' || f.confirmPassword.value == '') {
+                        alert('Tous les champs ne sont pas remplis');
+                        f.password.focus();
+                        return false;
+                    }
+                    else if (f.password.value != f.confirmPassword.value) {
+                        alert('Ce ne sont pas les mêmes mots de passe!');
+                        f.password.focus();
+                        return false;
+                    }
+                    else if (f.password.value == f.confirmPassword.value) {
+                        return true;
+                    }
+                    else {
+                        f.password.focus();
+                        return false;
+                    }
+                }
+            </script>
             <button type="submit" class="btn btn-primary gauche">S'INSCRIRE<i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
 
         </form>

@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+<!DOC<!DOCTYPE html>
 <html lang="en">
-<head>
+<head>  <base href="http://localhost:8080/public">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Formulaire | Réservation de soutenance</title>
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
-<script type="text/javascript" src="js/newTextBlock.js"></script>
+<script type="text/javascript" src="script/newTextBlock.js"></script>
 
 <aside class="aside">
     <h1>Formulaire de réservation pour une soutenance</h1>
@@ -34,7 +34,7 @@
 
         <div class="col-md-6 check">
             <label for="exampleRadios1">Type de soutenance</label><br>
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <input onclick="check()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
             <label class="form-check-label" for="exampleRadios1">
                 Projet
             </label>
@@ -54,13 +54,13 @@
 
 
         <div class="col-md-6">
-        <label for="tuteur">Tuteur Polytech</label><br>
-        <select class="form-control" id="tuteur"name="tuteur">
-            <option>Vincent Berry</option>
-            <option>Christophe Fiorio</option>
+            <label for="tuteur">Tuteur Polytech</label><br>
+            <select class="form-control" id="tuteur"name="tuteur">
+                <option>Vincent Berry</option>
+                <option>Christophe Fiorio</option>
 
-        </select>
-    </div>
+            </select>
+        </div>
 
         <div class="col-md-6">
             <label for="tuteurentrepriseNom" class="form-label">Nom Tuteur entreprise</label>
@@ -71,16 +71,16 @@
             <input type="text" class="form-control" id="tuteurentreprisePrenom" required>
         </div>
         <div class="col-md-6">
-        <label for="sizegroupe">Nombre de membres dans le groupe</label><br>
-        <select class="form-control" id="sizegroupe"name="sizegroupe">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            <label for="sizegroupe">Nombre de membres dans le groupe</label><br>
+            <select class="form-control" id="sizegroupe"name="sizegroupe">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
 
-        </select>
+            </select>
 
 
-    </div>
+        </div>
         <script>
             var texte = document.getElementById("email1");
 
@@ -95,7 +95,7 @@
                 }
 
             }
-        }
+            }
         </script>
         <div class="col-md-6 no">
             <label for="email1" class="form-label">E-mail universitaire du premier membre</label><br>

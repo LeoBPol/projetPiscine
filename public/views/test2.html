@@ -12,6 +12,36 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
+<script language="JavaScript">
+    function validation(f) {
+        if (f.mdp1.value == '' || f.mdp2.value == '') {
+            alert('Tous les champs ne sont pas remplis');
+            f.mdp1.focus();
+            return false;
+        }
+        else if (f.mdp1.value != f.mdp2.value) {
+            alert('Ce ne sont pas les mêmes mots de passe!');
+            f.mdp1.focus();
+            return false;
+        }
+        else if (f.mdp1.value == f.mdp2.value) {
+            return true;
+        }
+        else {
+            f.mdp1.focus();
+            return false;
+        }
+    }
+</script>
+
+<form method="post" onSubmit="return validation(this)" >
+    Entrez votre mot de passe:
+    <input name="mdp1" type="password" value=""><br />
+    Entrez ce mot de passe à nouveau:
+    <input name="mdp2" type="password" value="">
+    <input type="submit">
+</form>
+
 
 <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button>
 <button type="button" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-list"></i></button>

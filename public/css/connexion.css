@@ -202,6 +202,7 @@ form{
   letter-spacing: 0.25em;}
 .espace {
   width: 35%;
+  height: 5%;
   float: center;
   font-size: 1em;
   text-align: center;
@@ -219,7 +220,7 @@ form{
 
 
 .mi{
-  width: 20%;
+  width: 25%;
   display: inline-block;
 }
 
@@ -235,6 +236,9 @@ form{
   margin-left: 0.5%;
 }
 
+#ifCheckedStage{
+  display: none;
+}
 
 .fallbackDatePicker, .col-md-6{
   margin-left: 10%;
@@ -527,8 +531,6 @@ table.calendar > tbody > tr > td.m {
   color: darkred;
   text-align: center;
 
-
-
 }
 .no{
   display: none;
@@ -572,13 +574,6 @@ table.calendar > tbody > tr > td.m {
   border: 0.05em solid #dddddd;
   z-index: 9;
 }
-#bjr{
-  display: none;
-}
-
-
-
-
 
 
 /* Stylez le bouton pour annuler */
