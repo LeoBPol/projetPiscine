@@ -69,23 +69,66 @@
             <thead>
             <tr>
                 <th>&nbsp;</th>
-                <th width="5%">21<br></br>Lundi</th>
+                <th id="mon" width="5%">21<br/>Lundi</th>
+                <th id="tue" width="5%">22<br/>Mardi</th>
+                <th id="wen" width="5%">23<br/>Mercredi</th>
+                <th id="thu" width="5%">24<br/>Jeudi</th>
+                <th id="fri" width="5%">25<br/>Vendredi</th>
+                <script>
+                    let today = new Date();
+                    let day = today.getDay()
+                    let monday = today.getDate() - day + (day === 0 ? -6:1)
 
-                <th width="5%">22<br></br>Mardi</th>
-                <th width="5%">23<br></br>Mercredi</th>
-                <th width="5%">24<br></br>Jeudi</th>
-                <th width="5%">25<br></br>Vendredi</th>
+                    document.getElementById("mon").innerHTML = monday + "<br> Lundi"
+                    document.getElementById("tue").innerHTML = monday+1 + "<br> Mardi"
+                    document.getElementById("wen").innerHTML = monday+2 + "<br> Mercredi"
+                    document.getElementById("thu").innerHTML = monday+3 + "<br> Jeudi"
+                    document.getElementById("fri").innerHTML = monday+4 + "<br> Vendredi"
+                </script>
             </tr>
             </thead>
+            <%
+            minsToHHMM = function (mins, add) {
+                var mins_num = parseInt(mins) + parseInt(add);
+                var minutes = mins_num % 60;
+                var hours   = (mins_num - minutes)/ 60;
+
+                if (minutes < 10) {minutes = "0"+minutes;}
+                return hours+':'+minutes;
+            }
+
+            isFull = function (timeslot) {
+                if (timeslot.groups.length === timeslot.rooms.length) {
+                    return "complet"
+                } else {
+                    return "libre"
+                }
+            }
+            %>
             <tbody>
             <tr>
-                <td class="m" width="5%">8:00 - 12:00</td>
+                <td id="morning" class="m" width="5%">8:00 - 13:00</td>
 
-                <td class=" no-events" id="div15" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class=" no-events" id="div13" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-                <td class=" no-events" id="div13" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
+                <%for( let i = 0; i < 5; i++) {%>
 
-                <td class=" has-events"  id="div232" ondrop="drop(event)" ondragover="allowDrop(event)"   rowspan="1">
+                    <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" id="morning<%=i%>" value="">
+                        <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[i*2].length; nbTimeSlot++) { %>
+                            <div class="<%= isFull(timeslots[(i*2)][nbTimeSlot]) %>" onclick="openForm()" id="<%= timeslots[(i*2)][nbTimeSlot]._id%>" draggable="true" ondragstart="drag(event)">
+                                <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
+                                    <span class="title"><%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
+                                    <span class="title">Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot]) %></span> <span class="lecturer"></span>
+                                </div>
+                        </div>
+                        <%}%>
+                    </td>
+
+                <%}%>
+
+
+                <!--<td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
+                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
+                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
+                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1">
                     <div class="complet" onclick="openForm()" id="drag230" draggable="true" ondragstart="drag(event)">
 
                         <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
@@ -95,30 +138,16 @@
                             <span class="title">Créneau complet</span> <span class="lecturer"></span>
                         </div>
                     </div>
-                    <div class="complet" onclick="openForm()" id="drag260" draggable="true" ondragstart="drag(event)">
+                    <div class="complet" onclick="openForm()" id="drag231" draggable="true" ondragstart="drag(event)">
 
                         <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
 
-                            <span class="title">10:15 - 11:15</span> <span class="lecturer"></span>
+                            <span class="title">8:15 - 9:15</span> <span class="lecturer"></span>
 
                             <span class="title">Créneau complet</span> <span class="lecturer"></span>
                         </div>
                     </div>
-                </td
-                <td class=" no-events"id="div12" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-                <td class=" has-events" onclick="openForm()" id="div23" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1">
-
-                <div class="complet"id="drag232" draggable="true" ondragstart="drag(event)">
-
-                    <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                        <span class="title">8:15 - 9:15</span> <span class="lecturer"></span>
-
-                        <span class="title">Créneau complet</span> <span class="lecturer"></span>
-                    </div>
-                </div>
-                </td
+                </td>-->
                 <div class="login-popup">
                     <div class="form-popup" id="popupForm">
                         <form action="/action_page.php" class="form-container">
@@ -153,26 +182,20 @@
                         </form>
                     </div>
                 </div>
-
-
-
-
             </tr>
 
 
 
 
             <tr>
-                <td class="m" width="5%">13:00 - 19:00</td>
+                <td id="afternoon" class="m" width="5%">13:00 - 19:00</td>
 
-                <td class=" no-events" id="div15" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class=" no-events" id="div14" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-                <td class=" no-events" id="div13" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class=" no-events"id="div12" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-
-
-                <td class=" has-events" onclick="openForm()" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"  rowspan="1">
-                    <div class="libre"id="drag1" draggable="true" ondragstart="drag(event)">
+                <!--<td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
+                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
+                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
+                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
+                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"  rowspan="1">
+                    <div class="libre"id="drag1" draggable="true" ondragstart="drag(event)" onclick="openForm()" >
 
                         <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
 
@@ -181,7 +204,32 @@
                             <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
                         </div>
                     </div>
-                </td
+                    <div class="libre"id="drag2" draggable="true" ondragstart="drag(event)" onclick="openForm()" >
+
+                        <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
+
+                            <span class="title">14:15 - 15:15</span> <span class="lecturer"></span>
+
+                            <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
+                        </div>
+                    </div>
+                </td>-->
+
+                <%for( let i = 0; i < 5; i++) {%>
+
+                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" id="afternoon<%=i%>" value="">
+                    <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[(i*2)+1].length; nbTimeSlot++) { %>
+                    <div class="<%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %>" onclick="openForm()" id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>" draggable="true" ondragstart="drag(event)">
+                        <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
+                            <span class="title"><%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
+                            <span class="title">Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %></span> <span class="lecturer"></span>
+                        </div>
+                    </div>
+                    <%}%>
+                </td>
+
+                <%}%>
+
                 <div class="login-popup">
                     <div class="form-popup" id="popupForm">
                         <form action="/action_page.php" class="form-container">
@@ -212,15 +260,45 @@
                                 </select>
                             </div>
 
-                            <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
+                            <button type="submit" class="btn cancel" onclick="closeForm()">Fermer</button>
+                        </form>
+                    </div>
+                    <div class="form-popup" id="popupHourForm">
+                        <form action="" class="form-container" method="POST">
+                            <h2>Modification</h2>
+                            <div class="clock col-md-6">
+                                <input type="text" class="form-control" value="" placeholder="00:00" name="startingTime" required>
+                                <script type="text/javascript" src="views/js/clockpicker.js"></script>
+                            </div>
+
+                            <button type="submit" class="btn cancel" onclick="closeFormHour()">Fermer</button>
                         </form>
                     </div>
                 </div>
 
-
-
-
             </tr>
+
+            <script>
+                function allowDrop(ev) {
+                    ev.preventDefault();
+                }
+
+                function drag(ev) {
+                    ev.dataTransfer.setData("text", ev.target.id);
+                    ev.dataTransfer.setData("originalDay", ev.path[1].getAttribute('value'));
+                }
+
+                function drop(ev) {
+                    ev.preventDefault();
+                    console.log(ev)
+                    var data = ev.dataTransfer.getData("text");
+                    var newDay = ev.path[0].getAttribute('value')
+                    var diff = newDay - ev.dataTransfer.getData("originalDay")
+                    ev.target.appendChild(document.getElementById(data));
+                    openFormHour(data, diff)
+                }
+            </script>
+
             <script>
                 function openForm() {
                     document.getElementById("popupForm").style.display="block";
@@ -230,22 +308,29 @@
                     document.getElementById("popupForm").style.display="none";
                 }
 
+                function openFormHour(data, diff) {
+                    document.getElementById("popupHourForm").firstChild.nextSibling.setAttribute('action', "/admin/planning?timeslotID="+data+"&diff="+diff+"&_method=PUT")
+                    document.getElementById("popupHourForm").style.display="block";
+                }
+
+                function closeFormHour() {
+                    document.getElementById("popupHourForm").style.display="none";
+                }
+
             </script>
 
             <script>
-                function allowDrop(ev) {
-                    ev.preventDefault();
-                }
+                document.getElementById("morning0").setAttribute('value', monday)
+                document.getElementById("morning1").setAttribute('value', monday+1)
+                document.getElementById("morning2").setAttribute('value', monday+2)
+                document.getElementById("morning3").setAttribute('value', monday+3)
+                document.getElementById("morning4").setAttribute('value', monday+4)
 
-                function drag(ev) {
-                    ev.dataTransfer.setData("text", ev.target.id);
-                }
-
-                function drop(ev) {
-                    ev.preventDefault();
-                    var data = ev.dataTransfer.getData("text");
-                    ev.target.appendChild(document.getElementById(data));
-                }
+                document.getElementById("afternoon0").setAttribute('value', monday)
+                document.getElementById("afternoon1").setAttribute('value', monday+1)
+                document.getElementById("afternoon2").setAttribute('value', monday+2)
+                document.getElementById("afternoon3").setAttribute('value', monday+3)
+                document.getElementById("afternoon4").setAttribute('value', monday+4)
             </script>
 
 

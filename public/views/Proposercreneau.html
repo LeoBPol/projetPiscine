@@ -17,7 +17,7 @@
 <body>
 
 
-
+<script type="text/javascript" src="script/datepicker.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 <aside class="aside">
@@ -39,8 +39,8 @@
     <form action="/admin/proposeTimeSlot/<%= eventID %>" method="post">
 
         <div class="mb-6 form-check">
-            <input type="checkbox" onclick="checkcreneau()" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1" >Je précise les jurys et salles ultérieurement</label>
+            <input type="checkbox" onclick="checkcreneau()" class="form-check-input" checked="true" id="exampleCheck1" name="withJury">
+            <label class="form-check-label" for="exampleCheck1" >Je précise les jurys et salles maintenant</label>
             <script>
                 function checkcreneau() {
                     var checkBox = document.getElementById("exampleCheck1");
@@ -72,7 +72,7 @@
         <div id="selector" class="col-md-6">
             <label for="nbcreneau">Nombre de créneaux par heure</label><br>
             <select class="form-control" id="nbcreneau"name="nbSlot" required>
-                <option>1</option>
+                <option selected="selected">1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -82,19 +82,22 @@
 
         <div id="timeSlotCreator" class="col-md-6 input-group-room-jury">
             <div class="input-inside-group">
-                <label for="salle">Salle</label><br>
+                <label for="salle" style="margin-top: .5rem">Salle</label><br>
                 <select class="form-control" id="salle"name="room">
-                    <option>SC102</option>
-                    <option>SC101</option>
+                    <% for(var i = 0; i < rooms.length; i++) {%>
+                        <option value="<%= rooms[i]._id %>"><%= rooms[i].name %></option>
+                    <%}%>
                 </select>
             </div>
             <div class="input-inside-group">
-                <label for="jury">Numéro du jury</label><br>
+                <label for="jury">Jury</label><br>
                 <select class="form-control" id="jury" name="jury">
-                    <option value="5ff8bfc736a0e432b38cf441">1</option>
-                    <option value="5ff8bfc736a0e432b38cf441">2</option>
-                    <option value="5ff8bfc736a0e432b38cf441">3</option>
-                    <option value="5ff8bfc736a0e432b38cf441">4</option>
+                    <% for(var i = 0; i < juries.length; i++) {%>
+                        <option value="<%= juries[i]._id %>">
+                            <% for(var j = 0; j < teachers[0].length; j++) {%>
+                                <%= teachers[i][j].teacherLastName %>
+                        <%}%></option>
+                    <%}%>
                 </select>
             </div>
         </div>
@@ -127,7 +130,6 @@
         <div class="col-md-6">
             <label>Date</label><br>
             <input class="form-control" id="dateDebut" name="date" placeholder="JJ/MM/AAAA" type="text"/>
-            <script type="text/javascript" src="script/datepicker.js"></script>
 
         </div>
 

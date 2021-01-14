@@ -74,4 +74,10 @@ module.exports = function(app) {
         [authJwt.verifyToken, authJwt.isAdmin],
         controller.deleteRoom
     );
+
+    app.put(
+        "/admin/planning",
+        [authJwt.verifyToken, authJwt.isAdmin],
+        controller.editTimeSlot
+    )
 };

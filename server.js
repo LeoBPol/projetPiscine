@@ -1,4 +1,5 @@
 const express = require('express');
+const methodOverride = require('method-override');
 const bodyParser= require('body-parser')
 const cors = require("cors");
 const cookieParser = require('cookie-parser')
@@ -18,6 +19,9 @@ app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
 
 app.locals.moment = require('moment')
 
