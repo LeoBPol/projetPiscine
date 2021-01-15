@@ -135,6 +135,7 @@ exports.adminPlanning = (req, res) => {
             for (let i = 0; i < 2; i++) {
                 let firstDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * day)
                 let lastDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * (day + 1))
+                console.log(event._id)
                 TimeSlot.find(
                     {
                         startingTime:
@@ -146,7 +147,8 @@ exports.adminPlanning = (req, res) => {
                             {
                                 $gte: firstDate,
                                 $lt: lastDate
-                            }
+                            },
+                        event: event._id
                     },
                     function (err, timeslots) {
                         allTimeSlot[(2 * day) + (i)] = timeslots
