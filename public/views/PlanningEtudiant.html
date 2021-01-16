@@ -86,7 +86,7 @@
             <option>Semaine 49</option>
         </select>
     </div>
-    <table class="calendar table table-bordered"  >
+    <table class="perso-calendar calendar table table-bordered"  >
         <thead>
         <tr>
             <th>&nbsp;</th>
@@ -135,16 +135,16 @@
         %>
         <tbody>
         <tr>
-            <td id="morning" class="m" width="5%">8:00 - 13:00</td>
+            <td id="morning" class="time-slot-indicator m" width="5%">08:00 - 13:00</td>
 
             <%for( let i = 0; i < 5; i++) {%>
 
-            <td class="no-events" id="morning<%=i%>" value="" >
+            <td class="no-events time-slot" id="morning<%=i%>" value="" >
                 <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[i*2].length; nbTimeSlot++) { %>
                 <div class="<%= isFull(timeslots[(i*2)][nbTimeSlot], group) %>" onclick="openForm('<%= timeslots[(i*2)][nbTimeSlot]._id %>','<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %>','<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %>', '<%= timeslots[(i*2)][nbTimeSlot].date %>', 'morning<%=i%>')" id="<%= timeslots[(i*2)][nbTimeSlot]._id%>" style="">
                     <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
                         <span class="title"><%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
-                        <span class="title">Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot], group) %></span> <span class="lecturer"></span>
+                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot], group) %> </span> <span class="lecturer"></span>
                     </div>
                 </div>
                 <%}%>
@@ -152,30 +152,6 @@
 
             <%}%>
 
-
-            <!--<td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-            <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-            <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-            <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1">
-                <div class="complet" onclick="openForm()" id="drag230" draggable="true" ondragstart="drag(event)">
-
-                    <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                        <span class="title">8:15 - 9:15</span> <span class="lecturer"></span>
-
-                        <span class="title">Créneau complet</span> <span class="lecturer"></span>
-                    </div>
-                </div>
-                <div class="complet" onclick="openForm()" id="drag231" draggable="true" ondragstart="drag(event)">
-
-                    <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                        <span class="title">8:15 - 9:15</span> <span class="lecturer"></span>
-
-                        <span class="title">Créneau complet</span> <span class="lecturer"></span>
-                    </div>
-                </div>
-            </td>-->
             <div class="login-popup">
                 <div class="form-popup" id="popupForm">
                     <form action="" method="post" class="form-container">
@@ -189,16 +165,16 @@
         </tr>
 
         <tr>
-            <td id="afternoon" class="m" width="5%">13:00 - 19:00</td>
+            <td id="afternoon" class="time-slot-indicator m" width="5%">13:00 - 19:00</td>
 
             <%for( let i = 0; i < 5; i++) {%>
 
-            <td class="no-events" id="afternoon<%=i%>" value="">
+            <td class="no-events time-slot" id="afternoon<%=i%>" value="">
                 <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[(i*2)+1].length; nbTimeSlot++) { %>
                 <div class="<%= isFull(timeslots[(i*2)+1][nbTimeSlot], group) %>" onclick="openForm('<%= timeslots[(i*2)+1][nbTimeSlot]._id %>','<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %>','<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %>', '<%= timeslots[(i*2)+1][nbTimeSlot].date %>','afternoon<%=i%>')" id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>" style="" >
                     <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
                         <span class="title"><%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
-                        <span class="title">Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %></span> <span class="lecturer"></span>
+                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %> </span> <span class="lecturer"></span>
                     </div>
                 </div>
                 <%}%>

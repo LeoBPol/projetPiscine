@@ -7,8 +7,11 @@ var $input = $('.clock').clockpicker({
     vibrate:          true,
     fromnow:          0,
     init:             function () { console.log('initial') },
-    beforeShow:       function () { console.log('avant apparition') },
-    afterShow:        function () { console.log('apres apparition') },
+    beforeShow:       function () {console.log('avant apparition') },
+    afterShow:        function () {
+        console.log('apres apparition')
+        document.getElementsByClassName('popover ')[0].setAttribute('class', 'popover clockpicker-popover bottom clockpicker-align-left visible')
+    },
     beforeHide:       function () { console.log('avant cacher') },
     afterHide:        function () { console.log('apres cachere') },
     beforeHourSelect: function () { console.log('avant de selectionner heure') },

@@ -3,432 +3,492 @@
 <head>
     <base href="http://localhost:8080/public">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
     <title>Page de Planning</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/connexion.css"
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.css">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/connexion.css" rel="stylesheet"
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="http://weareoutman.github.io/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link crossorigin="anonymous" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
 </head>
 <body>
-<script type="text/javascript" src="script/datepicker.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-    <aside class="aside">
-        <button class="btn btn-circle" onclick="location.href='/logout'"><i class="far fa-sign-out"></i></button>
-        <button class="btn btn-circle" onclick="location.href='/admin/accueil'"><i class="fa fa-home"></i></button>
+<script src="script/datepicker.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"
+        type="text/javascript"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"
+      rel="stylesheet"/>
 
 
-        <div class="cadre">
-            <p class="p7">Informations de l'événement  </p>
-            <p> Durée d'une soutenance
+<main class="main">
 
-            <select class="form-control mi input-cadre" >
+
+    <p class="p3"><%= event.name %> - <%= classe.name%></p>
+    <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa
+        date ou son horaire</p>
+
+    <div class="week-display" id="week-display" value="0">
+        <button class="btn week-btn-left"
+                onclick="location.href='/admin/planning?eventID=<%= event._id %>&firstDay=<%= new Date(moment(originalDate)).getTime() - (60 * 60 * 24) * 1000 * 7 %>'"
+                type="button">
+            <i class="fa fa-angle-left"></i></button>
+        <p class="mon" id="week-desc">Semaine du 11 au 17 Jaxnvier</p>
+        <button class="btn week-btn-right"
+                onclick="location.href='/admin/planning?eventID=<%= event._id %>&firstDay=<%= new Date(moment(originalDate)).getTime() + (60 * 60 * 24) * 1000 * 7 %>'"
+                type="button">
+            <i class="fa fa-angle-right" style="border: none"></i></button>
+    </div>
+
+    <!--<div class="form-group col-md-4 mb-3 semaineplan" >
+
+        <select class="form-control" name="class">
+            <option>Semaine 3</option>
+            <option>Semaine 52</option>
+            <option>Semaine 51</option>
+            <option>Semaine 50</option>
+            <option>Semaine 49</option>
+            <option>Semaine 48</option>
+            <option>Semaine 47</option>
+            <option>Semaine 46</option>
+            <option>Semaine 45</option>
+            <option>Semaine 44</option>
+            <option>Semaine 43</option>
+            <option>Semaine 42</option>
+            <option>Semaine 41</option>
+            <option>Semaine 40</option>
+            <option>Semaine 39</option>
+            <option>Semaine 38</option>
+            <option>Semaine 37</option>
+            <option>Semaine 36</option>
+            <option>Semaine 35</option>
+            <option>Semaine 34</option>
+            <option>Semaine 33</option>
+            <option>Semaine 32</option>
+            <option>Semaine 31</option>
+            <option>Semaine 30</option>
+            <option>Semaine 29</option>
+            <option>Semaine 28</option>
+            <option>Semaine 27</option>
+            <option>Semaine 26</option>
+            <option>Semaine 25</option>
+            <option>Semaine 24</option>
+            <option>Semaine 23</option>
+            <option>Semaine 22</option>
+            <option>Semaine 21</option>
+            <option>Semaine 20</option>
+            <option>Semaine 19</option>
+            <option>Semaine 18</option>
+            <option>Semaine 17</option>
+            <option>Semaine 16</option>
+            <option>Semaine 15</option>
+            <option>Semaine 14</option>
+            <option>Semaine 13</option>
+            <option>Semaine 12</option>
+            <option>Semaine 11</option>
+            <option>Semaine 10</option>
+            <option>Semaine 9</option>
+            <option>Semaine 8</option>
+            <option>Semaine 7</option>
+            <option>Semaine 6</option>
+            <option>Semaine 5</option>
+            <option>Semaine 4</option>
+
+            <option>Semaine 2</option>
+            <option>Semaine 1</option>
+        </select>
+    </div>-->
+
+    <table class="calendar table table-bordered">
+        <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th id="mon" width="5%">18<br/>Lundi</th>
+            <th id="tue" width="5%">19<br/>Mardi</th>
+            <th id="wen" width="5%">20<br/>Mercredi</th>
+            <th id="thu" width="5%">21<br/>Jeudi</th>
+            <th id="fri" width="5%">22<br/>Vendredi</th>
+            <script>
+
+                function getMonth(monthNum) {
+                    month = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+                    return month[monthNum]
+                }
+
+                let firstDate = moment("<%= originalDate %>").toDate();
+                let lastDate = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 6)
+
+                let text = ""
+                if (firstDate.getFullYear() !== lastDate.getFullYear()) {
+                    text = "Semaine du " + firstDate.getDate() + " " + getMonth(firstDate.getMonth()) + " " + firstDate.getFullYear() + " au " + lastDate.getDate() + " " + getMonth(lastDate.getMonth()) + " " + lastDate.getFullYear()
+                } else if (getMonth(firstDate.getMonth()) !== getMonth(lastDate.getMonth())) {
+                    text = "Semaine du " + firstDate.getDate() + " " + getMonth(firstDate.getMonth()) + " au " + lastDate.getDate() + " " + getMonth(lastDate.getMonth()) + " " + lastDate.getFullYear()
+                } else {
+                    text = "Semaine du " + firstDate.getDate() + " au " + lastDate.getDate() + " " + getMonth(firstDate.getMonth()) + " " + firstDate.getFullYear()
+                }
+                document.getElementById("week-desc").innerText = text
+                let day = firstDate.getDay()
+                let monday = firstDate.getDate() - day + (day === 0 ? -6 : 1)
+
+                document.getElementById("mon").innerHTML = firstDate.getDate() + "<br> Lundi"
+                document.getElementById("tue").innerHTML = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 1).getDate() + "<br> Mardi"
+                document.getElementById("wen").innerHTML = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 2).getDate() + "<br> Mercredi"
+                document.getElementById("thu").innerHTML = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 3).getDate() + "<br> Jeudi"
+                document.getElementById("fri").innerHTML = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 4).getDate() + "<br> Vendredi"
+
+            </script>
+        </tr>
+        </thead>
+        <%
+        minsToHHMM = function (mins, add) {
+        var mins_num = parseInt(mins) + parseInt(add);
+        var minutes = mins_num % 60;
+        var hours = (mins_num - minutes)/ 60;
+
+        if (minutes < 10) {minutes = "0"+minutes;}
+        return hours+':'+minutes;
+        }
+
+        isFull = function (timeslot) {
+        if (timeslot.groups.length === timeslot.rooms.length) {
+        return "complet"
+        } else {
+        return "libre"
+        }
+        }
+        %>
+        <tbody>
+        <tr>
+            <td class="time-slot-indicator m" id="morning" width="5%">08:00 - 13:00</td>
+
+            <%
+            for( let i = 0; i < 5; i++) {%>
+
+            <td class="no-events" id="morning<%=i%>" ondragover="allowDrop(event)" ondrop="drop(event)" value="">
+                <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[i*2].length; nbTimeSlot++) { %>
+                <% console.log("ohhh")
+                console.log(rooms[(i*2)][nbTimeSlot])
+                console.log(juries[(i*2)][nbTimeSlot])
+                console.log(teachers[(i*2)][nbTimeSlot][0])
+                for(let nbJury = 0; nbJury < juries[(i*2)][nbTimeSlot].length; nbJury++){
+                    console.log(teachers[(i*2)][nbTimeSlot][nbJury])
+                }
+                %>
+                <%
+                    let usedRooms = ""
+                    for (let nbCreneau = 0; nbCreneau < rooms[(i*2)][nbTimeSlot].length; nbCreneau++){
+                        usedRooms += rooms[(i*2)][nbTimeSlot][nbCreneau].name + ","
+                    }
+                usedRooms = usedRooms.slice(0,-1)
+                %>
+                <script>
+                    let usedRooms = []
+                    for (let nbCreneau = 0; nbCreneau < parseInt('<%=rooms[(i*2)][nbTimeSlot].length%>'); nbCreneau++){
+                        usedRooms[nbCreneau] = "<%=usedRooms%>"
+                    }
+                    console.log(usedRooms)
+                </script>
+                <div class="<%= isFull(timeslots[(i*2)][nbTimeSlot]) %> time-slot" draggable="true"
+                     id="<%= timeslots[(i*2)][nbTimeSlot]._id%>" onclick="openForm('<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %>', '<%= timeslots[(i*2)][nbTimeSlot]._id %>', '<%= usedRooms %>')" ondragstart="drag(event)">
+                    <div class="row-fluid lecture" style="width: 99%; height: 100%">
+                        <span class="fa fa-close" style="float: right; margin: 2%; color: red" type="button"></span>
+                        <span class="title"><%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %></span>
+                        <span class="lecturer"></span>
+                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot]) %> </span> <span
+                            class="lecturer"></span>
+                    </div>
+                </div>
+                <%}%>
+            </td>
+
+            <%}%>
+        </tr>
+
+
+        <tr>
+            <td class="m time-slot-indicator" id="afternoon" width="5%">13:00 - 19:00</td>
+
+            <%for( let i = 0; i < 5; i++) {%>
+
+            <td class="no-events" id="afternoon<%=i%>" ondragover="allowDrop(event)" ondrop="drop(event)" value="">
+                <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[(i*2)+1].length; nbTimeSlot++) { %>
+                <div class="<%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %> time-slot" draggable="true"
+                     id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>" onclick="openForm('<%= minsToHHMM(timeslots[(i*2)+i][nbTimeSlot].startingTime, 0) %>', '<%= timeslots[(i*2)+i][nbTimeSlot]._id %>')" ondragstart="drag(event)">
+                    <div class="row-fluid lecture" style="width: 99%; height: 100%;">
+                        <span class="title"><%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %></span>
+                        <span class="lecturer"></span>
+                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %> </span> <span
+                            class="lecturer"></span>
+                    </div>
+                </div>
+                <%}%>
+            </td>
+
+            <%}%>
+
+        </tr>
+
+        </tbody>
+    </table>
+    <p><i aria-hidden="true" class="fa fa-check"></i> 15 groupes ont réservé leur créneau</p>
+    <p><i aria-hidden="true" class="fa fa-times"></i> 10 groupes n'ont toujours pas réservé</p>
+    <p><i aria-hidden="true" class="fa fa-times"></i> 10 élèves n'ont pas rejoint de groupe</p>
+    <p><i aria-hidden="true" class="fa fa-times"></i> 10 élèves n'ont pas créé de compte</p>
+    <button class="btn btn-primary droite" onclick="location.href='/admin/proposeTimeSlot?eventID=<%= event._id %>'"
+            type="submit">Proposer un nouveau créneau
+    </button>
+    <button class="btn btn-primary droite" type="submit">Partager le planning</button>
+
+
+</main>
+<aside class="aside">
+    <div class="login-popup">
+        <div class="form-popup" id="popupForm">
+            <span class="fa fa-close" onclick="closeForm()" style="float: right; margin: 2%" type="button"></span>
+            <div style="width: 100%; height: fit-content; background-color:#dddddd">
+                <h2 style="margin-left: 10%; margin-right: 10%">Modification du créneau</h2>
+            </div>
+
+            <form action="" method="post" class="form-container scroll" style="overflow-y: hidden">
+                <div class="clock pop-up-form-element">
+                    <label for="hour-input">Nouvelle heure de début</label>
+                    <input autocomplete="off" class="form-control" id="hour-input" name="startingTime"
+                           placeholder="00:00"
+                           required type="text" value="">
+                    <script src="script/clockpicker.js" type="text/javascript"></script>
+                </div>
+
+                <div class="pop-up-form-element" id="selector" style="margin-top: 5%">
+                    <label for="nbcreneau">Nombre de créneaux dans l'heure</label>
+                    <select class="form-control" id="nbcreneau" name="nbSlot" required>
+                        <option selected="selected">1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+
+                <div class="pop-up-form-element pop-up-jury" id="timeSlotCreator">
+                    <div class="input-inside-group">
+                        <label for="salle" style="margin-top: .5rem">Salle</label><br>
+                        <select class="form-control" id="salle" name="room">
+                            <% for(var i = 0; i < allRooms.length; i++) {%>
+                                <option value="<%= allRooms[i]._id %>"><%= allRooms[i].name %></option>
+                            <%}%>
+                        </select>
+                    </div>
+                    <div class="input-inside-group">
+                        <label for="jury">Jury</label><br>
+                        <select class="form-control" id="jury" name="jury">
+                            <% for(var i = 0; i < allJuries.length; i++) {%>
+                                <option value="<%= allJuries[i]._id %>">
+                                    <%
+                                    console.log("teachersOfAllJuries")
+                                    console.log(teachersOfAllJuries[i])
+                                    for(var j = 0; j < teachersOfAllJuries[i].length; j++) {%>
+                                        <%= teachersOfAllJuries[i][j].teacherLastName %>
+                                    <%}%></option>
+                            <%}%>
+                        </select>
+                    </div>
+                </div>
+
+                <script>
+                    const selectElement = document.querySelector('#nbcreneau');
+                    const node = document.querySelector('#timeSlotCreator');
+
+                    selectElement.addEventListener('change', (event) => {
+                        let value = event.target.value
+                        if(value > 1) {
+                            document.getElementsByClassName("scroll")[0].setAttribute('style','')
+                        } else {
+                            document.getElementsByClassName("scroll")[0].setAttribute('style','overflow-y:hidden')
+                        }
+
+                        console.log(value)
+                        for (var i = 0, copy; i < value - 1; i++) {
+                            if (document.getElementById('timeSlotCreator' + i)) {
+                                document.getElementById('timeSlotCreator' + i).style.display = 'block'
+                            } else {
+                                copy = node.cloneNode(true);
+                                copy.attributes.id.nodeValue = copy.attributes.id.nodeValue + i
+                                node.parentNode.insertBefore(copy, node);
+                            }
+                        }
+
+                        for (var j =  value - 1; j < 10; j++) {
+                            let timeSlotCreator = document.getElementById('timeSlotCreator'+j)
+                            if (timeSlotCreator != null) timeSlotCreator.parentNode.removeChild(timeSlotCreator)
+                        }
+                    });
+                </script>
+
+                <button class="btn btn-primary pop-up-button" onclick="closeForm()" type="submit">Valider</button>
+            </form>
+        </div>
+        <div class="form-popup" id="popupHourForm">
+            <span class="fa fa-close" onclick="closeFormHour()" style="float: right; margin: 2%" type="button"></span>
+            <form action="" class="form-container" method="POST" style="margin-left: 0; text-align: center">
+                <h2 style="margin-left: 10%; margin-right: 10%">Modification du créneau</h2>
+                <div class="clock pop-up-form-element">
+                    <label for="hour-input">Nouvelle heure de début</label>
+                    <input autocomplete="off" class="form-control" id="hour-input" name="startingTime"
+                           placeholder="00:00"
+                           required type="text" value="">
+                    <script src="script/clockpicker.js" type="text/javascript"></script>
+                </div>
+
+                <button class="btn btn-primary pop-up-button" onclick="closeFormHour()" type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
+
+    <button class="btn btn-circle" onclick="location.href='/logout'"><i class="far fa-sign-out"></i></button>
+    <button class="btn btn-circle" onclick="location.href='/admin/accueil'"><i class="fa fa-home"></i></button>
+
+
+    <div class="cadre">
+        <p class="p7">Informations de l'événement </p>
+        <p> Durée d'une soutenance
+
+            <select class="form-control mi input-cadre">
                 <option>1h</option>
                 <option>1h30</option>
 
             </select>
-       </p>
-            <p>Nombre de jury par soutenance <select class="form-control mi input-cadre" >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-
-            </select></p></p>
-            <p> Date limite de réservation  <input class="form-control mi input-cadre" id="dateDebut" name="dateDebut" placeholder="jj/mm/aaaa" type="text"/>
-                <script type="text/javascript" src="script/datepicker.js"></script></p></p>
-            <p> Nombre d'élèves par soutenance
-                <select class="form-control mi input-cadre" >
-                    <option>1h</option>
-                    <option>1h30</option>
-                </select></p>
-            <button type="submit" class="btn btn-light modifier">Modifier ces informations</button>
-
-
-        </div>
-
-        <button type="button" class="btn btn-light jury-button" onclick="location.href='/admin/manageJuries?eventID=<%= event._id %>'">Modifier les jurys</button>
-
-        <p class="p9">Autres événements</p>
-        <%  if (events.length==0) { %>
-        <span>Aucun événement en cours</span><br>
-        <% }
-        else {
-            for(var i=0; i < events.length; i++) {%>
-                 <button type="button" class="btn btn-primary ombré"  onclick="location.href='/admin/planning?eventID=<%=events[i]._id%>'"><%= events[i].name %> - <%= classes[i].name %><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-            <%}
-        } %>
-
-    </aside>
-    <main class="main">
-
-
-
-        <p class="p3"><%= event.name %> - <%= classe.name%></p>
-        <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa date ou son horaire</p>
-        <p class="mon">Janvier</p>
-        <button class="btn"><i class="fas fa-angle-left"></i></button>
-        <button class="btn"><i class="fas fa-angle-right"></i></button>
-
-        <div class="form-group col-md-4 mb-3 semaineplan" >
-
-            <select class="form-control" name="class">
-                <option>Semaine 3</option>
-                <option>Semaine 52</option>
-                <option>Semaine 51</option>
-                <option>Semaine 50</option>
-                <option>Semaine 49</option>
-                <option>Semaine 48</option>
-                <option>Semaine 47</option>
-                <option>Semaine 46</option>
-                <option>Semaine 45</option>
-                <option>Semaine 44</option>
-                <option>Semaine 43</option>
-                <option>Semaine 42</option>
-                <option>Semaine 41</option>
-                <option>Semaine 40</option>
-                <option>Semaine 39</option>
-                <option>Semaine 38</option>
-                <option>Semaine 37</option>
-                <option>Semaine 36</option>
-                <option>Semaine 35</option>
-                <option>Semaine 34</option>
-                <option>Semaine 33</option>
-                <option>Semaine 32</option>
-                <option>Semaine 31</option>
-                <option>Semaine 30</option>
-                <option>Semaine 29</option>
-                <option>Semaine 28</option>
-                <option>Semaine 27</option>
-                <option>Semaine 26</option>
-                <option>Semaine 25</option>
-                <option>Semaine 24</option>
-                <option>Semaine 23</option>
-                <option>Semaine 22</option>
-                <option>Semaine 21</option>
-                <option>Semaine 20</option>
-                <option>Semaine 19</option>
-                <option>Semaine 18</option>
-                <option>Semaine 17</option>
-                <option>Semaine 16</option>
-                <option>Semaine 15</option>
-                <option>Semaine 14</option>
-                <option>Semaine 13</option>
-                <option>Semaine 12</option>
-                <option>Semaine 11</option>
-                <option>Semaine 10</option>
-                <option>Semaine 9</option>
-                <option>Semaine 8</option>
-                <option>Semaine 7</option>
-                <option>Semaine 6</option>
-                <option>Semaine 5</option>
-                <option>Semaine 4</option>
-
-                <option>Semaine 2</option>
-                <option>Semaine 1</option>
-            </select>
-        </div>
-
-        <table class="calendar table table-bordered"  >
-            <thead>
-            <tr>
-                <th>&nbsp;</th>
-                <th id="mon" width="5%">18<br/>Lundi</th>
-                <th id="tue" width="5%">19<br/>Mardi</th>
-                <th id="wen" width="5%">20<br/>Mercredi</th>
-                <th id="thu" width="5%">21<br/>Jeudi</th>
-                <th id="fri" width="5%">22<br/>Vendredi</th>
-                <script>
-                    let today = new Date();
-                    let day = today.getDay()
-                    let monday = today.getDate() - day + (day === 0 ? -6:1)
-
-                    document.getElementById("mon").innerHTML = monday + "<br> Lundi"
-                    document.getElementById("tue").innerHTML = monday+1 + "<br> Mardi"
-                    document.getElementById("wen").innerHTML = monday+2 + "<br> Mercredi"
-                    document.getElementById("thu").innerHTML = monday+3 + "<br> Jeudi"
-                    document.getElementById("fri").innerHTML = monday+4 + "<br> Vendredi"
-                </script>
-            </tr>
-            </thead>
-            <%
-            minsToHHMM = function (mins, add) {
-                var mins_num = parseInt(mins) + parseInt(add);
-                var minutes = mins_num % 60;
-                var hours   = (mins_num - minutes)/ 60;
-
-                if (minutes < 10) {minutes = "0"+minutes;}
-                return hours+':'+minutes;
-            }
-
-            isFull = function (timeslot) {
-                if (timeslot.groups.length === timeslot.rooms.length) {
-                    return "complet"
-                } else {
-                    return "libre"
-                }
-            }
-            %>
-            <tbody>
-            <tr>
-                <td id="morning" class="m" width="5%">8:00 - 13:00</td>
-
-                <%for( let i = 0; i < 5; i++) {%>
-
-                    <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" id="morning<%=i%>" value="">
-                        <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[i*2].length; nbTimeSlot++) { %>
-                            <div class="<%= isFull(timeslots[(i*2)][nbTimeSlot]) %>" onclick="openForm()" id="<%= timeslots[(i*2)][nbTimeSlot]._id%>" draggable="true" ondragstart="drag(event)">
-                                <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-                                    <span class="title"><%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
-                                    <span class="title">Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot]) %></span> <span class="lecturer"></span>
-                                </div>
-                        </div>
-                        <%}%>
-                    </td>
-
-                <%}%>
-
-
-                <!--<td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1"></td>
-                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"rowspan="1">
-                    <div class="complet" onclick="openForm()" id="drag230" draggable="true" ondragstart="drag(event)">
-
-                        <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                            <span class="title">8:15 - 9:15</span> <span class="lecturer"></span>
-
-                            <span class="title">Créneau complet</span> <span class="lecturer"></span>
-                        </div>
-                    </div>
-                    <div class="complet" onclick="openForm()" id="drag231" draggable="true" ondragstart="drag(event)">
-
-                        <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                            <span class="title">8:15 - 9:15</span> <span class="lecturer"></span>
-
-                            <span class="title">Créneau complet</span> <span class="lecturer"></span>
-                        </div>
-                    </div>
-                </td>-->
-                <div class="login-popup">
-                    <div class="form-popup" id="popupForm">
-                        <form action="/action_page.php" class="form-container">
-                            <h2>Modification</h2>
-                            <div class="clock col-md-6">
-
-
-
-                                <input type="text" class="form-control" value="" placeholder="00:00">
-
-                                <script type="text/javascript" src="script/clockpicker.js"></script>
-                            </div>
-                            <div class="form-group col-md-4 mb-3 " >
-
-                                <select class="form-control" name="class">
-                                    <option>Jury 1</option>
-                                    <option>Jury 2</option>
-                                    <option>Jury 3</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-4 mb-3 " >
-
-                                <select class="form-control" name="class">
-                                    <option>Salle SC102</option>
-                                    <option>Salle SC101</option>
-                                    <option>Salle TD015</option>
-                                </select>
-                            </div>
-
-                            <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
-                        </form>
-                    </div>
-                </div>
-            </tr>
-
-
-
-
-            <tr>
-                <td id="afternoon" class="m" width="5%">13:00 - 19:00</td>
-
-                <!--<td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" rowspan="1"></td>
-                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)"  rowspan="1">
-                    <div class="libre"id="drag1" draggable="true" ondragstart="drag(event)" onclick="openForm()" >
-
-                        <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                            <span class="title">14:15 - 15:15</span> <span class="lecturer"></span>
-
-                            <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
-                        </div>
-                    </div>
-                    <div class="libre"id="drag2" draggable="true" ondragstart="drag(event)" onclick="openForm()" >
-
-                        <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                            <span class="title">14:15 - 15:15</span> <span class="lecturer"></span>
-
-                            <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
-                        </div>
-                    </div>
-                </td>-->
-
-                <%for( let i = 0; i < 5; i++) {%>
-
-                <td class="no-events" ondrop="drop(event)" ondragover="allowDrop(event)" id="afternoon<%=i%>" value="">
-                    <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[(i*2)+1].length; nbTimeSlot++) { %>
-                    <div class="<%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %>" onclick="openForm()" id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>" draggable="true" ondragstart="drag(event)">
-                        <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-                            <span class="title"><%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
-                            <span class="title">Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %></span> <span class="lecturer"></span>
-                        </div>
-                    </div>
-                    <%}%>
-                </td>
-
-                <%}%>
-
-                <div class="login-popup">
-                    <div class="form-popup" id="popupForm">
-                        <form action="/action_page.php" class="form-container">
-                            <h2>Modification</h2>
-                            <div class="clock col-md-6">
-
-
-
-                                <input type="text" class="form-control" value="" placeholder="00:00">
-
-                                <script type="text/javascript" src="script/clockpicker.js"></script>
-                            </div>
-                            <div class="form-group col-md-4 mb-3 " >
-
-                                <select class="form-control" name="class">
-                                    <option>Jury 1</option>
-                                    <option>Jury 2</option>
-                                    <option>Jury 3</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-4 mb-3 " >
-
-                                <select class="form-control" name="class">
-                                    <option>Salle SC102</option>
-                                    <option>Salle SC101</option>
-                                    <option>Salle TD015</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="btn cancel" onclick="closeForm()">Fermer</button>
-                        </form>
-                    </div>
-                    <div class="form-popup" id="popupHourForm">
-                        <form action="" class="form-container" method="POST">
-                            <h2>Modification</h2>
-                            <div class="clock col-md-6">
-                                <input type="text" class="form-control" value="" placeholder="00:00" name="startingTime" required>
-                                <script type="text/javascript" src="script/clockpicker.js"></script>
-                            </div>
-
-                            <button type="submit" class="btn cancel" onclick="closeFormHour()">Fermer</button>
-                        </form>
-                    </div>
-                </div>
-
-            </tr>
-
-            <script>
-                function allowDrop(ev) {
-                    ev.preventDefault();
-                }
-
-                function drag(ev) {
-                    ev.dataTransfer.setData("text", ev.target.id);
-                    ev.dataTransfer.setData("originalDay", ev.path[1].getAttribute('value'));
-                }
-
-                function drop(ev) {
-                    ev.preventDefault();
-                    console.log(ev)
-                    var data = ev.dataTransfer.getData("text");
-                    var newDay = ev.path[0].getAttribute('value')
-                    var diff = newDay - ev.dataTransfer.getData("originalDay")
-                    ev.target.appendChild(document.getElementById(data));
-                    openFormHour(data, diff)
-                }
-            </script>
-
-            <script>
-                function openForm() {
-                    document.getElementById("popupForm").style.display="block";
-                }
-
-                function closeForm() {
-                    document.getElementById("popupForm").style.display="none";
-                }
-
-                function openFormHour(data, diff) {
-                    document.getElementById("popupHourForm").firstChild.nextSibling.setAttribute('action', "/admin/planning?timeslotID="+data+"&diff="+diff+"&_method=PUT")
-                    document.getElementById("popupHourForm").style.display="block";
-                }
-
-                function closeFormHour() {
-                    document.getElementById("popupHourForm").style.display="none";
-                }
-
-            </script>
-
-            <script>
-                document.getElementById("morning0").setAttribute('value', monday)
-                document.getElementById("morning1").setAttribute('value', monday+1)
-                document.getElementById("morning2").setAttribute('value', monday+2)
-                document.getElementById("morning3").setAttribute('value', monday+3)
-                document.getElementById("morning4").setAttribute('value', monday+4)
-
-                document.getElementById("afternoon0").setAttribute('value', monday)
-                document.getElementById("afternoon1").setAttribute('value', monday+1)
-                document.getElementById("afternoon2").setAttribute('value', monday+2)
-                document.getElementById("afternoon3").setAttribute('value', monday+3)
-                document.getElementById("afternoon4").setAttribute('value', monday+4)
-            </script>
-
-
-
-            </tbody>
-        </table>
-        <p><i class="fa fa-check" aria-hidden="true"></i> 15 groupes ont réservé leur créneau</p>
-        <p><i class="fa fa-times" aria-hidden="true"></i> 10 groupes n'ont toujours pas réservé</p>
-        <p><i class="fa fa-times" aria-hidden="true"></i> 10 élèves n'ont pas rejoint de groupe</p>
-        <p><i class="fa fa-times" aria-hidden="true"></i> 10 élèves n'ont pas créé de compte</p>
-        <button type="submit" class="btn btn-primary droite" onclick="location.href='/admin/proposeTimeSlot?eventID=<%= event._id %>'">Proposer un nouveau créneau</button>
-        <button type="submit" class="btn btn-primary droite" >Partager le planning</button>
-
-
-    </main>
+        </p>
+        <p>Nombre de jury par soutenance <select class="form-control mi input-cadre">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+
+        </select></p>
+        </p>
+        <p> Date limite de réservation <input class="form-control mi input-cadre" id="dateDebut" name="dateDebut"
+                                              placeholder="jj/mm/aaaa" type="text"/>
+            <script src="script/datepicker.js" type="text/javascript"></script>
+        </p>
+        </p>
+        <p> Nombre d'élèves par soutenance
+            <select class="form-control mi input-cadre">
+                <option>1h</option>
+                <option>1h30</option>
+            </select></p>
+        <button class="btn btn-light modifier" type="submit">Modifier ces informations</button>
+
+
+    </div>
+
+    <button class="btn btn-light jury-button" onclick="location.href='/admin/manageJuries?eventID=<%= event._id %>'"
+            type="button">Modifier les jurys
+    </button>
+
+    <p class="p9">Autres événements</p>
+    <% if (events.length==0) { %>
+    <span>Aucun événement en cours</span><br>
+    <% }
+    else {
+    for(var i=0; i < events.length; i++) {%>
+    <button class="btn btn-primary ombré" onclick="location.href='/admin/planning?eventID=<%=events[i]._id%>'"
+            type="button"><%= events[i].name %> - <%=
+        classes[i].name %><i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
+    <%}
+    } %>
+</aside>
 <footer class="footer">
 
     <p class="p6">En savoir plus</p>
     <p class="p6bis">Langues</p><br>
     <p class="p6">https://polytech.umontpellier.fr</p>
     <p class="p6">français</p>
-    <img src="img/LOGO_original_RVB_WEB-1.png" alt="" class="log1"/>
-    <img src="img/IG.png" alt="" class="log1"/>
-    <img src="img/unnamed.png" alt="" class="log1"/>
+    <img alt="" class="log1" src="img/LOGO_original_RVB_WEB-1.png"/>
+    <img alt="" class="log1" src="img/IG.png"/>
+    <img alt="" class="log1" src="img/unnamed.png"/>
     <p class="p6">© 2020 Polytech Montpellier</p>
 
 </footer>
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+        ev.dataTransfer.setData("originalDay", ev.path[1].getAttribute('value'));
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        console.log(ev)
+        var data = ev.dataTransfer.getData("text");
+        var newDay = ev.path[0].getAttribute('value')
+        ev.target.appendChild(document.getElementById(data));
+        openFormHour(data, newDay)
+    }
+</script>
+
+<script>
+    function openForm(min, id, rooms) {
+
+        const event = new Event('change')
+
+
+        rooms = rooms.split(',')
+
+        console.log(rooms)
+
+        document.getElementById("nbcreneau").children[rooms.length - 1].setAttribute('selected', 'selected')
+        document.getElementById("nbcreneau").dispatchEvent(new Event('change'))
+
+        document.getElementById("hour-input").setAttribute('value', min)
+        document.getElementById("popupForm").style.display = "block";
+        document.getElementsByClassName("login-popup")[0].style.display = "block";
+        document.getElementsByTagName("body")[0].setAttribute('style', 'position: fixed; overflow-y: scroll')
+        document.getElementById("popupForm").firstChild.nextSibling.setAttribute('action', "/admin/planning?timeslotID=" + id + "&firstDay=<%= new Date(moment(originalDate)).getTime()%>" + "&_method=PUT")
+    }
+
+    function closeForm() {
+        document.getElementById("popupForm").style.display = "none";
+        document.getElementsByClassName("login-popup")[0].style.display = "none";
+        document.getElementsByTagName("body")[0].setAttribute('style', '')
+    }
+
+    function openFormHour(data, newDay) {
+        document.getElementsByTagName("body")[0].setAttribute('style', 'pointer-events: none; user-select: none;')
+        document.getElementById("popupHourForm").setAttribute('style', 'pointer-events: visible; user-select: unset;')
+        document.getElementById("popupHourForm").firstChild.nextSibling.setAttribute('action', "/admin/planning?timeslotID=" + data + "&newDay=" + newDay + "&firstDay=<%= new Date(moment(originalDate)).getTime()%>" + "&_method=PUT")
+        document.getElementById("popupHourForm").style.display = "block";
+        document.getElementsByClassName("login-popup")[0].style.display = "block";
+    }
+
+    function closeFormHour() {
+        document.getElementById("popupHourForm").style.display = "none";
+        document.getElementsByClassName("login-popup")[0].style.display = "none";
+        document.getElementsByTagName("body")[0].setAttribute('style', 'pointer-events: visible; user-select: unset;')
+
+    }
+
+</script>
+
+<script>
+    document.getElementById("morning0").setAttribute('value', firstDate.getDate())
+    document.getElementById("morning1").setAttribute('value', new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 1).getDate())
+    document.getElementById("morning2").setAttribute('value', new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 2).getDate())
+    document.getElementById("morning3").setAttribute('value', new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 3).getDate())
+    document.getElementById("morning4").setAttribute('value', new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 4).getDate())
+
+    document.getElementById("afternoon0").setAttribute('value', firstDate.getDate())
+    document.getElementById("afternoon1").setAttribute('value', new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 1).getDate())
+    document.getElementById("afternoon2").setAttribute('value', new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 2).getDate())
+    document.getElementById("afternoon3").setAttribute('value', new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 3).getDate())
+    document.getElementById("afternoon4").setAttribute('value', new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 4).getDate())
+</script>
 </body>
 </html>

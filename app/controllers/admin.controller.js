@@ -8,6 +8,7 @@ const TimeSlot = db.timeSlot
 const Teacher = db.teacher
 const Room = db.room
 const Jury = db.jury
+const Group = db.group
 
 
 exports.getEventCreation = (req, res) => {
@@ -118,72 +119,143 @@ exports.adminBoard = (req, res) => {
 
 exports.adminPlanning = (req, res) => {
 
-    Event.findOne({'_id': mongoose.Types.ObjectId(req.query.eventID)}, function (err, event) {
-        if (err) return console.log(err)
+    async function getAllRooms(){
+        return Room.find()
+    }
 
-        let originalDate = new Date()
-        if (req.query.firstDay === undefined) {
-            let today = new Date();
-            let day = today.getDay()
-            originalDate.setDate(originalDate.getDate() - day + (day === 0 ? -6 : 1))
-            originalDate = new Date(originalDate.getFullYear(), originalDate.getUTCMonth(), originalDate.getDate(), 0, 0, 0, 0)
-        }
+    async function getAllJuries(eventID){
+        return Jury.find({event : eventID})
+    }
 
-        let allTimeSlot = Array(10).fill([])
+    async function getTeachersOfAllJuries(jury){
+        return Teacher.find({_id : {$in : jury.teachers}})
+    }
 
-        for (let day = 0; day < 5; day++) {
-            for (let i = 0; i < 2; i++) {
-                let firstDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * day)
-                let lastDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * (day + 1))
-                console.log(event._id)
-                TimeSlot.find(
-                    {
-                        startingTime:
-                            {
-                                $gte: 780 * i,
-                                $lt: 780 * (i + 1)
-                            },
-                        date:
-                            {
-                                $gte: firstDate,
-                                $lt: lastDate
-                            },
-                        event: event._id
-                    },
-                    function (err, timeslots) {
-                        allTimeSlot[(2 * day) + (i)] = timeslots
-                    }).sort({date: 1, startingTime: 1})
-            }
-        }
+    async function findJuries(timeslot){
+        return Jury.find({_id: {$in : timeslot.juries}})
+    }
 
-        Event.find({'_id': {$nin: [event._id]}}, function (err, events) {
+    async function findRooms(timeslot){
+        return Room.find({_id: {$in : timeslot.rooms}})
+    }
+
+    async function findGroups(timeslot){
+        return Group.find({_id: {$in : timeslot.groups}})
+    }
+
+    async function findTeachers(jury){
+        return Teacher.find({_id: {$in : jury.teachers}})
+    }
+
+    async function doIt(){
+        await Event.findOne({'_id': mongoose.Types.ObjectId(req.query.eventID)}, async function (err, event) {
             if (err) return console.log(err)
 
-            const classesId = [];
-            events.forEach(function (doc) {
-                classesId.push(doc.class)
-            })
-            Class.find({
-                '_id': {$in: classesId}
-            }, function (err, classes) {
+            let originalDate = new Date()
+            if (req.query.firstDay === undefined) {
+                let today = new Date();
+                let day = today.getDay()
+                originalDate.setDate(originalDate.getDate() - day + (day === 0 ? -6 : 1))
+                originalDate = new Date(originalDate.getFullYear(), originalDate.getUTCMonth(), originalDate.getDate(), 0, 0, 0, 0)
+            } else {
+                originalDate = new Date(parseInt(req.query.firstDay))
+            }
+
+            let allTimeSlot = Array(10).fill([])
+            let allJuries = Array(10).fill(Array(10).fill([]))
+            let allRooms = Array(10).fill(Array(10).fill([]))
+            let allGroups = Array(10).fill(Array(10).fill([]))
+            let allTeachers = Array(10).fill(Array(10).fill([Array(10).fill([])]))
+
+            for (let day = 0; day < 5; day++) {
+                for (let i = 0; i < 2; i++) {
+                    let firstDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * day)
+                    let lastDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * (day + 1))
+                    await TimeSlot.find(
+                        {
+                            startingTime:
+                                {
+                                    $gte: 780 * i,
+                                    $lt: 780 * (i + 1)
+                                },
+                            date:
+                                {
+                                    $gte: firstDate,
+                                    $lt: lastDate
+                                },
+                            event: event._id
+                        },
+                        async function (err, timeslots) {
+                            console.log("timeslots size")
+                            console.log(timeslots.length)
+
+                            allTimeSlot[(2 * day) + (i)] = timeslots
+                            allJuries[(2 * day) + (i)] = Array(timeslots.length).fill([])
+                            allRooms[(2 * day) + (i)] = Array(timeslots.length).fill([])
+                            allGroups[(2 * day) + (i)] = Array(timeslots.length).fill([])
+
+
+                            for(let nbTimeSlots = 0; nbTimeSlots < timeslots.length; nbTimeSlots++){
+                                allJuries[(2 * day) + (i)][nbTimeSlots] = await findJuries(timeslots[nbTimeSlots])
+                                allRooms[(2 * day) + (i)][nbTimeSlots] = await findRooms(timeslots[nbTimeSlots])
+                                allGroups[(2 * day) + (i)][nbTimeSlots] = await findGroups(timeslots[nbTimeSlots])
+
+                                allTeachers[(2 * day) + (i)][allJuries[(2 * day) + (i)][nbTimeSlots].length] = Array(allJuries[(2 * day) + (i)][nbTimeSlots].length).fill([])
+
+                                for(let nbJuries = 0; nbJuries < allJuries[(2 * day) + (i)][nbTimeSlots].length; nbJuries++) {
+                                    allTeachers[(2 * day) + (i)][nbTimeSlots][nbJuries] = await findTeachers(allJuries[(2 * day) + (i)][nbTimeSlots][nbJuries])
+                                }
+                            }
+                        }).sort({date: 1, startingTime: 1})
+                }
+            }
+
+            await Event.find({'_id': {$nin: [event._id]}}, async function (err, events) {
                 if (err) return console.log(err)
 
-                Class.findOne({
-                    '_id': event.class
-                }, function (err, classe) {
-                    if (err) return console.log(err)
-                    res.render("PlanningAdmin.html", {
-                        event: event,
-                        classe: classe,
-                        events: events,
-                        classes: classes,
-                        timeslots: allTimeSlot
-                    })
-
+                const classesId = [];
+                events.forEach(function (doc) {
+                    classesId.push(doc.class)
                 })
-            }).sort({'_id': 1})
-        }).sort({'class': 1})
-    })
+                await Class.find({
+                    '_id': {$in: classesId}
+                }, async function (err, classes) {
+                    if (err) return console.log(err)
+
+                    await Class.findOne({
+                        '_id': event.class
+                    }, async function (err, classe) {
+                        if (err) return console.log(err)
+
+                        const allJuriesOfEvent = await getAllJuries(event._id)
+                        let teachersOfAllJuries = []
+                        for(let nbALlJuries = 0; nbALlJuries < allJuriesOfEvent.length; nbALlJuries++){
+                            teachersOfAllJuries[nbALlJuries] = await getTeachersOfAllJuries(allJuriesOfEvent[nbALlJuries])
+                        }
+
+                        await res.render("PlanningAdmin.html", {
+                            event: event,
+                            classe: classe,
+                            events: events,
+                            classes: classes,
+                            timeslots: allTimeSlot,
+                            originalDate: originalDate,
+                            rooms: allRooms,
+                            juries: allJuries,
+                            groups: allGroups,
+                            teachers: allTeachers,
+                            allRooms: await getAllRooms(),
+                            allJuries: allJuriesOfEvent,
+                            teachersOfAllJuries: teachersOfAllJuries
+                        })
+
+                    })
+                }).sort({'_id': 1})
+            }).sort({'class': 1})
+        })
+    }
+
+    doIt()
 
 };
 
@@ -225,10 +297,11 @@ exports.editTimeSlot = (req, res) => {
     let eventID = ""
     let date = new Date()
 
-    TimeSlot.findOne({_id: req.query.timeslotID}, async function (err, timeslot) {
+    TimeSlot.findOne({_id: req.query.timeslotID}, function (err, timeslot) {
 
         eventID = timeslot.event
-        date = new Date(timeslot.date.getTime() + (60 * 60 * 24) * 1000 * req.query.diff)
+        const diff = req.query.newDay - new Date(timeslot.date).getDate()
+        date = new Date(timeslot.date.getTime() + (60 * 60 * 24) * 1000 * diff)
 
         console.log("new")
         console.log(date)
@@ -243,7 +316,7 @@ exports.editTimeSlot = (req, res) => {
                 console.log(err)
                 return;
             }
-            res.redirect("/admin/planning?eventID=" + eventID)
+            res.redirect("/admin/planning?eventID=" + eventID+ "&firstDay=" + req.query.firstDay)
         })
     })
 
