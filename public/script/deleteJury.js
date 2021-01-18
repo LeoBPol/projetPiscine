@@ -1,7 +1,5 @@
 $(document).ready(function() {
-    console.log("test")
     $('#deleteJury').on("click", function(e) {
-        console.log("deleting")
         e.preventDefault();
         var id = $('#id').text();
         $.ajax({

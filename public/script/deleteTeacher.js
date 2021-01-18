@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    console.log("test")
     $('#deleteTeacher').on("click", function(e) {
         e.preventDefault();
         var id = $('#id').text();

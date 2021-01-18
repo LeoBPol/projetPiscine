@@ -23,8 +23,6 @@ exports.getEventCreation = (req, res) => {
 
 exports.createEvent = (req, res) => {
 
-    console.log(req.body)
-
     const start = moment(req.body.start, 'DD/MM/YYYY');
     const end = moment(req.body.end, 'DD/MM/YYYY');
     const deadline = moment(req.body.deadline, 'DD/MM/YYYY');
@@ -77,7 +75,6 @@ exports.createEvent = (req, res) => {
                                 let teachers = []
 
                                 for (let j = 0; j < req.body.sizeJury; j++) {
-                                    console.log(req.body.jury[(i * req.body.sizeJury) + j])
                                     teachers.push(mongoose.Types.ObjectId(req.body.jury[(i * req.body.sizeJury) + j]))
                                 }
                                 const jury = new Jury({
@@ -215,7 +212,6 @@ exports.adminPlanning = (req, res) => {
 
                                 for(let nbGroups = 0; nbGroups < allGroups[(2 * day) + (i)][nbTimeSlots].length; nbGroups++) {
                                     allStudents[(2 * day) + (i)][nbTimeSlots][nbGroups] = await getStudentsOfAllGroups(allGroups[(2 * day) + (i)][nbTimeSlots][nbGroups])
-                                    console.log(allStudents[(2 * day) + (i)][nbTimeSlots][nbGroups])
                                 }
                             }
                         }).sort({date: 1, startingTime: 1})
@@ -274,7 +270,6 @@ exports.adminPlanning = (req, res) => {
 
 exports.proposeTimeSlot = (req, res) => {
 
-    console.log(req.body)
     const date = moment(req.body.date, 'DD/MM/YYYY');
     const startingTime = parseInt(req.body.startingTime.substring(0, 2)) * 60 + parseInt(req.body.startingTime.substring(3, 5));
 
@@ -301,9 +296,6 @@ exports.proposeTimeSlot = (req, res) => {
 }
 
 exports.editTimeSlot = (req, res) => {
-
-    console.log(req.query)
-    console.log(req.body)
 
     async function getJury(juriesID) {
         let juriesObjectId = []
@@ -397,8 +389,6 @@ exports.manageTeachers = (req, res) => {
     Teacher.find(function (err, teachers) {
         if (err) return console.log(err)
 
-        console.log(teachers)
-
         res.render("GestionProfesseur.html", {teachers: teachers})
     }).sort({'teacherLastName': 1});
 
@@ -431,8 +421,6 @@ exports.manageRooms = (req, res) => {
 
     Room.find(function (err, rooms) {
         if (err) return console.log(err)
-
-        console.log(rooms)
 
         res.render("GestionSalle.html", {rooms: rooms})
     }).sort({'name': 1});
@@ -508,7 +496,6 @@ exports.addJury = (req, res) => {
             let teachers = []
 
             for (let j = 0; j < event.sizeJury; j++) {
-                console.log(req.body.jury[(i * event.sizeJury) + j])
                 teachers.push(mongoose.Types.ObjectId(req.body.jury[(i * event.sizeJury) + j]))
             }
             const jury = new Jury({

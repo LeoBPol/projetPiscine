@@ -130,8 +130,6 @@ exports.getGroupRegistration = (req, res) => {
 
 exports.groupRegistration = (req, res) => {
 
-    console.log(req.body)
-
     const group = new Group({
         supervisorTeacher: mongoose.Types.ObjectId(req.body.teacher)
     })
@@ -165,8 +163,6 @@ exports.groupRegistration = (req, res) => {
         group.save(function (err){
             User.findOne({_id: req.user._id}, function (err, user){
                 Event.findOne({class: user.class }, function (err, event){
-
-                    console.log(group)
                     res.redirect('/planning?eventID='+event._id)
                 })
             })
