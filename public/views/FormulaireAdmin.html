@@ -84,6 +84,24 @@
         </div>
 
         <div class="col-md-6 form-check">
+            <input type="checkbox" onclick="checkType()" class="form-check-input" id="isInternship" name="isInternship">
+            <label  for="exampleCheck1" >Soutenance de stage (permet aux étudiants d'entrer les informations de l'entreprise)</label>
+            <label id="isInternshipText" style="display: none">L'étudiant sera forcément seul pour cette soutenance.</label>
+        </div>
+
+
+        <div id="nbStudentDiv" class="col-md-6">
+            <label>Nombre d'étudiants par soutenance</label><br>
+            <select id="nbStudent" class="form-control" name="nbStudent">
+                <option selected="selected">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+
+        <div class="col-md-6 form-check">
             <input type="checkbox" onclick="checkcreneau()" class="form-check-input" id="exampleCheck1" checked="true" name="withJury">
             <label  for="exampleCheck1" >Je précise les jurys maintenant</label>
             <script>
@@ -126,6 +144,23 @@
                         }
                     }
                 }
+
+                function checkType() {
+                    let checkBox = document.getElementById("isInternship");
+
+                    let selector = document.getElementById("nbStudentDiv");
+                    let text = document.getElementById("isInternshipText");
+
+                    if (!(checkBox.checked)){
+                        selector.style.display = "block";
+                        text.style.display = "none";
+                    }
+                    else {
+                        selector.style.display = "none";
+                        text.style.display = "block";
+                    }
+                }
+
             </script>
         </div>
 
@@ -192,7 +227,6 @@
             const teacherSelectors = document.querySelectorAll('#teacherSelector');
 
             jury.addEventListener('change', (event2) => {
-                console.log("ntm")
                 console.log(teacherSelectors.length)
                 console.log(event2.target.value)
                 for (let numTeacherSelector = 0; numTeacherSelector < parseInt(nbjury.options[nbjury.selectedIndex].text) -1; numTeacherSelector++) {
@@ -221,7 +255,6 @@
             });
 
             jury.addEventListener('change', (event2) => {
-                console.log("ntm")
                 console.log(teacherSelectors.length)
                 console.log(event2.target.value)
                     for (let i = 0; i < event2.target.value - 1; i++) {

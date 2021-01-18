@@ -1,92 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  <base href="http://localhost:8080/public">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<head>
+    <base href="http://localhost:8080/public">
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
     <title>Page de Planning Etudiant</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <script src="https://use.fontawesome.com/b9bdbd120a.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <link rel="stylesheet" href="css/connexion.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="css/connexion.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" rel="stylesheet"/>
 
 
 </head>
 <body>
-<aside class="aside">
-    <button class="btn btn-circle" onclick="location.href='/logout'"><i class="far fa-sign-out"></i></button>
-
-    <%
-    hasBooking = function (timeSlots, group) {
-    let returnValue = "false"
-    timeSlots.forEach(timeSlot => {
-        if (timeSlot.length > 0){
-            for(let i = 0; i < timeSlot.length; i++){
-                if (timeSlot[i].groups){
-                    timeSlot[i].groups.forEach(groupid => {
-                        if (JSON.stringify(groupid) === JSON.stringify(group._id)) {
-                            returnValue = "true"
-                        }
-                    })
-                }
-            }
-        }
-    })
-    return returnValue
-    }
-    %>
-
-    <div class="cadre">
-        <p class="p7">Informations du groupe</p>
-        <%
-        if (group) {%>
-        <p><i class="fa fa-users" aria-hidden="true"></i> Membres :</p>
-        <% for (var i = 0; i < students.length; i++) {%>
-            <p><strong class="encadrer-un-contenu"><%= students[i].firstName %> <%= students[i].lastName %></strong> - <%= students[i].email %> </p>
-        <%}%>
-        <button type="submit" class="btn btn-light modifier">Modifier ces informations</button>
-        <%} else {%>
-        <p>Tu n'appartiens à aucun groupe</p>
-        <button type="button" class="btn btn-light modifier"onclick="location.href='/groupRegistration'">Indiquer son groupe</button>
-        <%}%>
-
-
-    </div>
-
-    <%
-    if (group != null){
-    if (hasBooking(timeslots, group) === "false") {%>
-    <p class="p2" style="color: white; margin-top: 5%">Vous n'avez pas encore réservé de créneau, vous pouvez en
-        réserver un dans la colonne de droite. Si vous en avez réservé
-        un, vous pouvez modifier votre réservation et choisir un autre
-        créneau disponible.</p>
-    <%} else {%>
-    <p class="p2" style="color: white; margin-top: 5%">Vous avez réservé un créneau.</p>
-    <%
-    }
-    }%>
-
-
-
-
-    <img src="img/component.png" alt="" class="logo"/>
-
-</aside>
 <main class="main">
 
 
-
     <p class="p3"><%= event.name %> - <%= classe.name %></p>
-    <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa date ou son horaire</p>
-    <div class="form-group col-md-4 mb-3 semaineplan" >
+    <p class="p4">Sélectionnez un créneau pour voir ses informations et les modifer. Faites le glisser pour modifier sa
+        date ou son horaire</p>
 
-        <select class="form-control" name="class">
-            <option>Semaine 51</option>
-            <option>Semaine 50</option>
-            <option>Semaine 49</option>
-        </select>
+    <div class="week-display" id="week-display" value="0">
+        <button class="btn week-btn-left"
+                onclick="location.href='/planning?eventID=<%= event._id %>&firstDay=<%= new Date(moment(originalDate)).getTime() - (60 * 60 * 24) * 1000 * 7 %>'"
+                type="button">
+            <i class="fa fa-angle-left"></i></button>
+        <p class="mon" id="week-desc">Semaine du 11 au 17 Jaxnvier</p>
+        <button class="btn week-btn-right"
+                onclick="location.href='/planning?eventID=<%= event._id %>&firstDay=<%= new Date(moment(originalDate)).getTime() + (60 * 60 * 24) * 1000 * 7 %>'"
+                type="button">
+            <i class="fa fa-angle-right" style="border: none"></i></button>
     </div>
-    <table class="perso-calendar calendar table table-bordered"  >
+
+    <table class="perso-calendar calendar table table-bordered">
         <thead>
         <tr>
             <th>&nbsp;</th>
@@ -96,15 +45,33 @@
             <th id="thu" width="5%">24<br/>Jeudi</th>
             <th id="fri" width="5%">25<br/>Vendredi</th>
             <script>
-                let today = new Date();
-                let day = today.getDay()
-                let monday = today.getDate() - day + (day === 0 ? -6:1)
 
-                document.getElementById("mon").innerHTML = monday + "<br> Lundi"
-                document.getElementById("tue").innerHTML = monday+1 + "<br> Mardi"
-                document.getElementById("wen").innerHTML = monday+2 + "<br> Mercredi"
-                document.getElementById("thu").innerHTML = monday+3 + "<br> Jeudi"
-                document.getElementById("fri").innerHTML = monday+4 + "<br> Vendredi"
+                function getMonth(monthNum) {
+                    month = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+                    return month[monthNum]
+                }
+
+                let firstDate = moment("<%= originalDate %>").toDate();
+                let lastDate = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 6)
+
+                let text = ""
+                if (firstDate.getFullYear() !== lastDate.getFullYear()) {
+                    text = "Semaine du " + firstDate.getDate() + " " + getMonth(firstDate.getMonth()) + " " + firstDate.getFullYear() + " au " + lastDate.getDate() + " " + getMonth(lastDate.getMonth()) + " " + lastDate.getFullYear()
+                } else if (getMonth(firstDate.getMonth()) !== getMonth(lastDate.getMonth())) {
+                    text = "Semaine du " + firstDate.getDate() + " " + getMonth(firstDate.getMonth()) + " au " + lastDate.getDate() + " " + getMonth(lastDate.getMonth()) + " " + lastDate.getFullYear()
+                } else {
+                    text = "Semaine du " + firstDate.getDate() + " au " + lastDate.getDate() + " " + getMonth(firstDate.getMonth()) + " " + firstDate.getFullYear()
+                }
+                document.getElementById("week-desc").innerText = text
+                let day = firstDate.getDay()
+                let monday = firstDate.getDate() - day + (day === 0 ? -6 : 1)
+
+                document.getElementById("mon").innerHTML = firstDate.getDate() + "<br> Lundi"
+                document.getElementById("tue").innerHTML = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 1).getDate() + "<br> Mardi"
+                document.getElementById("wen").innerHTML = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 2).getDate() + "<br> Mercredi"
+                document.getElementById("thu").innerHTML = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 3).getDate() + "<br> Jeudi"
+                document.getElementById("fri").innerHTML = new Date(firstDate.getTime() + (60 * 60 * 24) * 1000 * 4).getDate() + "<br> Vendredi"
+
             </script>
         </tr>
         </thead>
@@ -112,69 +79,96 @@
         minsToHHMM = function (mins, add) {
         var mins_num = parseInt(mins) + parseInt(add);
         var minutes = mins_num % 60;
-        var hours   = (mins_num - minutes)/ 60;
+        var hours = (mins_num - minutes)/ 60;
 
         if (minutes < 10) {minutes = "0"+minutes;}
         return hours+':'+minutes;
         }
 
-        isFull = function (timeslot, group) {
+        isFull = function (sendTimeSlot, group) {
+        console.log(group)
         classe = "libre"
-        if (timeslot.groups.length === timeslot.rooms.length) {
+        if (sendTimeSlot.groups.length === sendTimeSlot.rooms.length) {
         classe = "complet"
         }
-        if (group !== undefined){
-        for (var i = 0; i < timeslot.groups.length; i++){
-        if(JSON.stringify(group._id) === JSON.stringify(timeslot.groups[i])){
+        if (group !== null){
+        for (var i = 0; i < sendTimeSlot.groups.length; i++){
+        if(JSON.stringify(group._id) === JSON.stringify(sendTimeSlot.groups[i])){
         classe = "reserve"
         }
         }
         }
         return classe
         }
+
+        openabled = function() {
+            console.log("group")
+            console.log(group)
+            let value = '';
+            if(group){
+                value = 1
+                if(group.timeSlot !== null){
+                    console.log("group.timeSlot")
+                    console.log(group.timeSlot)
+                    value = ''
+                }
+            }
+            return value
+        }
         %>
         <tbody>
         <tr>
-            <td id="morning" class="time-slot-indicator m" width="5%">08:00 - 13:00</td>
+            <td class="time-slot-indicator m" id="morning" width="5%">08:00 - 13:00</td>
 
             <%for( let i = 0; i < 5; i++) {%>
 
-            <td class="no-events time-slot" id="morning<%=i%>" value="" >
+            <td class="no-events time-slot" id="morning<%=i%>" value="">
                 <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[i*2].length; nbTimeSlot++) { %>
-                <div class="<%= isFull(timeslots[(i*2)][nbTimeSlot], group) %>" onclick="openForm('<%= timeslots[(i*2)][nbTimeSlot]._id %>','<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %>','<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %>', '<%= timeslots[(i*2)][nbTimeSlot].date %>', 'morning<%=i%>')" id="<%= timeslots[(i*2)][nbTimeSlot]._id%>" style="">
-                    <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-                        <span class="title"><%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
-                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot], group) %> </span> <span class="lecturer"></span>
+                <div class="<%= isFull(timeslots[(i*2)][nbTimeSlot], group) %> time-slot"
+                     id="<%= timeslots[(i*2)][nbTimeSlot]._id%>"
+                     onclick="if('<%= openabled() %>' !== ''){openForm('<%= timeslots[(i*2)][nbTimeSlot]._id %>',
+                     '<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %>',
+                     '<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %>',
+                     '<%= timeslots[(i*2)][nbTimeSlot].date %>')}" style="">
+                    <div class="row-fluid lecture" style="width: 99%; height: 100%;">
+                        <span class="title"><%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %></span>
+                        <span class="lecturer"></span>
+                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot], group) %> </span> <span
+                            class="lecturer"></span>
+                        <% if(isFull(timeslots[(i*2)][nbTimeSlot], group) === "reserve") {%>
+                        <span class="title"> <%= room.name %> </span> <span
+                            class="lecturer"></span>
+                        <%}%>
                     </div>
                 </div>
                 <%}%>
             </td>
 
             <%}%>
-
-            <div class="login-popup">
-                <div class="form-popup" id="popupForm">
-                    <form action="" method="post" class="form-container">
-                        <h2 style="margin: 2%">S'inscrire à ce créneau</h2>
-                        <p id="hours" class="p4" style="text-align: center;margin-left: 0;"></p>
-                        <p id="date" class="p4" style="text-align: center;margin-left: 0; margin-bottom: 0"></p>
-                        <button type="submit" class="btn btn-primary pop-up-button" >Valider</button>
-                    </form>
-                </div>
-            </div>
         </tr>
 
         <tr>
-            <td id="afternoon" class="time-slot-indicator m" width="5%">13:00 - 19:00</td>
+            <td class="time-slot-indicator m" id="afternoon" width="5%">13:00 - 19:00</td>
 
             <%for( let i = 0; i < 5; i++) {%>
 
             <td class="no-events time-slot" id="afternoon<%=i%>" value="">
                 <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[(i*2)+1].length; nbTimeSlot++) { %>
-                <div class="<%= isFull(timeslots[(i*2)+1][nbTimeSlot], group) %>" onclick="openForm('<%= timeslots[(i*2)+1][nbTimeSlot]._id %>','<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %>','<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %>', '<%= timeslots[(i*2)+1][nbTimeSlot].date %>','afternoon<%=i%>')" id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>" style="" >
-                    <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-                        <span class="title"><%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %></span> <span class="lecturer"></span>
-                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %> </span> <span class="lecturer"></span>
+                <div class="<%= isFull(timeslots[(i*2)+1][nbTimeSlot], group) %> time-slot"
+                     id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>"
+                     onclick="if('<% openabled() %>' !== ''){openForm('<%= timeslots[(i*2)+1][nbTimeSlot]._id %>',
+                     '<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %>',
+                     '<%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %>',
+                     '<%= timeslots[(i*2)+1][nbTimeSlot].date %>')}" style="">
+                    <div class="row-fluid lecture" style="width: 99%; height: 100%;">
+                        <span class="title"><%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %></span>
+                        <span class="lecturer"></span>
+                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot], group) %> </span> <span
+                            class="lecturer"></span>
+                        <% if(isFull(timeslots[(i*2)+1][nbTimeSlot], group) === "reserve") {%>
+                        <span class="title"> <%= room.name %> </span> <span
+                            class="lecturer"></span>
+                        <%}%>
                     </div>
                 </div>
                 <%}%>
@@ -185,130 +179,46 @@
         </tr>
 
         <script>
-            function openForm(id, firstHour, lastHour, date, idElement) {
-                if(document.getElementById(idElement).firstChild.nextSibling.getAttribute('class') !== 'complet') {
+            function openForm(id, firstHour, lastHour, date) {
+                console.log("jhvsqjf")
+                if (document.getElementById(id).getAttribute('class') !== 'complet') {
                     date = moment(date).format("DD/MM/YYYY")
                     document.getElementById("popupForm").style.display = "block";
+                    document.getElementsByClassName("login-popup")[0].style.display = "block";
+                    document.getElementsByClassName("login-popup")[0].getElementsByTagName("span")[0].setAttribute('onclick', 'closeForm(\'' + id.toString() + '\')')
                     document.getElementById("hours").innerHTML = "Horaires : " + firstHour + " - " + lastHour
                     document.getElementById("date").innerHTML = "Date : " + date
-                    document.getElementById("popupForm").firstChild.nextSibling.setAttribute('action', "/planning?eventID=" + "<%= event._id %>" + "&timeslotID=" + id + "&_method=PUT")
-                    document.getElementById(idElement).firstChild.nextSibling.setAttribute('style','background-color: #fcfc64; color: #959547')
+                    document.getElementById("popupForm").children[1].setAttribute('action', "/planning?eventID=" + "<%= event._id %>" + "&timeslotID=" + id + "&_method=PUT")
+                    document.getElementById(id).setAttribute('style', 'background-color: #fcfc64; color: #959547')
                 }
             }
 
-            function closeForm() {
-                document.getElementById("popupForm").style.display="none";
+            function closeForm(id) {
+                document.getElementById("popupForm").style.display = "none";
+                document.getElementsByClassName("login-popup")[0].style.display = "none";
+                console.log(id)
+                document.getElementById(id).setAttribute('style', '')
             }
         </script>
 
         <script>
             document.getElementById("morning0").setAttribute('value', monday)
-            document.getElementById("morning1").setAttribute('value', monday+1)
-            document.getElementById("morning2").setAttribute('value', monday+2)
-            document.getElementById("morning3").setAttribute('value', monday+3)
-            document.getElementById("morning4").setAttribute('value', monday+4)
+            document.getElementById("morning1").setAttribute('value', monday + 1)
+            document.getElementById("morning2").setAttribute('value', monday + 2)
+            document.getElementById("morning3").setAttribute('value', monday + 3)
+            document.getElementById("morning4").setAttribute('value', monday + 4)
 
             document.getElementById("afternoon0").setAttribute('value', monday)
-            document.getElementById("afternoon1").setAttribute('value', monday+1)
-            document.getElementById("afternoon2").setAttribute('value', monday+2)
-            document.getElementById("afternoon3").setAttribute('value', monday+3)
-            document.getElementById("afternoon4").setAttribute('value', monday+4)
+            document.getElementById("afternoon1").setAttribute('value', monday + 1)
+            document.getElementById("afternoon2").setAttribute('value', monday + 2)
+            document.getElementById("afternoon3").setAttribute('value', monday + 3)
+            document.getElementById("afternoon4").setAttribute('value', monday + 4)
         </script>
-
 
 
         </tbody>
     </table>
-    <!--<table class="calendar table table-bordered" >
-        <thead>
-        <tr>
-            <th>&nbsp;</th>
-            <th width="5%">Lundi</th>
-            <th width="5%">Mardi</th>
-            <th width="5%">Mercredi</th>
-            <th width="5%">Jeudi</th>
-            <th width="5%">Vendredi</th>
-        </tr>
-        </thead>
-        <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <tr>
-            <td class="m" width="5%">8:00</td>
-
-            <td class=" no-events" rowspan="1"></td>
-            <td class=" no-events" rowspan="1"></td>
-            <td class=" no-events" rowspan="1"></td>
-            <td class=" no-events"  rowspan="1">
-                <div class="row-fluid lecture" "style="width: 99%; height: 100%;">
-
-
-
-            </div></td>
-            <td class=" has-events"   rowspan="1">
-                <div class="libre">
-
-                <div class="row-fluid lecture"  style="width: 99%; height: 100%;">
-
-                    <span class="title">8:15 - 9:15</span> <span class="lecturer"></span>
-
-                    <span class="title">2 créneaux libres</span> <span class="lecturer"></span>
-                </div>
-                </div>
-            </td
-
-
-
-
-        </tr>
-        <tr>
-            <td class="m" width="5%">13:00</td>
-
-            <td class=" no-events" rowspan="1"></td>
-
-            <td class=" no-events" rowspan="1"></td>
-
-            <td class=" no-events" rowspan="1"></td>
-
-            <td class=" no-events" rowspan="1"></td>
-
-            <td class=" has-events"  rowspan="1">
-                <div class="complet"
-
-                <div class="row-fluid lecture" style="width: 99%; height: 100%;">
-
-                    <span class="title">14:15 - 15:15</span> <span class="lecturer"></span>
-
-                    <span class="title">Créneau complet</span> <span class="lecturer"></span>
-                </div>
-                </div>
-            </td
-
-        </tr>
-
-
-
-
-        </tbody>
-    </table>-->
+    <!--<table class="calendar table table-bordered" >-->
 
 </main>
 <footer class="footer">
@@ -317,11 +227,117 @@
     <p class="p6bis">Langues</p><br>
     <p class="p6">https://polytech.umontpellier.fr</p>
     <p class="p6">français</p>
-    <img src="img/LOGO_original_RVB_WEB-1.png" alt="" class="log1"/>
-    <img src="img/IG.png" alt="" class="log1"/>
-    <img src="img/unnamed.png" alt="" class="log1"/>
+    <img alt="" class="log1" src="img/LOGO_original_RVB_WEB-1.png"/>
+    <img alt="" class="log1" src="img/IG.png"/>
+    <img alt="" class="log1" src="img/unnamed.png"/>
     <p class="p6">© 2020 Polytech Montpellier</p>
 
 </footer>
+<aside class="aside">
+    <div class="login-popup">
+        <div class="form-popup" id="popupForm">
+            <span class="fa fa-close" onclick="closeForm()" style="float: right; margin: 2%" type="button"></span>
+            <form action="" class="form-container" method="post" style="margin-left: 0">
+                <h2 style="margin: 2%">S'inscrire à ce créneau</h2>
+                <p class="p4" id="hours" style="text-align: center;margin-left: 0;"></p>
+                <p class="p4" id="date" style="text-align: center;margin-left: 0; margin-bottom: 0"></p>
+                <button class="btn btn-primary pop-up-button" type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
+    <button class="btn btn-circle" onclick="location.href='/logout'"><i class="far fa-sign-out"></i></button>
+
+    <%
+    hasBooking = function (timeSlots, group) {
+    let returnValue = "false"
+    timeSlots.forEach(timeSlot => {
+    if (timeSlot.length > 0){
+    for(let i = 0; i < timeSlot.length; i++){
+    if (timeSlot[i].groups){
+    timeSlot[i].groups.forEach(groupid => {
+    if (JSON.stringify(groupid) === JSON.stringify(group._id)) {
+    returnValue = "true"
+    }
+    })
+    }
+    }
+    }
+    })
+    return returnValue
+    }
+    %>
+
+    <%if(event.sizeGroup > 1) {%>
+    <div class="cadre">
+        <p class="p7">Informations du groupe</p>
+        <%
+        if (group) {%>
+        <p><i aria-hidden="true" class="fa fa-users"></i> Membres :</p>
+        <% for (var i = 0; i < students.length; i++) {%>
+        <p><strong class="encadrer-un-contenu"><%= students[i].firstName %> <%= students[i].lastName %></strong> - <%=
+            students[i].email %> </p>
+        <%}%>
+        <p>Tuteur polytech : <%= teacher.teacherFirstName %> <%= teacher.teacherLastName %></p>
+        <button style="margin-top: 0" class="btn btn-light modifier" type="submit">Modifier ces informations</button>
+        <%} else {%>
+        <p>Tu n'appartiens à aucun groupe</p>
+        <button style="margin-top: 0" class="btn btn-light modifier" onclick="location.href='/groupRegistration'" type="button">Indiquer son
+            groupe
+        </button>
+        <%}%>
+
+    </div>
+    <%
+    console.log("group")
+    console.log(group)
+    if (group !== null){
+    if (hasBooking(timeslots, group) === "false") {%>
+    <p class="p2" style="color: white; margin-top: 5%">Vous n'avez pas encore réservé de créneau, vous pouvez en
+        réserver un dans la colonne de droite. Vous avez jusqu'au <%= moment(event.deadline).format("DD/MM/YYYY") %> pour le faire.</p>
+    <%} else {%>
+    <p class="p2" style="color: white; margin-top: 5%">Vous avez réservé un créneau. Votre soutenance se déroulera dans la salle <%= room.name %> à <%= minsToHHMM(timeslot.startingTime,0) %> le <%= moment(timeslot.date).format("DD/MM/YYYY") %>.</p>
+    <%
+    }
+    } else {%>
+    <p class="p2" style="color: white; margin-top: 5%">Vous n'avez pas encore rejoint de groupe. Rejoignez-en un et vous
+        pourrez réserver un créneau. Vous avez jusqu'au <%= moment(event.deadline).format("DD/MM/YYYY") %> pour reserver un créneau.</p>
+    <%}%>
+
+    <%} else {%>
+    <div class="cadre">
+        <p class="p7">Information de l'étudiant</p>
+
+        <% console.log(group);console.log((event.isInternship && group !== null));if(event.isInternship && group !== null){%>
+        <p><strong class="encadrer-un-contenu"><%= students[0].firstName %> <%= students[0].lastName %></strong> - <%=
+            students[0].email %> </p>
+        <p>Tuteur polytech : <%= teacher.teacherFirstName %> <%= teacher.teacherLastName %></p>
+        <p>Tuteur entreprise : <%= group.tutorFirstName %> <%= group.tutorLastName %></p>
+        <p>Entreprise : <%= group.companyName %></p>
+        <button style="margin-top: 0" class="btn btn-light modifier" onclick="location.href='/groupRegistration'" type="button">Modifier les informations du stage
+        </button>
+        <%} else {%>
+        <p><strong class="encadrer-un-contenu"><%= student.firstName %> <%= student.lastName %></strong> - <%=
+            student.email %> </p>
+        <button style="margin-top: 0" class="btn btn-light modifier" onclick="location.href='/groupRegistration'" type="button">Entrer les informations du stage
+        </button>
+        <%}%>
+
+    </div>
+    <% if(group !== null){%>
+        <% if(group.timeSlot !== null){%>
+            <p class="p2" style="color: white; margin-top: 5%">Vous avez déjà réservé un créneau. Votre soutenance se déroulera dans la salle <%= room.name %> à <%= minsToHHMM(timeslot.startingTime,0) %> le <%= moment(timeslot.date).format("DD/MM/YYYY") %>.</p>
+        <% } else {%>
+            <p class="p2" style="color: white; margin-top: 5%">Vous n'avez pas encore réservé de créneau, vous pouvez en
+            réserver un dans la colonne de droite. Vous avez jusqu'au <%= moment(event.deadline).format("DD/MM/YYYY") %> pour le faire.</p>
+        <%}%>
+    <%} else {%>
+    <p class="p2" style="color: white; margin-top: 5%">Vous n'avez pas encore entrer les informations nécessaires. Faites le et vous pourrez réserver un créneau. Vous avez jusqu'au <%= moment(event.deadline).format("DD/MM/YYYY") %> pour reserver un créneau.</p>
+    <%}%>
+    <%}%>
+
+
+    <img alt="" class="logo" src="img/component.png"/>
+
+</aside>
 </body>
 </html>

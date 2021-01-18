@@ -16,8 +16,8 @@
 
 
 <aside class="aside">
-    <button class="btn btn-circle"><i class="far fa-sign-out"></i></button>
-    <button class="btn btn-circle"><i class="fa fa-home"></i></button>
+    <button class="btn btn-circle" onclick="location.href='/logout'"><i class="far fa-sign-out"></i></button>
+    <button class="btn btn-circle" onclick="location.href='/admin/accueil'"><i class="fa fa-home"></i></button>
     <h1>Indication des jurys</h1>
     <img src="img/component.png" alt="" class="logo"/>
 
@@ -32,22 +32,17 @@
 
     <ul class="list-group" style="margin-left: 10%; margin-right: 10%">
         <% for(var i=0; i < juries.length; i++) { %>
-        <li id="juryElement" class="list-group-item" value="<%= juries[i]._id %>">
-            <span id="deleteJury" class="fa fa-times" onclick="test()" style="right: 10%"></span>
+        <li id="<%= juries[i]._id %>" class="list-group-item" value="<%= juries[i]._id %>">
+            <span id="deleteJury" class="fa fa-times" onclick="test('<%= juries[i]._id %>')" style="right: 10%"></span>
             <%
-            console.log(teachersInJuries)
             for(var j = 0; j < teachersInJuries[0].length; j++) {%>
                 <%= teachersInJuries[i][j].teacherLastName %>
             <%}%>
-            <p id="id" value="<%= juries[i]._id %>" style="display: none"><%= juries[i]._id %></p>
         </li>
         <% } %>
 
         <script>
-            function test(){
-                console.log("deleting")
-                var id = $('#id').text();
-                console.log(id)
+            function test(id){
                 $.ajax({
                     type: 'DELETE',
                     url: '/admin/manageJuries/' + id + "/" + "<%= event._id %>",
@@ -58,7 +53,8 @@
                         console.log(err);
                     }
                 });
-                $('#juryElement').attr('style', 'display: none');
+                document.getElementById(id).setAttribute('style', 'display: none')
+                //$('#'+id).attr('style', 'display: none');
             }
         </script>
 
@@ -68,16 +64,6 @@
                 <div id="selector" class="col-md-6">
                     <label for="nbjury">Nombre de jury</label><br>
                     <select class="form-control" id="nbjury"name="nbJury">
-                        <option selected="selected">1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
-                </div>
-
-                <div id="nbjuryselector" class="col-md-6">
-                    <label for="jury">Nombre de membre du jury</label><br>
-                    <select class="form-control" id="jury"name="sizeJury">
                         <option selected="selected">1</option>
                         <option>2</option>
                         <option>3</option>
@@ -127,55 +113,11 @@
                     let teacherSelector = document.querySelector('#teacherSelector');
                     const teacherSelectors = document.querySelectorAll('#teacherSelector');
 
-                    jury.addEventListener('change', (event2) => {
-                        console.log("ntm")
-                        console.log(teacherSelectors.length)
-                        console.log(event2.target.value)
-                        for (let numTeacherSelector = 0; numTeacherSelector < parseInt(nbjury.options[nbjury.selectedIndex].text) -1; numTeacherSelector++) {
-                            console.log("numTeacherSelector")
-                            console.log(numTeacherSelector)
-                            for (var i = 0; i < event2.target.value - 1; i++) {
-                                if (document.querySelector('#teacher'+numTeacherSelector+'Selector' + i)) {
-                                    document.querySelector('#teacher'+numTeacherSelector+'Selector' + i).style.display = 'block'
-                                } else {
-                                    console.log('#teacher'+numTeacherSelector+'Selector')
-                                    console.log('#teacher'+numTeacherSelector+'Selector')
-                                    const teacherSel = document.getElementById('teacher'+numTeacherSelector+'Selector')
-                                    console.log(teacherSel)
-                                    let copyTeacherSelector = teacherSel.cloneNode(true);
-                                    copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + i
-                                    teacherSel.parentNode.insertBefore(copyTeacherSelector, teacherSel);
-                                }
-                            }
-
-                            for (let j = event2.target.value - 1; j < 10; j++) {
-                                let teacherSelector = document.querySelector('#teacher'+numTeacherSelector+'Selector' + j)
-                                if (teacherSelector != null) teacherSelector.parentNode.removeChild(teacherSelector)
-                                //teacherSelector.style.display = 'none'
-                            }
-                        }
-                    });
-
-                    jury.addEventListener('change', (event2) => {
-                        console.log("ntm")
-                        console.log(teacherSelectors.length)
-                        console.log(event2.target.value)
-                        for (let i = 0; i < event2.target.value - 1; i++) {
-                            if (document.querySelector('#teacherSelector' + i)) {
-                                document.querySelector('#teacherSelector' + i).style.display = 'block'
-                            } else {
-                                copyTeacherSelector = teacherSelector.cloneNode(true);
-                                copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + i
-                                teacherSelector.parentNode.insertBefore(copyTeacherSelector, teacherSelector.nextSibling);
-                            }
-                        }
-
-                        for (let j = event2.target.value - 1; j < 10; j++) {
-                            let teacherSelector = document.querySelector('#teacherSelector' + j)
-                            if (teacherSelector != null) teacherSelector.parentNode.removeChild(teacherSelector)
-                            //teacherSelector.style.display = 'none'
-                        }
-                    });
+                    for (let i = 0; i < parseInt('<%= event.sizeJury %>')-1; i++) {
+                        copyTeacherSelector = teacherSelector.cloneNode(true);
+                        copyTeacherSelector.attributes.id.nodeValue = copyTeacherSelector.attributes.id.nodeValue + i
+                        teacherSelector.parentNode.insertBefore(copyTeacherSelector, teacherSelector.nextSibling);
+                    }
 
                 </script>
 

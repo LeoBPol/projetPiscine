@@ -8,14 +8,20 @@ const Group = mongoose.model(
         companyName: String,
         supervisorTeacher:
             {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Teacher"
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Teacher"
             },
         students:
             [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-            }]
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }],
+        timeSlot:
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "TimeSlot"
+            }
+
     })
 );
 

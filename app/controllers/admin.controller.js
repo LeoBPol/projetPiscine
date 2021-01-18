@@ -9,6 +9,7 @@ const Teacher = db.teacher
 const Room = db.room
 const Jury = db.jury
 const Group = db.group
+const User = db.user
 
 
 exports.getEventCreation = (req, res) => {
@@ -34,7 +35,9 @@ exports.createEvent = (req, res) => {
         end: Date.parse(moment(end).format('YYYY-MM-DD')),
         deadline: Date.parse(moment(deadline).format('YYYY-MM-DD')),
         presentationDuration: req.body.presentationDuration,
-        sizeJury: req.body.sizeJury
+        sizeJury: req.body.sizeJury,
+        sizeGroup: req.body.nbStudent,
+        isInternship: req.body.isInternship === 'on'
     });
 
     event.save(((err, event) => {
@@ -131,6 +134,10 @@ exports.adminPlanning = (req, res) => {
         return Teacher.find({_id : {$in : jury.teachers}})
     }
 
+    async function getStudentsOfAllGroups(group){
+        return User.find({_id : {$in : group.students}})
+    }
+
     async function findJuries(timeslot){
         return Jury.find({_id: {$in : timeslot.juries}})
     }
@@ -166,6 +173,7 @@ exports.adminPlanning = (req, res) => {
             let allRooms = Array(10).fill(Array(10).fill([]))
             let allGroups = Array(10).fill(Array(10).fill([]))
             let allTeachers = Array(10).fill(Array(10).fill([Array(10).fill([])]))
+            let allStudents = Array(10).fill(Array(10).fill([Array(10).fill([])]))
 
             for (let day = 0; day < 5; day++) {
                 for (let i = 0; i < 2; i++) {
@@ -186,8 +194,6 @@ exports.adminPlanning = (req, res) => {
                             event: event._id
                         },
                         async function (err, timeslots) {
-                            console.log("timeslots size")
-                            console.log(timeslots.length)
 
                             allTimeSlot[(2 * day) + (i)] = timeslots
                             allJuries[(2 * day) + (i)] = Array(timeslots.length).fill([])
@@ -201,9 +207,15 @@ exports.adminPlanning = (req, res) => {
                                 allGroups[(2 * day) + (i)][nbTimeSlots] = await findGroups(timeslots[nbTimeSlots])
 
                                 allTeachers[(2 * day) + (i)][allJuries[(2 * day) + (i)][nbTimeSlots].length] = Array(allJuries[(2 * day) + (i)][nbTimeSlots].length).fill([])
+                                allStudents[(2 * day) + (i)][allGroups[(2 * day) + (i)][nbTimeSlots].length] = Array(allGroups[(2 * day) + (i)][nbTimeSlots].length).fill([])
 
                                 for(let nbJuries = 0; nbJuries < allJuries[(2 * day) + (i)][nbTimeSlots].length; nbJuries++) {
                                     allTeachers[(2 * day) + (i)][nbTimeSlots][nbJuries] = await findTeachers(allJuries[(2 * day) + (i)][nbTimeSlots][nbJuries])
+                                }
+
+                                for(let nbGroups = 0; nbGroups < allGroups[(2 * day) + (i)][nbTimeSlots].length; nbGroups++) {
+                                    allStudents[(2 * day) + (i)][nbTimeSlots][nbGroups] = await getStudentsOfAllGroups(allGroups[(2 * day) + (i)][nbTimeSlots][nbGroups])
+                                    console.log(allStudents[(2 * day) + (i)][nbTimeSlots][nbGroups])
                                 }
                             }
                         }).sort({date: 1, startingTime: 1})
@@ -246,7 +258,8 @@ exports.adminPlanning = (req, res) => {
                             teachers: allTeachers,
                             allRooms: await getAllRooms(),
                             allJuries: allJuriesOfEvent,
-                            teachersOfAllJuries: teachersOfAllJuries
+                            teachersOfAllJuries: teachersOfAllJuries,
+                            allStudents: allStudents
                         })
 
                     })
@@ -292,25 +305,46 @@ exports.editTimeSlot = (req, res) => {
     console.log(req.query)
     console.log(req.body)
 
+    async function getJury(juriesID) {
+        let juriesObjectId = []
+        juriesID.forEach(juryID => {
+            juriesObjectId.push(mongoose.Types.ObjectId(juryID))
+        })
+        return juriesObjectId
+    }
+
+    async function getRooms(roomsID) {
+        let roomsObjectId = []
+        if (roomsID !== undefined) {
+            roomsID.forEach(roomID => {
+                roomsObjectId.push(mongoose.Types.ObjectId(roomID))
+            })
+        }
+        return roomsObjectId
+    }
+
     const startingTime = parseInt(req.body.startingTime.substring(0, 2)) * 60 + parseInt(req.body.startingTime.substring(3, 5));
 
     let eventID = ""
     let date = new Date()
 
-    TimeSlot.findOne({_id: req.query.timeslotID}, function (err, timeslot) {
+    TimeSlot.findOne({_id: req.query.timeslotID}, async function (err, timeslot) {
 
         eventID = timeslot.event
-        const diff = req.query.newDay - new Date(timeslot.date).getDate()
-        date = new Date(timeslot.date.getTime() + (60 * 60 * 24) * 1000 * diff)
 
-        console.log("new")
-        console.log(date)
-        console.log(startingTime)
-        //diff jours calculs
+        if(req.query.newDay) {
+            const diff = req.query.newDay - new Date(timeslot.date).getDate()
+            date = new Date(timeslot.date.getTime() + (60 * 60 * 24) * 1000 * diff)
+        } else {
+            date = new Date(timeslot.date)
+        }
 
         TimeSlot.updateOne({_id: req.query.timeslotID}, {
             startingTime: startingTime,
-            date: date
+            date: date,
+            rooms: await getRooms(req.body.room),
+            juries: await getRooms(req.body.jury),
+            groups: timeslot.groups
         }, function (err, timeSlot) {
             if (err) {
                 console.log(err)
@@ -462,23 +496,33 @@ exports.manageJuries = (req, res) => {
 
 exports.addJury = (req, res) => {
 
-    let juries = []
-    for (let i = 0; i < req.body.nbJury; i++) {
-        let teachers = []
-
-        for (let j = 0; j < req.body.sizeJury; j++) {
-            console.log(req.body.jury[(i * req.body.sizeJury) + j])
-            teachers.push(mongoose.Types.ObjectId(req.body.jury[(i * req.body.sizeJury) + j]))
-        }
-        const jury = new Jury({
-            event: req.params.eventid,
-            teachers: teachers
-        })
-        juries.push(jury)
-        res.redirect('/admin/manageJuries?eventID='+req.params.eventid)
+    async function getEvent(){
+        return Event.findOne({_id: req.params.eventid});
     }
 
-    Jury.insertMany(juries)
+    async function doIt(){
+
+        const event = await getEvent()
+        let juries = []
+        for (let i = 0; i < req.body.nbJury; i++) {
+            let teachers = []
+
+            for (let j = 0; j < event.sizeJury; j++) {
+                console.log(req.body.jury[(i * event.sizeJury) + j])
+                teachers.push(mongoose.Types.ObjectId(req.body.jury[(i * event.sizeJury) + j]))
+            }
+            const jury = new Jury({
+                event: req.params.eventid,
+                teachers: teachers
+            })
+            juries.push(jury)
+            res.redirect('/admin/manageJuries?eventID='+req.params.eventid)
+        }
+
+        Jury.insertMany(juries)
+    }
+
+    doIt()
 
 }
 

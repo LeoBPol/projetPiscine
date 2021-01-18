@@ -17,6 +17,29 @@ exports.allAccess = (req, res) => {
 
 exports.userBoard = (req, res) => {
 
+    async function findTeacher(group){
+        return Teacher.findOne({_id: group.supervisorTeacher})
+    }
+
+    async function findTimeSlot(group){
+        return TimeSlot.findOne({_id: group.timeSlot})
+    }
+
+    async function findRoom(group, timeslot){
+        let index = 0
+        if (timeslot !== null) {
+            for (let i = 0; i < timeslot.groups.length; i++) {
+                if (timeslot.groups[i]._id === group._id) {
+                    index = i
+                }
+            }
+            return Room.findOne({_id: timeslot.rooms[index]})
+        }
+        else {
+            return null
+        }
+    }
+
     if (req.query.eventID) {
         Event.findOne({'_id': mongoose.Types.ObjectId(req.query.eventID)}, function (err, event) {
             if (err) return console.log(err)
@@ -27,6 +50,8 @@ exports.userBoard = (req, res) => {
                 let day = today.getDay()
                 originalDate.setDate(originalDate.getDate() - day + (day === 0 ? -6 : 1))
                 originalDate = new Date(originalDate.getFullYear(), originalDate.getUTCMonth(), originalDate.getDate(), 0, 0, 0, 0)
+            } else {
+                originalDate = new Date(parseInt(req.query.firstDay))
             }
 
             let allTimeSlot = Array(10).fill([])
@@ -37,6 +62,7 @@ exports.userBoard = (req, res) => {
                 let lastDate = new Date(originalDate.getTime() + (60 * 60 * 24) * 1000 * (day + 1))
                 const result = await TimeSlot.find(
                     {
+                        event: event._id,
                         startingTime:
                             {
                                 $gte: 780 * i,
@@ -59,13 +85,14 @@ exports.userBoard = (req, res) => {
                     }
                 }
                 Class.findOne({_id: event.class}, function (err, classe){
-                    Group.findOne({students : req.user.id}, function (err, group){
+                    Group.findOne({students : req.user.id}, async function (err, group){
                         if (group === null){
-                            res.render("PlanningEtudiant.html", {event: event, timeslots: allTimeSlot, classe: classe, group: group, students: null, rooms: allRooms})
+                            res.render("PlanningEtudiant.html", {event: event, timeslots: allTimeSlot, classe: classe, group: group, teacher: null, timeslot: null, student: await User.findOne({_id: req.user.id}), rooms: allRooms, originalDate: originalDate})
                             return
                         }
-                        User.find({_id: {$in: group.students}}, function (err, students){
-                            res.render("PlanningEtudiant.html", {event: event, timeslots: allTimeSlot, classe: classe, group: group, students: students, rooms: allRooms})
+                        User.find({_id: {$in: group.students}}, async function (err, students){
+                            const timeslot = await findTimeSlot(group)
+                            res.render("PlanningEtudiant.html", {event: event, timeslots: allTimeSlot, classe: classe, group: group, teacher: await findTeacher(group), timeslot: timeslot, room: await findRoom(group, timeslot), students: students, rooms: allRooms, originalDate:originalDate})
                         })
                     })
                 })
@@ -95,7 +122,7 @@ exports.getGroupRegistration = (req, res) => {
     Teacher.find(function (err, teachers){
         User.findOne({_id: req.user._id}, function (err, user){
             Event.findOne({class: user.class}, function (err, event){
-                res.render('FormulaireEtudiant.html', {teachers : teachers, event: event})
+                res.render('FormulaireEtudiant.html', {teachers : teachers, event: event, user: user})
             })
         })
     })
@@ -103,11 +130,13 @@ exports.getGroupRegistration = (req, res) => {
 
 exports.groupRegistration = (req, res) => {
 
+    console.log(req.body)
+
     const group = new Group({
         supervisorTeacher: mongoose.Types.ObjectId(req.body.teacher)
     })
 
-    if (!(req.body.type)) {
+    if (req.body.tutorFirstName) {
         group.tutorFirstName = req.body.tutorFirstName
         group.tutorLastName = req.body.tutorLastName
         group.companyName = req.body.companyName
@@ -121,8 +150,8 @@ exports.groupRegistration = (req, res) => {
     }
 
     async function doIt(){
-        if (req.body.sizegroup > 1) {
-            for (let i = 0; i < req.body.sizegroup; i++) {
+        if (req.body.email.length > 1) {
+            for (let i = 0; i < req.body.email.length; i++) {
                 users[i] = await dbQuery(req.body.email[i]);
             }
         }
@@ -131,10 +160,13 @@ exports.groupRegistration = (req, res) => {
         }
 
         group.students = users
+        group.timeSlot = mongoose.Types.ObjectId(req.query.timeslotID)
 
         group.save(function (err){
             User.findOne({_id: req.user._id}, function (err, user){
                 Event.findOne({class: user.class }, function (err, event){
+
+                    console.log(group)
                     res.redirect('/planning?eventID='+event._id)
                 })
             })

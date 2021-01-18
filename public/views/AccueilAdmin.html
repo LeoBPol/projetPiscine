@@ -40,9 +40,8 @@
                 <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/admin/planning?eventID=<%=events[i]._id%>'"><span><%=events[i].name%><br><%=classes[i].name %><br><%= moment(events[i].start).format('DD/MM/YYYY') %> - <%= moment(events[i].end).format('DD/MM/YYYY') %></span></button><br>
     <%      }
         } %>
-    <button type="button" class="btn btn-primary" onclick="location.href='/admin/createEvent'">CREER UN EVENEMENT</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='/admin/manageTeachers'">GÉRER LES PROFESSEURS</button>
-        <br><br>
+    <button type="button" class="btn btn-primary" onclick="location.href='/admin/createEvent'">CREER UN EVENEMENT</button><br><br>
+        <button type="button" class="btn btn-primary" onclick="location.href='/admin/manageTeachers'">GÉRER LES PROFESSEURS</button><br><br>
         <button type="button" class="btn btn-primary" onclick="location.href='/admin/manageRooms'">GÉRER LES SALLES</button>
     </form>
     <br><br>

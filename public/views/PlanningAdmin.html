@@ -46,65 +46,6 @@
             <i class="fa fa-angle-right" style="border: none"></i></button>
     </div>
 
-    <!--<div class="form-group col-md-4 mb-3 semaineplan" >
-
-        <select class="form-control" name="class">
-            <option>Semaine 3</option>
-            <option>Semaine 52</option>
-            <option>Semaine 51</option>
-            <option>Semaine 50</option>
-            <option>Semaine 49</option>
-            <option>Semaine 48</option>
-            <option>Semaine 47</option>
-            <option>Semaine 46</option>
-            <option>Semaine 45</option>
-            <option>Semaine 44</option>
-            <option>Semaine 43</option>
-            <option>Semaine 42</option>
-            <option>Semaine 41</option>
-            <option>Semaine 40</option>
-            <option>Semaine 39</option>
-            <option>Semaine 38</option>
-            <option>Semaine 37</option>
-            <option>Semaine 36</option>
-            <option>Semaine 35</option>
-            <option>Semaine 34</option>
-            <option>Semaine 33</option>
-            <option>Semaine 32</option>
-            <option>Semaine 31</option>
-            <option>Semaine 30</option>
-            <option>Semaine 29</option>
-            <option>Semaine 28</option>
-            <option>Semaine 27</option>
-            <option>Semaine 26</option>
-            <option>Semaine 25</option>
-            <option>Semaine 24</option>
-            <option>Semaine 23</option>
-            <option>Semaine 22</option>
-            <option>Semaine 21</option>
-            <option>Semaine 20</option>
-            <option>Semaine 19</option>
-            <option>Semaine 18</option>
-            <option>Semaine 17</option>
-            <option>Semaine 16</option>
-            <option>Semaine 15</option>
-            <option>Semaine 14</option>
-            <option>Semaine 13</option>
-            <option>Semaine 12</option>
-            <option>Semaine 11</option>
-            <option>Semaine 10</option>
-            <option>Semaine 9</option>
-            <option>Semaine 8</option>
-            <option>Semaine 7</option>
-            <option>Semaine 6</option>
-            <option>Semaine 5</option>
-            <option>Semaine 4</option>
-
-            <option>Semaine 2</option>
-            <option>Semaine 1</option>
-        </select>
-    </div>-->
-
     <table class="calendar table table-bordered">
         <thead>
         <tr>
@@ -172,36 +113,101 @@
 
             <td class="no-events" id="morning<%=i%>" ondragover="allowDrop(event)" ondrop="drop(event)" value="">
                 <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[i*2].length; nbTimeSlot++) { %>
-                <% console.log("ohhh")
-                console.log(rooms[(i*2)][nbTimeSlot])
-                console.log(juries[(i*2)][nbTimeSlot])
-                console.log(teachers[(i*2)][nbTimeSlot][0])
-                for(let nbJury = 0; nbJury < juries[(i*2)][nbTimeSlot].length; nbJury++){
-                    console.log(teachers[(i*2)][nbTimeSlot][nbJury])
+                <%
+                getValues = function () {
+                console.log(rooms[(i * 2)][nbTimeSlot])
+                let usedRooms = ""
+                let usedJuries = ""
+                let usedGroups = ""
+                for (let nbCreneau = rooms[(i * 2)][nbTimeSlot].length - 1; nbCreneau > -1; nbCreneau--) {
+                usedRooms += rooms[(i * 2)][nbTimeSlot][nbCreneau].name + ","
+                }
+                for (let nbCreneau = 0; nbCreneau < rooms[(i * 2)][nbTimeSlot].length; nbCreneau++) {
+                try {
+                for (let nbTeacher = 0; nbTeacher < teachers[(i * 2)][nbTimeSlot][nbCreneau].length; nbTeacher++) {
+                usedJuries += teachers[(i * 2)][nbTimeSlot][nbCreneau][nbTeacher].teacherLastName + ' '
+                }
+                usedJuries = usedJuries.slice(0, -1)
+                usedJuries += ','
+                } catch (e) {
+                }
+                try {
+                for (let nbStudent = 0; nbStudent < allStudents[(i * 2)][nbTimeSlot][nbCreneau].length; nbStudent++) {
+                usedGroups += allStudents[(i * 2)][nbTimeSlot][nbCreneau][nbStudent].lastName + ' '
+                }
+                usedGroups = usedGroups.slice(0, -1)
+                usedGroups += ','
+                } catch (e) {
+                }
+                usedRooms = usedRooms.slice(0, -1)
+                usedJuries = usedJuries.slice(0, -1)
+                usedGroups = usedGroups.slice(0, -1)
+                console.log("usedGroups")
+                console.log(usedGroups)
+                }
+                }
+
+                getRooms = function () {
+                let usedRooms = ""
+                for (let nbCreneau = 0; nbCreneau < rooms[(i * 2)][nbTimeSlot].length; nbCreneau++) {
+                usedRooms += rooms[(i * 2)][nbTimeSlot][nbCreneau].name + ","
+                }
+                usedRooms = usedRooms.slice(0, -1)
+                console.log("usedRooms")
+                console.log(usedRooms)
+                return usedRooms
+                }
+
+                getJuries = function () {
+                let usedJuries = ""
+                for (let nbCreneau = 0; nbCreneau < rooms[(i * 2)][nbTimeSlot].length; nbCreneau++) {
+                try {
+                for (let nbTeacher = 0; nbTeacher < teachers[(i * 2)][nbTimeSlot][nbCreneau].length; nbTeacher++) {
+                usedJuries += teachers[(i * 2)][nbTimeSlot][nbCreneau][nbTeacher].teacherLastName + ' '
+                }
+                usedJuries = usedJuries.slice(0, -1)
+                usedJuries += ','
+                } catch (e) {
+                usedJuries += ' ,'
+                }
+                }
+                usedJuries = usedJuries.slice(0, -1)
+                console.log("usedJuries")
+                console.log(usedJuries)
+                return usedJuries
+                }
+
+                getGroups = function () {
+                let usedGroups = ""
+                for (let nbCreneau = 0; nbCreneau < rooms[(i * 2)][nbTimeSlot].length; nbCreneau++) {
+                try {
+                for (let nbStudent = 0; nbStudent < allStudents[(i * 2)][nbTimeSlot][nbCreneau].length; nbStudent++) {
+                usedGroups += allStudents[(i * 2)][nbTimeSlot][nbCreneau][nbStudent].lastName + ' '
+                }
+                usedGroups = usedGroups.slice(0, -1)
+                usedGroups += ','
+                } catch (e) {
+                usedGroups += ' ,'
+                }
+                }
+                usedGroups = usedGroups.slice(0, -1)
+                console.log("usedGroups")
+                console.log(usedGroups)
+                return usedGroups
                 }
                 %>
-                <%
-                    let usedRooms = ""
-                    for (let nbCreneau = 0; nbCreneau < rooms[(i*2)][nbTimeSlot].length; nbCreneau++){
-                        usedRooms += rooms[(i*2)][nbTimeSlot][nbCreneau].name + ","
-                    }
-                usedRooms = usedRooms.slice(0,-1)
-                %>
-                <script>
-                    let usedRooms = []
-                    for (let nbCreneau = 0; nbCreneau < parseInt('<%=rooms[(i*2)][nbTimeSlot].length%>'); nbCreneau++){
-                        usedRooms[nbCreneau] = "<%=usedRooms%>"
-                    }
-                    console.log(usedRooms)
-                </script>
+
                 <div class="<%= isFull(timeslots[(i*2)][nbTimeSlot]) %> time-slot" draggable="true"
-                     id="<%= timeslots[(i*2)][nbTimeSlot]._id%>" onclick="openForm('<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %>', '<%= timeslots[(i*2)][nbTimeSlot]._id %>', '<%= usedRooms %>')" ondragstart="drag(event)">
+                     id="<%= timeslots[(i*2)][nbTimeSlot]._id%>"
+                     onclick="openForm('<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %>', '<%= timeslots[(i*2)][nbTimeSlot]._id %>', '<%= getRooms() %>', '<%= getJuries() %>', '<%= getGroups() %>')"
+                     ondragstart="drag(event,'<%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %>')">
                     <div class="row-fluid lecture" style="width: 99%; height: 100%">
-                        <span class="fa fa-close" style="float: right; margin: 2%; color: red" type="button"></span>
                         <span class="title"><%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)][nbTimeSlot].startingTime, event.presentationDuration) %></span>
                         <span class="lecturer"></span>
-                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot]) %> </span> <span
-                            class="lecturer"></span>
+                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)][nbTimeSlot]) %> </span>
+                        <span class="lecturer"></span>
+                        <span class="title"> <% let value = getRooms().split(',') %> <%= value %></span>
+                        <span class="lecturer"></span>
                     </div>
                 </div>
                 <%}%>
@@ -215,16 +221,105 @@
             <td class="m time-slot-indicator" id="afternoon" width="5%">13:00 - 19:00</td>
 
             <%for( let i = 0; i < 5; i++) {%>
+            
+            
 
             <td class="no-events" id="afternoon<%=i%>" ondragover="allowDrop(event)" ondrop="drop(event)" value="">
                 <%for( let nbTimeSlot = 0; nbTimeSlot < timeslots[(i*2)+1].length; nbTimeSlot++) { %>
+                <%
+                getValues = function () {
+                console.log(rooms[(i * 2)+1][nbTimeSlot])
+                let usedRooms = ""
+                let usedJuries = ""
+                let usedGroups = ""
+                for (let nbCreneau = rooms[(i * 2)+1][nbTimeSlot].length - 1; nbCreneau > -1; nbCreneau--) {
+                usedRooms += rooms[(i * 2)+1][nbTimeSlot][nbCreneau].name + ","
+                }
+                for (let nbCreneau = 0; nbCreneau < rooms[(i * 2)+1][nbTimeSlot].length; nbCreneau++) {
+                try {
+                for (let nbTeacher = 0; nbTeacher < teachers[(i * 2)+1][nbTimeSlot][nbCreneau].length; nbTeacher++) {
+                usedJuries += teachers[(i * 2)+1][nbTimeSlot][nbCreneau][nbTeacher].teacherLastName + ' '
+                }
+                usedJuries = usedJuries.slice(0, -1)
+                usedJuries += ','
+                } catch (e) {
+                }
+                try {
+                for (let nbStudent = 0; nbStudent < allStudents[(i * 2)+1][nbTimeSlot][nbCreneau].length; nbStudent++) {
+                usedGroups += allStudents[(i * 2)+1][nbTimeSlot][nbCreneau][nbStudent].lastName + ' '
+                }
+                usedGroups = usedGroups.slice(0, -1)
+                usedGroups += ','
+                } catch (e) {
+                }
+                usedRooms = usedRooms.slice(0, -1)
+                usedJuries = usedJuries.slice(0, -1)
+                usedGroups = usedGroups.slice(0, -1)
+                console.log("usedGroups")
+                console.log(usedGroups)
+                }
+                }
+
+                getRooms = function () {
+                let usedRooms = ""
+                for (let nbCreneau = 0; nbCreneau < rooms[(i * 2)+1][nbTimeSlot].length; nbCreneau++) {
+                usedRooms += rooms[(i * 2)+1][nbTimeSlot][nbCreneau].name + ","
+                }
+                usedRooms = usedRooms.slice(0, -1)
+                console.log("usedRooms")
+                console.log(usedRooms)
+                return usedRooms
+                }
+
+                getJuries = function () {
+                let usedJuries = ""
+                for (let nbCreneau = 0; nbCreneau < rooms[(i * 2)+1][nbTimeSlot].length; nbCreneau++) {
+                try {
+                for (let nbTeacher = 0; nbTeacher < teachers[(i * 2)+1][nbTimeSlot][nbCreneau].length; nbTeacher++) {
+                usedJuries += teachers[(i * 2)+1][nbTimeSlot][nbCreneau][nbTeacher].teacherLastName + ' '
+                }
+                usedJuries = usedJuries.slice(0, -1)
+                usedJuries += ','
+                } catch (e) {
+                usedJuries += ' ,'
+                }
+                }
+                usedJuries = usedJuries.slice(0, -1)
+                console.log("usedJuries")
+                console.log(usedJuries)
+                return usedJuries
+                }
+
+                getGroups = function () {
+                let usedGroups = ""
+                for (let nbCreneau = 0; nbCreneau < rooms[(i * 2)+1][nbTimeSlot].length; nbCreneau++) {
+                try {
+                for (let nbStudent = 0; nbStudent < allStudents[(i * 2)+1][nbTimeSlot][nbCreneau].length; nbStudent++) {
+                usedGroups += allStudents[(i * 2)+1][nbTimeSlot][nbCreneau][nbStudent].lastName + ' '
+                }
+                usedGroups = usedGroups.slice(0, -1)
+                usedGroups += ','
+                } catch (e) {
+                usedGroups += ' ,'
+                }
+                }
+                usedGroups = usedGroups.slice(0, -1)
+                console.log("usedGroups")
+                console.log(usedGroups)
+                return usedGroups
+                }
+                %>
                 <div class="<%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %> time-slot" draggable="true"
-                     id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>" onclick="openForm('<%= minsToHHMM(timeslots[(i*2)+i][nbTimeSlot].startingTime, 0) %>', '<%= timeslots[(i*2)+i][nbTimeSlot]._id %>')" ondragstart="drag(event)">
+                     id="<%= timeslots[(i*2)+1][nbTimeSlot]._id%>"
+                     onclick="openForm('<%= minsToHHMM(timeslots[(i*2)+i][nbTimeSlot].startingTime, 0) %>', '<%= timeslots[(i*2)+i][nbTimeSlot]._id %>', '<%= getRooms() %>', '<%= getJuries() %>', '<%= getGroups() %>')"
+                     ondragstart="drag(event, '<%= minsToHHMM(timeslots[(i*2)+i][nbTimeSlot].startingTime, 0) %>')">
                     <div class="row-fluid lecture" style="width: 99%; height: 100%;">
                         <span class="title"><%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, 0) %> - <%= minsToHHMM(timeslots[(i*2)+1][nbTimeSlot].startingTime, event.presentationDuration) %></span>
                         <span class="lecturer"></span>
-                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %> </span> <span
-                            class="lecturer"></span>
+                        <span class="title"> Créneau <%= isFull(timeslots[(i*2)+1][nbTimeSlot]) %> </span>
+                        <span class="lecturer"></span>
+                        <span class="title"> <% let value = getRooms().split(',') %> <%= value %></span>
+                        <span class="lecturer"></span>
                     </div>
                 </div>
                 <%}%>
@@ -247,15 +342,29 @@
 
 
 </main>
+<footer class="footer" style="position: relative; margin-top: 0">
+
+    <p class="p6">En savoir plus</p>
+    <p class="p6bis">Langues</p><br>
+    <p class="p6">https://polytech.umontpellier.fr</p>
+    <p class="p6">français</p>
+    <img alt="" class="log1" src="img/LOGO_original_RVB_WEB-1.png"/>
+    <img alt="" class="log1" src="img/IG.png"/>
+    <img alt="" class="log1" src="img/unnamed.png"/>
+    <p class="p6">© 2020 Polytech Montpellier</p>
+
+</footer>
 <aside class="aside">
     <div class="login-popup">
         <div class="form-popup" id="popupForm">
+            <span class="fas fa-trash" style="position: absolute;float: left;bottom: 0;left: 0;margin: 2%;"
+                  type="button"></span>
             <span class="fa fa-close" onclick="closeForm()" style="float: right; margin: 2%" type="button"></span>
             <div style="width: 100%; height: fit-content; background-color:#dddddd">
                 <h2 style="margin-left: 10%; margin-right: 10%">Modification du créneau</h2>
             </div>
 
-            <form action="" method="post" class="form-container scroll" style="overflow-y: hidden">
+            <form action="" class="form-container scroll" id="timeSlotForm" method="post">
                 <div class="clock pop-up-form-element">
                     <label for="hour-input">Nouvelle heure de début</label>
                     <input autocomplete="off" class="form-control" id="hour-input" name="startingTime"
@@ -277,25 +386,29 @@
                 <div class="pop-up-form-element pop-up-jury" id="timeSlotCreator">
                     <div class="input-inside-group">
                         <label for="salle" style="margin-top: .5rem">Salle</label><br>
-                        <select class="form-control" id="salle" name="room">
+                        <select class="form-control selector" id="salle" name="room">
                             <% for(var i = 0; i < allRooms.length; i++) {%>
-                                <option value="<%= allRooms[i]._id %>"><%= allRooms[i].name %></option>
+                            <option value="<%= allRooms[i]._id %>"><%= allRooms[i].name %></option>
                             <%}%>
+                            <option>Aucune salle</option>
                         </select>
                     </div>
                     <div class="input-inside-group">
                         <label for="jury">Jury</label><br>
-                        <select class="form-control" id="jury" name="jury">
+                        <select class="form-control selector" id="jury" name="jury">
                             <% for(var i = 0; i < allJuries.length; i++) {%>
-                                <option value="<%= allJuries[i]._id %>">
-                                    <%
-                                    console.log("teachersOfAllJuries")
-                                    console.log(teachersOfAllJuries[i])
-                                    for(var j = 0; j < teachersOfAllJuries[i].length; j++) {%>
-                                        <%= teachersOfAllJuries[i][j].teacherLastName %>
-                                    <%}%></option>
+                            <option value="<%= allJuries[i]._id %>">
+                                <%for(var j = 0; j < teachersOfAllJuries[i].length; j++) {%>
+                                <%= teachersOfAllJuries[i][j].teacherLastName %>
+                                <%}%>
+                            </option>
                             <%}%>
+                            <option>Aucun jury</option>
                         </select>
+                    </div>
+                    <div class="input-inside-group">
+                        <label>Groupe</label><br>
+                        <p class="form-control selectedOne" id="group" style="margin: 0"></p>
                     </div>
                 </div>
 
@@ -303,29 +416,49 @@
                     const selectElement = document.querySelector('#nbcreneau');
                     const node = document.querySelector('#timeSlotCreator');
 
+                    let usedRooms
+                    let usedJuries
+                    let usedGroups
+
                     selectElement.addEventListener('change', (event) => {
-                        let value = event.target.value
-                        if(value > 1) {
-                            document.getElementsByClassName("scroll")[0].setAttribute('style','')
-                        } else {
-                            document.getElementsByClassName("scroll")[0].setAttribute('style','overflow-y:hidden')
+
+                        console.log(event)
+
+                        if (event.detail) {
+                            console.log(event.detail.rooms)
+                            console.log(event.detail.juries)
+                            console.log(event.detail.groups)
+
+                            usedRooms = event.detail.rooms
+                            usedJuries = event.detail.juries
+                            usedGroups = event.detail.groups
                         }
 
-                        console.log(value)
+                        let value = event.target.value
+
                         for (var i = 0, copy; i < value - 1; i++) {
                             if (document.getElementById('timeSlotCreator' + i)) {
                                 document.getElementById('timeSlotCreator' + i).style.display = 'block'
                             } else {
                                 copy = node.cloneNode(true);
                                 copy.attributes.id.nodeValue = copy.attributes.id.nodeValue + i
-                                node.parentNode.insertBefore(copy, node);
+
+                                node.parentNode.insertBefore(copy, node.parentNode.lastChild.previousSibling);
+
+                                copy.parentElement.getElementsByClassName("pop-up-jury")[copy.parentElement.getElementsByClassName("pop-up-jury").length - 1].getElementsByTagName("select")[0].setAttribute('id', 'salle' + i.toString())
+                                copy.parentElement.getElementsByClassName("pop-up-jury")[copy.parentElement.getElementsByClassName("pop-up-jury").length - 1].getElementsByTagName("select")[1].setAttribute('id', 'jury' + i.toString())
+                                copy.parentElement.getElementsByClassName("pop-up-jury")[copy.parentElement.getElementsByClassName("pop-up-jury").length - 1].getElementsByTagName("select")[0].getElementsByTagName("option")[copy.parentElement.getElementsByClassName("pop-up-jury")[copy.parentElement.getElementsByClassName("pop-up-jury").length - 1].getElementsByTagName("select")[0].length - 1].setAttribute('selected', 'selected')
+                                copy.parentElement.getElementsByClassName("pop-up-jury")[copy.parentElement.getElementsByClassName("pop-up-jury").length - 1].getElementsByTagName("select")[1].getElementsByTagName("option")[copy.parentElement.getElementsByClassName("pop-up-jury")[copy.parentElement.getElementsByClassName("pop-up-jury").length - 1].getElementsByTagName("select")[1].length - 1].setAttribute('selected', 'selected')
+                                copy.parentElement.getElementsByClassName("pop-up-jury")[copy.parentElement.getElementsByClassName("pop-up-jury").length - 1].getElementsByClassName("selectedOne")[0].setAttribute('id', 'group' + i.toString())
                             }
                         }
 
-                        for (var j =  value - 1; j < 10; j++) {
-                            let timeSlotCreator = document.getElementById('timeSlotCreator'+j)
-                            if (timeSlotCreator != null) timeSlotCreator.parentNode.removeChild(timeSlotCreator)
+                        for (var j = value - 1; j < 4; j++) {
+                            let timeSlotCreator = document.getElementById('timeSlotCreator' + j)
+                            if (timeSlotCreator != null) timeSlotCreator.setAttribute('style', 'display:none')
                         }
+
+                        selectGoodOnes(usedRooms, usedJuries, usedGroups, node.parentElement.getElementsByClassName("pop-up-jury").length)
                     });
                 </script>
 
@@ -337,9 +470,8 @@
             <form action="" class="form-container" method="POST" style="margin-left: 0; text-align: center">
                 <h2 style="margin-left: 10%; margin-right: 10%">Modification du créneau</h2>
                 <div class="clock pop-up-form-element">
-                    <label for="hour-input">Nouvelle heure de début</label>
-                    <input autocomplete="off" class="form-control" id="hour-input" name="startingTime"
-                           placeholder="00:00"
+                    <label for="hour-hour-input">Nouvelle heure de début</label>
+                    <input autocomplete="off" class="form-control" id="hour-hour-input" name="startingTime"
                            required type="text" value="">
                     <script src="script/clockpicker.js" type="text/javascript"></script>
                 </div>
@@ -349,79 +481,80 @@
         </div>
     </div>
 
-    <button class="btn btn-circle" onclick="location.href='/logout'"><i class="far fa-sign-out"></i></button>
-    <button class="btn btn-circle" onclick="location.href='/admin/accueil'"><i class="fa fa-home"></i></button>
+    <div style="height: fit-content; margin-bottom: 1%">
+        <button class="btn btn-circle" onclick="location.href='/logout'"><i class="far fa-sign-out"></i></button>
+        <button class="btn btn-circle" onclick="location.href='/admin/accueil'"><i class="fa fa-home"></i></button>
+    </div>
 
-
-    <div class="cadre">
+    <div class="cadre" style="height: fit-content">
         <p class="p7">Informations de l'événement </p>
-        <p> Durée d'une soutenance
+        <% duration = function (presentationDuration) {
+            if(presentationDuration === 60) { return "1H" }
+            else { return "1H30" }
+        }%>
+        <p class="p-cadre"> Durée d'une soutenance : <span style="margin-right: 5%; color: #015FFF; font-family: 'Segoe UI Semibold', sans-serif" class="encadrer-un-contenu"><%= duration(event.presentationDuration) %></span>
 
-            <select class="form-control mi input-cadre">
+            <!--<select class="form-control mi input-cadre">
                 <option>1h</option>
                 <option>1h30</option>
 
-            </select>
+            </select>-->
         </p>
-        <p>Nombre de jury par soutenance <select class="form-control mi input-cadre">
+        <p class="p-cadre">Nombre de jury par soutenance : <span style="margin-right: 5%; color: #015FFF; font-family: 'Segoe UI Semibold', sans-serif" class="encadrer-un-contenu"><%= event.sizeJury%></span><!--<select class="form-control mi input-cadre">
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
 
-        </select></p>
+        </select>--></p>
         </p>
-        <p> Date limite de réservation <input class="form-control mi input-cadre" id="dateDebut" name="dateDebut"
-                                              placeholder="jj/mm/aaaa" type="text"/>
-            <script src="script/datepicker.js" type="text/javascript"></script>
+        <p class="p-cadre"> Date limite de réservation : <span style="margin-right: 5%; color: #015FFF; font-family: 'Segoe UI Semibold', sans-serif" class="encadrer-un-contenu"><%= moment(event.deadline).format("DD/MM/YYYY")%></span> <!--<input class="form-control mi input-cadre" id="dateDebut"
+                                                                      name="dateDebut"
+                                                                      placeholder="jj/mm/aaaa" type="text"/>
+            <script src="script/datepicker.js" type="text/javascript"></script>-->
         </p>
         </p>
-        <p> Nombre d'élèves par soutenance
-            <select class="form-control mi input-cadre">
+            <p class="p-cadre"> Nombre d'élèves par soutenance : <span style="margin-right: 5%; color: #015FFF; font-family: 'Segoe UI Semibold', sans-serif" class="encadrer-un-contenu"><%= event.sizeGroup%></span>
+            <!--<select class="form-control mi input-cadre">
                 <option>1h</option>
                 <option>1h30</option>
-            </select></p>
-        <button class="btn btn-light modifier" type="submit">Modifier ces informations</button>
+            </select>--></p>
+        <!--<button class="btn btn-light modifier" type="submit">Modifier ces informations</button>-->
 
 
     </div>
 
     <button class="btn btn-light jury-button" onclick="location.href='/admin/manageJuries?eventID=<%= event._id %>'"
+            style="margin-bottom: 10%"
             type="button">Modifier les jurys
     </button>
 
-    <p class="p9">Autres événements</p>
-    <% if (events.length==0) { %>
-    <span>Aucun événement en cours</span><br>
-    <% }
-    else {
-    for(var i=0; i < events.length; i++) {%>
-    <button class="btn btn-primary ombré" onclick="location.href='/admin/planning?eventID=<%=events[i]._id%>'"
-            type="button"><%= events[i].name %> - <%=
-        classes[i].name %><i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
-    <%}
-    } %>
+    <div style="position:absolute; bottom: 0; height: auto; margin-bottom: 10%">
+        <p class="p9" style="margin-bottom: 0">Autres événements</p>
+        <% if (events.length==0) { %>
+        <span>Aucun événement en cours</span><br>
+        <% }
+        else {
+        for(var i=0; i < events.length; i++) {%>
+        <button class="btn btn-primary ombré" onclick="location.href='/admin/planning?eventID=<%=events[i]._id%>'"
+                type="button"><%= events[i].name %> - <%=
+            classes[i].name %><i aria-hidden="true" class="fa fa-long-arrow-right"></i></button>
+        <%}
+        } %>
+    </div>
+
 </aside>
-<footer class="footer">
-
-    <p class="p6">En savoir plus</p>
-    <p class="p6bis">Langues</p><br>
-    <p class="p6">https://polytech.umontpellier.fr</p>
-    <p class="p6">français</p>
-    <img alt="" class="log1" src="img/LOGO_original_RVB_WEB-1.png"/>
-    <img alt="" class="log1" src="img/IG.png"/>
-    <img alt="" class="log1" src="img/unnamed.png"/>
-    <p class="p6">© 2020 Polytech Montpellier</p>
-
-</footer>
 <script>
     function allowDrop(ev) {
         ev.preventDefault();
     }
 
-    function drag(ev) {
+    function drag(ev,mins) {
         ev.dataTransfer.setData("text", ev.target.id);
         ev.dataTransfer.setData("originalDay", ev.path[1].getAttribute('value'));
+        console.log(mins)
+        console.log("mins")
+        ev.dataTransfer.setData("mins", mins);
     }
 
     function drop(ev) {
@@ -429,41 +562,129 @@
         console.log(ev)
         var data = ev.dataTransfer.getData("text");
         var newDay = ev.path[0].getAttribute('value')
+        var mins = ev.dataTransfer.getData("mins");
         ev.target.appendChild(document.getElementById(data));
-        openFormHour(data, newDay)
+        openFormHour(data, newDay, mins)
     }
 </script>
 
 <script>
-    function openForm(min, id, rooms) {
 
-        const event = new Event('change')
+    function setGroups(groups) {
+        let exist = true
+        for (let i = 0; i < groups.length - 1; i++) {
+            if (!document.getElementById("salle" + i.toString())) {
+                exist = false
+            }
+        }
+        if (exist) {
+            for (let i = 0; i < groups.length; i++) {
+                let idGroup = "group"
+                if (i > 0) {
+                    idGroup = "group" + (i - 1).toString()
+                }
+                document.getElementById(idGroup).innerHTML = groups[i]
+            }
+        }
+    }
 
+    function selectGoodOnes(rooms, juries, groups, nbElem) {
+        console.log(rooms)
+        console.log(juries)
+        console.log(groups)
 
-        rooms = rooms.split(',')
+        let exist = true
+        for (let i = 0; i < rooms.length - 1; i++) {
+            if (!document.getElementById("salle" + i.toString())) {
+                exist = false
+            }
+        }
+        if (exist) {
+            for (let i = 0; i < rooms.length; i++) {
+                let idSalle = "salle"
+                let idJury = "jury"
+                let idGroup = "group"
+                if (i > 0) {
+                    idSalle = "salle" + (i - 1).toString()
+                    idJury = "jury" + (i - 1).toString()
+                    idGroup = "group" + (i - 1).toString()
+                }
+                console.log("groups[i]")
+                console.log(groups[i])
+                console.log(groups[i] === " ")
+                if (groups[i] === " ") {
+                    document.getElementById(idGroup).innerHTML = "Aucune réservation"
+                } else {
+                    document.getElementById(idGroup).innerHTML = groups[i]
+                }
+                for (let j = 0; j < document.getElementById(idSalle).children.length; j++) {
+                    if (document.getElementById(idSalle).children[j].innerHTML === rooms[i]) {
+                        document.getElementById(idSalle).children[j].setAttribute('selected', 'selected')
+                    }
+                }
+                for (let j = 0; j < document.getElementById(idJury).children.length; j++) {
+                    if (document.getElementById(idJury).children[j].innerHTML.replaceAll(' ', '').replaceAll('\n', '').replaceAll('\t', '') === juries[i].replaceAll(' ', '')) {
+                        document.getElementById(idJury).children[j].setAttribute('selected', 'selected')
+                    }
+                }
+            }
+        }
+
+        console.log("nbElem")
+        console.log(nbElem)
+        console.log("groups.length")
+        console.log(groups.length)
+        if (groups.length < nbElem) {
+            for (let i = nbElem - 1; i > groups.length - 1; i--) {
+                console.log("i=" + i)
+                let idGroup = "group"
+                if (i > 0) {
+                    idGroup = "group" + (i - 1).toString()
+                }
+                console.log(idGroup)
+                document.getElementById(idGroup).innerHTML = "Aucune réservation"
+            }
+        }
+    }
+
+    function openForm(min, id, rooms, juries, groups) {
 
         console.log(rooms)
-
-        document.getElementById("nbcreneau").children[rooms.length - 1].setAttribute('selected', 'selected')
-        document.getElementById("nbcreneau").dispatchEvent(new Event('change'))
+        console.log(juries)
+        console.log(groups)
 
         document.getElementById("hour-input").setAttribute('value', min)
         document.getElementById("popupForm").style.display = "block";
         document.getElementsByClassName("login-popup")[0].style.display = "block";
         document.getElementsByTagName("body")[0].setAttribute('style', 'position: fixed; overflow-y: scroll')
-        document.getElementById("popupForm").firstChild.nextSibling.setAttribute('action', "/admin/planning?timeslotID=" + id + "&firstDay=<%= new Date(moment(originalDate)).getTime()%>" + "&_method=PUT")
+
+        document.getElementsByClassName("scroll")[0].setAttribute('action', "/admin/planning?timeslotID=" + id + "&firstDay=<%= new Date(moment(originalDate)).getTime()%>" + "&_method=PUT")
+
+        rooms = rooms.split(',')
+        juries = juries.split(',')
+        groups = groups.split(',')
+        console.log(rooms)
+        console.log(juries)
+        console.log(groups)
+
+        const event = new CustomEvent('change', {detail: {rooms: rooms, juries: juries, groups: groups}});
+
+        document.getElementById("nbcreneau").children[rooms.length - 1].setAttribute('selected', 'selected')
+        document.getElementById("nbcreneau").dispatchEvent(event)
     }
 
     function closeForm() {
         document.getElementById("popupForm").style.display = "none";
         document.getElementsByClassName("login-popup")[0].style.display = "none";
         document.getElementsByTagName("body")[0].setAttribute('style', '')
+        window.location.reload()
     }
 
-    function openFormHour(data, newDay) {
-        document.getElementsByTagName("body")[0].setAttribute('style', 'pointer-events: none; user-select: none;')
+    function openFormHour(data, newDay, mins) {
+        document.getElementById("hour-hour-input").setAttribute('value', mins)
+        document.getElementsByTagName("body")[0].setAttribute('style', 'pointer-events: none; user-select: none;position: fixed; overflow-y: scroll')
         document.getElementById("popupHourForm").setAttribute('style', 'pointer-events: visible; user-select: unset;')
-        document.getElementById("popupHourForm").firstChild.nextSibling.setAttribute('action', "/admin/planning?timeslotID=" + data + "&newDay=" + newDay + "&firstDay=<%= new Date(moment(originalDate)).getTime()%>" + "&_method=PUT")
+        document.getElementById("popupHourForm").children[1].setAttribute('action', "/admin/planning?timeslotID=" + data + "&newDay=" + newDay + "&firstDay=<%= new Date(moment(originalDate)).getTime()%>" + "&_method=PUT")
         document.getElementById("popupHourForm").style.display = "block";
         document.getElementsByClassName("login-popup")[0].style.display = "block";
     }
@@ -471,8 +692,8 @@
     function closeFormHour() {
         document.getElementById("popupHourForm").style.display = "none";
         document.getElementsByClassName("login-popup")[0].style.display = "none";
-        document.getElementsByTagName("body")[0].setAttribute('style', 'pointer-events: visible; user-select: unset;')
-
+        document.getElementsByTagName("body")[0].setAttribute('style', '')
+        window.location.reload()
     }
 
 </script>

@@ -23,7 +23,6 @@ body {
   margin-left: 30%;
 }
 .footer{
-
   position: relative;
   margin-left: 30%;
   float: right;
@@ -31,7 +30,7 @@ body {
   width:70%;
   height: 20%;
   background: #999999;
-  margin-top: 15%;
+  margin-top: 5%;
 }
 .deux{
   margin-top: 30%;
@@ -305,8 +304,10 @@ table.calendar{
   border-left: 0;
 }
 .modifier{
-  float: center;
-  margin-left: 20%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
   margin-bottom: 5%;
 }
 
@@ -386,6 +387,11 @@ table.calendar > tbody > tr > td.m {
   border-style:solid solid;
   border-color: white;
   color: white;
+}
+.p-cadre{
+  margin-left: 5%;
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 .input-cadre {
   float: right;
@@ -652,6 +658,7 @@ table.calendar > tbody > tr > td.m {
   height: 100%;
   display: none;
   background: rgba(0,0,0,0.5);
+  z-index: 9;
 }
 /* Masquez la forme Popup */
 .form-popup {
@@ -697,7 +704,33 @@ table.calendar > tbody > tr > td.m {
   background: #929292;
   border-radius: 10px;
 }
-
+.no-jury{
+  text-align: center;
+  margin: 0;
+  font-size: .8em;
+}
+.border-none{
+  border: 0;
+  width: 100%;
+  margin-top: 5%;
+  margin-left: 0;
+  background-color:#015FFF ;
+  font-size: 1em;
+  color : white;
+  height: 20%;
+  border-radius: 0;
+}
+.border-none:hover{
+  border: 0;
+}
+.border-none:focus{
+  border: 0!important;
+  box-shadow: none!important;
+  outline: none;
+}
+.selectedOne{
+  height:fit-content;
+}
 
 
 

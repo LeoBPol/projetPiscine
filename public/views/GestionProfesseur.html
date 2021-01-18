@@ -31,17 +31,15 @@
 
     <ul class="list-group" style="margin-left: 10%; margin-right: 10%">
         <% for(var i=0; i < teachers.length; i++) { %>
-            <li id="teacher" class="list-group-item">
-                <span id="deleteTeacher"  class="fa fa-times" onclick="test()" style="right: 10%"></span>
+            <li id="<%= teachers[i]._id %>" class="list-group-item">
+                <span id="deleteTeacher"  class="fa fa-times" onclick="test('<%= teachers[i]._id %>')" style="right: 10%"></span>
                 <%= teachers[i].teacherFirstName %> <%= teachers[i].teacherLastName %>
-                <p id="id" value="<%= teachers[i]._id %>" style="display: none"><%= teachers[i]._id %></p>
             </li>
         <% } %>
 
         <script>
-            function test(){
+            function test(id){
                 console.log("deleting")
-                var id = $('#id').text();
                 console.log(id)
                 $.ajax({
                     type: 'DELETE',
@@ -53,7 +51,7 @@
                         console.log(err);
                     }
                 });
-                $('#teacher').attr('style', 'display: none');
+                document.getElementById(id).setAttribute('style', 'display: none')
             }
         </script>
 

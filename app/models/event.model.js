@@ -9,6 +9,8 @@ const Class = mongoose.model(
         deadline: Date,
         presentationDuration: Number,
         sizeJury: Number,
+        sizeGroup: Number,
+        isInternship: Boolean,
         class:
             {
                 type: mongoose.Schema.Types.ObjectId,
